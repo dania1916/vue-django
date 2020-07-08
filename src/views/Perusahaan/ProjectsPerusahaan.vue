@@ -10,7 +10,7 @@
           </h3>
         </div>
         <div class="col text-right">
-          <base-button type="primary" size="md" href="/Anggota.vue">Unggah Laporan KP</base-button>
+          <base-button type="primary" size="md" href="/Anggota.vue">Unggah Data Perusahaan</base-button>
         </div>
       </div>
     </div>

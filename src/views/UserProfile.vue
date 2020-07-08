@@ -10,7 +10,7 @@
                     <div class="col-lg-7 col-md-10">
                         <h1 class="display-2 text-white">Hello Jesse</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-                        <a href="#!" class="btn btn-info">Edit profile</a>
+                        <base-button href="#!" size="md" type="default" class="float-left">Edit profile</base-button>
                     </div>
                 </div>
             </div>
@@ -31,27 +31,11 @@
                             </div>
                         </div>
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                            <div class="d-flex justify-content-between">
-                                <base-button size="sm" type="info" class="mr-4">Connect</base-button>
-                                <base-button size="sm" type="default" class="float-right">Message</base-button>
-                            </div>
                         </div>
                         <div class="card-body pt-0 pt-md-4">
                             <div class="row">
                                 <div class="col">
                                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                                        <div>
-                                            <span class="heading">22</span>
-                                            <span class="description">Friends</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">10</span>
-                                            <span class="description">Photos</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">89</span>
-                                            <span class="description">Comments</span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -68,9 +52,6 @@
                                 <div>
                                     <i class="ni education_hat mr-2"></i>University of Computer Science
                                 </div>
-                                <hr class="my-4" />
-                                <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-                                <a href="#">Show more</a>
                             </div>
                         </div>
                     </div>
@@ -81,17 +62,50 @@
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">My account</h3>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                                    <h3 class="mb-0">Informasi Akun</h3>
                                 </div>
                             </div>
                         </div>
                         <template>
                             <form @submit.prevent>
-                                <h6 class="heading-small text-muted mb-4">User information</h6>
+                                <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Nama Lengkap"
+                                                        placeholder="Nama Lengkap"
+                                                        input-classes="form-control-alternative"
+                                                        v-model="model.NamaLengkap"
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="NIM"
+                                                        placeholder="NIM"
+                                                        input-classes="form-control-alternative"
+                                                        v-model="model.NIM"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Angkatan"
+                                                        placeholder="Angkatan"
+                                                        input-classes="form-control-alternative"
+                                                        v-model="model.Angkatan"
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Prodi"
+                                                        placeholder="Prodi"
+                                                        input-classes="form-control-alternative"
+                                                        v-model="model.Prodi"
+                                            />
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <base-input alternative=""
@@ -110,60 +124,42 @@
                                             />
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="First name"
-                                                        placeholder="First name"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.firstName"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Last name"
-                                                        placeholder="Last name"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.lastName"
-                                            />
-                                        </div>
-                                    </div>
                                 </div>
                                 <hr class="my-4" />
                                 <!-- Address -->
-                                <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                                <h6 class="heading-small text-muted mb-4">Kontak</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <base-input alternative=""
-                                                        label="Address"
-                                                        placeholder="Home Address"
+                                                        label="Alamat"
+                                                        placeholder="Alamat"
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.address"
+                                                        v-model="model.ALamat"
                                             />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <base-input alternative=""
-                                                        label="City"
-                                                        placeholder="City"
+                                                        label="Kota"
+                                                        placeholder="Kota"
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.city"
+                                                        v-model="model.Kota"
                                             />
                                         </div>
                                         <div class="col-lg-4">
                                             <base-input alternative=""
-                                                        label="Country"
-                                                        placeholder="Country"
+                                                        label="Provinsi"
+                                                        placeholder="Provinsi"
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.country"
+                                                        v-model="model.Provinsi"
                                             />
                                         </div>
                                         <div class="col-lg-4">
                                             <base-input alternative=""
-                                                        label="Postal code"
-                                                        placeholder="Postal code"
+                                                        label="Kode Pos"
+                                                        placeholder="Kode Pos"
                                                         input-classes="form-control-alternative"
                                                         v-model="model.zipCode"
                                             />
@@ -171,15 +167,9 @@
                                     </div>
                                 </div>
                                 <hr class="my-4" />
-                                <!-- Description -->
-                                <h6 class="heading-small text-muted mb-4">About me</h6>
-                                <div class="pl-lg-4">
-                                    <div class="form-group">
-                                        <base-input alternative=""
-                                                    label="About Me">
-                                            <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
-                                        </base-input>
-                                    </div>
+                                <div class="col-4 text-left">
+                                    <base-button href="#!" size="md" type="default" class="float-left">Simpan</base-button>
+                                    
                                 </div>
                             </form>
                         </template>
