@@ -7,32 +7,32 @@
             <div class="col-lg-10 col-md-10">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-10 py-lg-10">
-                        <div class="col text-left"> <h3>Informasi Kegiatan</h3> </div>
+                        <div class="col text-left"> <h3>Data Diri</h3> </div>
                         <form>
                             <div class="form-group row"></div>
                             <div class="form-group row">
-                                <label for="inputNamaPerusahaan" class="col-sm-4 col-form-label">Nama Perusahaan</label>
+                                <label for="inputNama" class="col-sm-3 col-form-label text-md-right">Nama</label>
                                 <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputNamaPerusahaan">
+                                <input type="text" class="form-control" id="inputNama">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputNIM" class="col-sm-4 col-form-label">Tanggal Mulai</label>
-                                <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-                                    <div class="col-sm-7">
-                                    <i class="fas fa-calendar input-prefix"></i>
-                                    </div>
+                                <label for="inputNIM" class="col-sm-3 col-form-label text-md-right">NIM</label>
+                                <div class="col-sm-7">
+                                <input type="num" class="form-control" id="inputNIM">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputNIM" class="col-sm-4 col-form-label">Tanggal Selesai</label>
+                                <label for="inputDosen" class="col-sm-3 col-form-label text-md-right">Dosen Pembimbing</label>
                                 <div class="col-sm-7">
-                                <input type="num" class="form-control">
+                                <input type="text" class="form-control" id="inputDosen">
                                 </div>
                             </div>
-                            <div class="card-footer d-flex justify-content-end"
-                                :class="type === 'dark' ? 'bg-transparent': ''">
-                                <base-pagination total="30"></base-pagination>
+                            <div class="form-group row" >
+                                <label class="col-sm-3"></label>
+                            <div class = "col-sm-7" > 
+                            <base-button type = "success">Selanjutnya</base-button>
+                            </div> 
                             </div>
                         </form>
                     </div>
@@ -45,5 +45,6 @@
 
 </template>
 
-<script> 
+<script>
+
 </script>

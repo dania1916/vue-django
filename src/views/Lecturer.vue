@@ -5,14 +5,14 @@
         <div class="container-fluid mt--7">
             <div class="row">
                 <div class="col">
-                    <projects-table title="Daftar Perusahaan"></projects-table>
+                    <projects-table title="Daftar Dosen"></projects-table>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-  import ProjectsTable from './Tables Company/ProjectsPerusahaan'
+  import ProjectsTable from './Tables Lecturer/ProjectsLecturer'
   export default {
     name: 'tables',
     components: {

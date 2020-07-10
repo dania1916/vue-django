@@ -11,27 +11,28 @@
                         <form>
                             <div class="form-group row"></div>
                             <div class="form-group row">
-                                <label for="inputNama" class="col-sm-4 col-form-label">Nama</label>
+                                <label for="inputNama" class="col-sm-3 col-form-label text-md-right">Nama</label>
                                 <div class="col-sm-7">
                                 <input type="text" class="form-control" id="inputNama">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputNIM" class="col-sm-4 col-form-label">NIM</label>
+                                <label for="inputNIM" class="col-sm-3 col-form-label text-md-right">NIM</label>
                                 <div class="col-sm-7">
                                 <input type="num" class="form-control" id="inputNIM">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputDosen" class="col-sm-4 col-form-label">Dosen Pembimbing</label>
+                                <label for="inputDosen" class="col-sm-3 col-form-label text-md-right">Dosen Pembimbing</label>
                                 <div class="col-sm-7">
                                 <input type="text" class="form-control" id="inputDosen">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputGroup" class="col-sm-4 col-form-label">Group Kerja</label>
+                                <label for="group" class="col-sm-3 col-form-label text-md-right">Group Kerja</label>
                                 <div class="col-sm-7">
                                 <select class="form-control">
+                                    <option>Choose</option>
                                     <option>Individu</option>
                                     <option>Berpasangan</option>
                                     <option>Kelompok</option>
@@ -39,12 +40,16 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Anggota Tim</label>
+                                <label class="col-sm-3 col-form-label text-md-right">Anggota Tim</label>
                                 <div class="col-sm-7"></div>
                             </div>
-                            <div class="card-footer d-flex justify-content-end"
-                                :class="type === 'dark' ? 'bg-transparent': ''">
-                                <base-pagination total="30"></base-pagination>
+                            <div class="form-group row" >
+                                <label class="col-sm-3"></label>
+                            <div class = "col-sm-7" > 
+                            <router-link :to="{name: 'pelaksanaan'}">
+                            <base-button type = "success">Selanjutnya</base-button>
+                            </router-link>
+                            </div> 
                             </div>
                         </form>
                     </div>
@@ -57,3 +62,6 @@
 
 </template>
 
+<script>
+
+</script>

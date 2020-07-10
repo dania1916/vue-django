@@ -6,6 +6,7 @@ import AuthLayout from '@/layout/AuthLayout'
 Vue.use(Router)
 
 export default new Router({
+    mode: "history",
     linkExactActiveClass: 'active',
     routes: [{
             path: '/',
@@ -39,10 +40,10 @@ export default new Router({
                         import ( /* webpackChunkName: "demo" */ './views/Maps.vue')
                 },
                 {
-                    path: '/kerja praktik',
+                    path: '/kp',
                     name: 'kerja praktik',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Kerja Praktik.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/KP.vue')
                 },
                 {
                     path: '/tugas akhir',
@@ -57,22 +58,58 @@ export default new Router({
                         import ( /* webpackChunkName: "demo" */ './views/Perusahaan.vue')
                 },
                 {
-                    path: '/anggota',
-                    name: 'anggota',
+                    path: '/member',
+                    name: 'Anggota',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Anggota.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/TabKP/Member.vue')
                 },
                 {
-                    path: '/pelaksanaan',
+                    path: '/implementation',
                     name: 'pelaksanaan',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Pelaksanaan.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/TabKP/Implementation.vue')
                 },
                 {
-                    path: '/Laporan',
+                    path: '/thesiskp',
                     name: 'Laporan',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Laporan.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/TabKP/ThesisKP.vue')
+                },
+                {
+                    path: '/profilta',
+                    name: 'Profil',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/TabTA/ProfilTA.vue')
+                },
+                {
+                    path: '/thesista',
+                    name: 'Laporan TA',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/TabTA/ThesisTA.vue')
+                },
+                {
+                    path: '/students',
+                    name: 'Mahasiswa',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Students.vue')
+                },
+                {
+                    path: '/lecturer',
+                    name: 'Dosen',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Lecturer.vue')
+                },
+                {
+                    path: '/topics',
+                    name: 'Bidang',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Topics.vue')
+                },
+                {
+                    path: '/detailkp',
+                    name: 'Detail KP',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/TabKP/DetailKP.vue')
                 }
             ]
         },
@@ -93,6 +130,6 @@ export default new Router({
                         import ( /* webpackChunkName: "demo" */ './views/Register.vue')
                 }
             ]
-        }
+        },
     ]
 })
