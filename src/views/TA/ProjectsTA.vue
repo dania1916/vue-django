@@ -9,6 +9,11 @@
             {{title}}
           </h3>
         </div>
+        <div class="col text-right">
+          <router-link :to="{name: 'Profil'}">
+          <base-button type="primary" size="md" >Unggah Laporan</base-button>
+          </router-link>
+        </div>
       </div>
     </div>
 
@@ -19,15 +24,24 @@
                   tbody-classes="list"
                   :data="tableData">
         <template slot="columns">
-          <th>NAMA</th>
-          <th>NIP</th>
-          <th>AKSI</th>
+          <th class="text-md-center">NO</th>
+          <th class="text-md-center">NAMA</th>
+          <th class="text-md-center">JUDUL</th>
+          <th class="text-md-center">PROPOSAL</th>
+          <th class="text-md-center">LAPORAN</th>
+          <th class="text-md-center">LINK PUBLIKASI</th>
+          <th class="text-md-center">AKSI</th>
         </template>
 
         <template slot-scope="{row}">
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.title}}</span>
+                <span class="name mb-0 text-sm">{{row.id}}</span>
+              </div>
+          </th>
+          <th scope="row">
+            <div class="media-body">
+                <span class="name mb-0 text-sm">{{row.name}}</span>
               </div>
           </th>
           <th scope="row">
@@ -35,7 +49,22 @@
                 <span class="name mb-0 text-sm">{{row.title}}</span>
               </div>
           </th>
-          <td class="text-right">
+          <th scope="row">
+            <div class="media-body">
+                <span class="name mb-0 text-sm">{{row.proposal}}</span>
+              </div>
+          </th>
+          <th scope="row">
+            <div class="media-body">
+                <span class="name mb-0 text-sm">{{row.report}}</span>
+              </div>
+          </th>
+          <th scope="row">
+            <div class="media-body">
+                <span class="name mb-0 text-sm">{{row.publication_link}}</span>
+              </div>
+          </th>
+          <td class="text-left">
             <base-dropdown class="dropdown" position="right">
               <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
@@ -69,16 +98,28 @@
       },
         tableData: [
           {
-            title: 'Argon Design System'
+            id: '1',
+            name: 'Muhammad Nanda Jabar Rozaq',
+            title: 'Argon Design System',
+            proposal: '',
+            report: '',
+            publication_link: ''
           },
           {
-            title: 'Angular Now UI Kit PRO'
+            id: '2',
+            name: 'Dania Putri Nuraini',
+            title: 'Argon Design System',
+            proposal: '',
+            report: '',
+            publication_link: ''
           },
           {
-            title: 'Angular Now UI Kit PRO'
-          },
-          {
-            title: 'Angular Now UI Kit PRO'
+            id: '3',
+            name: 'Muhammad Nanda',
+            title: 'Argon Design System',
+            proposal: '',
+            report: '',
+            publication_link: ''
           }
         ]
       }

@@ -17,12 +17,6 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputNamaPerusahaan" class="col-sm-3 col-form-label text-md-right">Tahun KP</label>
-                                <div class="col-sm-7">
-                                <input type="number" class="form-control" id="tahunKP">
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label for="inputNIM" class="col-sm-3 col-form-label text-md-right">Tanggal Mulai</label>
                                 <div class="col-sm-7">
                                 <base-input addon-left-icon="ni ni-calendar-grid-58">

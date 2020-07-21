@@ -4,7 +4,7 @@
         </base-header>
         <div class="container-fluid mt--7">
             <div class="row">
-                <div class="col">
+                <div class="col px-5">
                     <projects-table title="Daftar Mahasiswa"></projects-table>
                 </div>
             </div>
@@ -12,7 +12,7 @@
     </div>
 </template>
 <script>
-  import ProjectsTable from './Tables Students/ProjectsStudents'
+  import ProjectsTable from './Students/ProjectsStudents'
   export default {
     name: 'tables',
     components: {

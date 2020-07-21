@@ -12,7 +12,7 @@
     </div>
 </template>
 <script>
-  import ProjectsTable from './Tables TA/ProjectsTA'
+  import ProjectsTable from './TA/ProjectsTA'
   export default {
     name: 'tables',
     components: {

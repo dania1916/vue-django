@@ -10,7 +10,9 @@
           </h3>
         </div>
         <div class="col text-right">
-          <base-button type="primary" size="md" href="/Anggota.vue">Unggah Bidang</base-button>
+          <router-link :to="{name: 'Tambah Dosen'}">
+          <base-button type="primary" size="md" href="#">Tambah Data</base-button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -22,27 +24,43 @@
                   tbody-classes="list"
                   :data="tableData">
         <template slot="columns">
-          <th>NAMA</th>
-          <th>AKSI</th>
+          <th class="text-md-center">NO</th>
+          <th class="text-md-center">NAMA</th>
+          <th class="text-md-center">EMAIL</th>
+          <th class="text-md-center">NIP</th>
+          <th class="text-md-center">AKSI</th>
+          
         </template>
 
         <template slot-scope="{row}">
           <th scope="row">
-            <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.title}}</span>
+            <div class="media-body text-md-center">
+                <span class="name mb-0 text-sm">{{row.id}}</span>
               </div>
           </th>
-          <td class="text-right">
+          <th scope="row">
+            <div class="media-body text-md">
+                <span class="name mb-0 text-sm">{{row.name}}</span>
+              </div>
+          </th>
+          <th scope="row">
+            <div class="media-body text-md-center">
+                <span class="name mb-0 text-sm">{{row.email}}</span>
+              </div>
+          </th>
+          <th scope="row">
+            <div class="media-body text-md-center">
+                <span class="name mb-0 text-sm">{{row.nip}}</span>
+              </div>
+          </th>
+          <td class="text-center">
             <base-dropdown class="dropdown" position="right">
               <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
               </a>
-
-              <template>
                 <a class="dropdown-item" href="#">Detail</a>
                 <a class="dropdown-item" href="#">Edit</a>
                 <a class="dropdown-item" href="#">Delete</a>
-              </template>
             </base-dropdown>
           </td>
         </template>
@@ -66,16 +84,22 @@
       },
         tableData: [
           {
-            title: 'Argon Design System'
+            id: '1',
+            name: 'Muhammad Nanda',
+            email: 'apa@gmail.com',
+            nip: 12345678890
           },
           {
-            title: 'Angular Now UI Kit PRO'
+            id: '2',
+            name: 'Muhammad Nanda',
+            email: 'apa@gmail.com',
+            nip: 12345678890
           },
           {
-            title: 'Angular Now UI Kit PRO'
-          },
-          {
-            title: 'Angular Now UI Kit PRO'
+            id: '3',
+            name: 'Muhammad Nanda',
+            email: 'apa@gmail.com',
+            nip: 12345678890
           }
         ]
       }

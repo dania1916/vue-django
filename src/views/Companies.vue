@@ -12,7 +12,7 @@
     </div>
 </template>
 <script>
-  import ProjectsTable from './Tables Company/ProjectsPerusahaan'
+  import ProjectsTable from './Companies/ProjectsCompanies'
   export default {
     name: 'tables',
     components: {

@@ -10,29 +10,13 @@
           </h3>
         </div>
         <div class="col text-right">
-          <router-link :to="{name: 'Anggota'}">
-          <base-button type="primary" size="md">Unggah Laporan</base-button>
+          <router-link :to="{name: 'Tambah Bidang'}">
+          <base-button type="primary" size="md" href="/Anggota.vue">Tambah Data</base-button>
           </router-link>
         </div>
       </div>
     </div>
 
-      <div class="row">
-        <div class="col-sm pl-5">
-          <div class="dataTables_length" id="loanRequestsTable_length">
-          <label>Show <select name="loanRequestsTable_length" aria-controls="loanRequestsTable" class="custom-select custom-select-sm form-control form-control-sm">
-          <option value="10">10</option><option value="25">25</option>
-          <option value="50">50</option><option value="100">100</option>
-          </select></label>
-          </div>
-        </div>
-        <div class="col-sm pl-9">
-          <div id="loanRequestsTable_filter" class="dataTables_filter">
-          <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="loanRequestsTable">
-          </label>
-          </div>
-          </div>
-        </div>
     <div class="table-responsive">
       <base-table class="table align-items-center table-flush"
                   :class="type === 'dark' ? 'table-dark': ''"
@@ -40,37 +24,23 @@
                   tbody-classes="list"
                   :data="tableData">
         <template slot="columns">
-          <th>NAMA</th>
-          <th>JUDUL</th>
-          <th>PROPOSAL</th>
-          <th>LAPORAN</th>
-          <th>AKSI</th>
-          <th></th>
+          <th class="text-md-center">NO</th>
+          <th class="text-md-center">NAMA</th>
+          <th class="text-md-center">AKSI</th>
         </template>
 
         <template slot-scope="{row}">
           <th scope="row">
-            <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.title}}</span>
+            <div class="media-body text-md-center">
+                <span class="name mb-0 text-sm">{{row.id}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.title}}</span>
+                <span class="name mb-0 text-sm">{{row.topics}}</span>
               </div>
           </th>
-          <th scope="row">
-            <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.title}}</span>
-              </div>
-          </th>
-          <th scope="row">
-            <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.title}}</span>
-              </div>
-          </th>
-
-          <td class="text-right">
+          <td class="media-body text-md-center">
             <base-dropdown class="dropdown" position="right">
               <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
@@ -104,11 +74,25 @@
       },
         tableData: [
           {
-            title: 'Argon Design System'
+            id :'1',
+            topics: 'Jaringan'
           },
           {
-            title: 'Angular Now UI Kit PRO'
-          }
+            id :'2',
+            topics: 'Jaringan'
+          },
+          {
+            id :'3',
+            topics: 'Jaringan'
+          },
+          {
+            id :'4',
+            topics: 'Jaringan'
+          },
+          {
+            id :'5',
+            topics: 'Jaringan'
+          },
         ]
       }
     }

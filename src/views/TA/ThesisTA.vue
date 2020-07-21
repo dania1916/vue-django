@@ -31,6 +31,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="inputJudul" class="col-sm-3 col-form-label text-md-right">Link Publikasi</label>
+                                <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputJudul">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="inputGroup" class="col-sm-3 col-form-label text-md-right ">Unggah Proposal</label>
                                 <div class="col-sm-7">
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1">

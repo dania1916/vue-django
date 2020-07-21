@@ -14,13 +14,13 @@
           }"
         />
 
-        <sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"/>
+        
         <sidebar-item :link="{name: 'User Profile', icon: 'ni ni-circle-08 text-blue', path: '/profile'}"/>
         <sidebar-item :link="{name: 'Mahasiswa', icon: 'ni ni-single-02 text-yellow', path: '/students'}"/>
-        <sidebar-item :link="{name: 'Dosen', icon: 'ni ni-single-02 text-orange', path: '/lecturer'}"/>
+        <sidebar-item :link="{name: 'Dosen', icon: 'ni ni-single-02 text-orange', path: '/lecturers'}"/>
         <sidebar-item :link="{name: 'Kerja Praktik', icon: 'ni ni-briefcase-24 text-blue', path: '/kp'}"/>
         <sidebar-item :link="{name: 'Tugas Akhir', icon: 'ni ni-archive-2 text-red', path: '/tugas akhir'}"/>
-        <sidebar-item :link="{name: 'Perusahaan', icon: 'ni ni-bullet-list-67 text-black', path: '/perusahaan'}"/>
+        <sidebar-item :link="{name: 'Perusahaan', icon: 'ni ni-bullet-list-67 text-black', path: '/companies'}"/>
         <sidebar-item :link="{name: 'Bidang KP', icon: 'ni ni-bullet-list-67 text-red', path: '/topics'}"/>
         
         

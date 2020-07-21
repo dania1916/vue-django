@@ -20,7 +20,12 @@ import App from './App.vue'
 import router from './router'
 import './registerServiceWorker'
 import ArgonDashboard from './plugins/argon-dashboard'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import { ModalPlugin } from 'bootstrap-vue'
 
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+Vue.use(ModalPlugin)
 Vue.config.productionTip = false
 
 Vue.use(ArgonDashboard)
