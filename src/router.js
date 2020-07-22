@@ -6,6 +6,7 @@ import AuthLayout from '@/layout/AuthLayout'
 Vue.use(Router)
 
 export default new Router({
+    mode:"history",
     linkExactActiveClass: 'active',
     routes: [{
             path: '/',
@@ -54,7 +55,7 @@ export default new Router({
                     path: '/perusahaan',
                     name: 'perusahaan',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Perusahaan.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/a/Pelaksanaan.vue')
                 },
                 {
                     path: '/anggota',
@@ -63,10 +64,10 @@ export default new Router({
                         import ( /* webpackChunkName: "demo" */ './views/Anggota.vue')
                 },
                 {
-                    path: '/pelaksanaan',
-                    name: 'pelaksanaan',
+                    path: '/students',
+                    name: 'students',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Pelaksanaan.vue')
+                        import ('./views/a/Pelaksanaan.vue')
                 },
                 {
                     path: '/Laporan',
@@ -84,13 +85,13 @@ export default new Router({
                     path: '/login',
                     name: 'login',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Login.vue')
+                        import ('./views/Login.vue')
                 },
                 {
                     path: '/register',
                     name: 'register',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Register.vue')
+                        import ('./views/Register.vue')
                 }
             ]
         }
