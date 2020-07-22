@@ -11,13 +11,13 @@
                         <form>
                             <div class="form-group row"></div>
                             <div class="form-group row">
-                                <label for="inputJudul" class="col-sm-4 col-form-label">Judul Laporan</label>
+                                <label for="inputJudul" class="col-sm-3 col-form-label text-md-right">Judul Laporan</label>
                                 <div class="col-sm-7">
                                 <input type="text" class="form-control" id="inputJudul">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputGroup" class="col-sm-4 col-form-label">Topik Laporan</label>
+                                <label for="inputGroup" class="col-sm-3 col-form-label text-md-right">Topik Laporan</label>
                                 <div class="col-sm-7">
                                 <select class="form-control">
                                     <option>Pilih</option>
@@ -31,26 +31,41 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputGroup" class="col-sm-4 col-form-label">Unggah Laporan</label>
+                                <label for="inputJudul" class="col-sm-3 col-form-label text-md-right">Link Publikasi</label>
+                                <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputJudul">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputGroup" class="col-sm-3 col-form-label text-md-right ">Unggah Proposal</label>
                                 <div class="col-sm-7">
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputGroup" class="col-sm-4 col-form-label">Unggah Hand Out</label>
+                                <label for="inputGroup" class="col-sm-3 col-form-label text-md-right ">Unggah Laporan</label>
                                 <div class="col-sm-7">
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputGroup" class="col-sm-4 col-form-label">Unggah PPT</label>
+                                <label for="inputGroup" class="col-sm-3 col-form-label text-md-right">Unggah Hand Out</label>
                                 <div class="col-sm-7">
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                             </div>
-                            <div class="card-footer d-flex justify-content-end"
-                                :class="type === 'dark' ? 'bg-transparent': ''">
-                                <base-pagination total="30"></base-pagination>
+                            <div class="form-group row">
+                                <label for="inputGroup" class="col-sm-3 col-form-label text-md-right">Unggah PPT</label>
+                                <div class="col-sm-7">
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                </div>
+                            </div>
+                            <div class="form-group row" >
+                                <label class="col-sm-3"></label>
+                            <div class = "col-sm-7" > 
+                            <base-button type = "danger" >Kembali </base-button>
+                            <base-button type = "success" >Submit</base-button>
+                            </div> 
                             </div>
                         </form>
                     </div>

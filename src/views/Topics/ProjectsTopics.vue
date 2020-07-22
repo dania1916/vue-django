@@ -10,8 +10,8 @@
           </h3>
         </div>
         <div class="col text-right">
-          <router-link :to="{name: 'Profil'}">
-          <base-button type="primary" size="md" >Unggah Laporan</base-button>
+          <router-link :to="{name: 'Tambah Bidang'}">
+          <base-button type="primary" size="md" href="/Anggota.vue">Tambah Data</base-button>
           </router-link>
         </div>
       </div>
@@ -26,45 +26,21 @@
         <template slot="columns">
           <th class="text-md-center">NO</th>
           <th class="text-md-center">NAMA</th>
-          <th class="text-md-center">JUDUL</th>
-          <th class="text-md-center">PROPOSAL</th>
-          <th class="text-md-center">LAPORAN</th>
-          <th class="text-md-center">LINK PUBLIKASI</th>
           <th class="text-md-center">AKSI</th>
         </template>
 
         <template slot-scope="{row}">
           <th scope="row">
-            <div class="media-body">
+            <div class="media-body text-md-center">
                 <span class="name mb-0 text-sm">{{row.id}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.name}}</span>
+                <span class="name mb-0 text-sm">{{row.topics}}</span>
               </div>
           </th>
-          <th scope="row">
-            <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.title}}</span>
-              </div>
-          </th>
-          <th scope="row">
-            <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.proposal}}</span>
-              </div>
-          </th>
-          <th scope="row">
-            <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.report}}</span>
-              </div>
-          </th>
-          <th scope="row">
-            <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.publication_link}}</span>
-              </div>
-          </th>
-          <td class="text-left">
+          <td class="media-body text-md-center">
             <base-dropdown class="dropdown" position="right">
               <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
@@ -98,29 +74,25 @@
       },
         tableData: [
           {
-            id: '1',
-            name: 'Muhammad Nanda Jabar Rozaq',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: ''
+            id :'1',
+            topics: 'Jaringan'
           },
           {
-            id: '2',
-            name: 'Dania Putri Nuraini',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: ''
+            id :'2',
+            topics: 'Jaringan'
           },
           {
-            id: '3',
-            name: 'Muhammad Nanda',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: ''
-          }
+            id :'3',
+            topics: 'Jaringan'
+          },
+          {
+            id :'4',
+            topics: 'Jaringan'
+          },
+          {
+            id :'5',
+            topics: 'Jaringan'
+          },
         ]
       }
     }

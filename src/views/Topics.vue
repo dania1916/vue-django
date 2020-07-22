@@ -4,15 +4,15 @@
         </base-header>
         <div class="container-fluid mt--7">
             <div class="row">
-                <div class="col">
-                    <projects-table title="Laporan KP"></projects-table>
+                <div class="col px-8">
+                    <projects-table title="Daftar Bidang Konsentrasi"></projects-table>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-  import ProjectsTable from './Tables/ProjectsTable'
+  import ProjectsTable from './Topics/ProjectsTopics'
   export default {
     name: 'tables',
     components: {

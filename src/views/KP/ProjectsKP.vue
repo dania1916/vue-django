@@ -10,13 +10,13 @@
           </h3>
         </div>
         <div class="col text-right">
-          <router-link :to="{name: 'Profil'}">
-          <base-button type="primary" size="md" >Unggah Laporan</base-button>
+          <router-link :to="{name: 'Anggota'}">
+          <base-button type="primary" size="md">Tambah Laporan</base-button>
           </router-link>
         </div>
       </div>
     </div>
-
+    
     <div class="table-responsive">
       <base-table class="table align-items-center table-flush"
                   :class="type === 'dark' ? 'table-dark': ''"
@@ -35,7 +35,7 @@
 
         <template slot-scope="{row}">
           <th scope="row">
-            <div class="media-body">
+            <div class="media-body text-md-center">
                 <span class="name mb-0 text-sm">{{row.id}}</span>
               </div>
           </th>
@@ -45,22 +45,22 @@
               </div>
           </th>
           <th scope="row">
-            <div class="media-body">
+            <div class="media-body text-md-center">
                 <span class="name mb-0 text-sm">{{row.title}}</span>
               </div>
           </th>
           <th scope="row">
-            <div class="media-body">
+            <div class="media-body text-md-center">
                 <span class="name mb-0 text-sm">{{row.proposal}}</span>
               </div>
           </th>
           <th scope="row">
-            <div class="media-body">
+            <div class="media-body text-md-center">
                 <span class="name mb-0 text-sm">{{row.report}}</span>
               </div>
           </th>
           <th scope="row">
-            <div class="media-body">
+            <div class="media-body text-md-center">
                 <span class="name mb-0 text-sm">{{row.publication_link}}</span>
               </div>
           </th>
@@ -83,6 +83,7 @@
   </div>
 </template>
 <script>
+
   export default {
     name: 'projects-table',
     props: {
@@ -103,7 +104,7 @@
             title: 'Argon Design System',
             proposal: '',
             report: '',
-            publication_link: ''
+            publication_link: 'wwww.jurnalugm.com'
           },
           {
             id: '2',
@@ -111,7 +112,7 @@
             title: 'Argon Design System',
             proposal: '',
             report: '',
-            publication_link: ''
+            publication_link: 'wwww.jurnalugm.com'
           },
           {
             id: '3',
@@ -119,7 +120,23 @@
             title: 'Argon Design System',
             proposal: '',
             report: '',
-            publication_link: ''
+            publication_link: 'wwww.jurnalugm.com'
+          },
+          {
+            id: '4',
+            name: 'Muhammad Nanda',
+            title: 'Argon Design System',
+            proposal: '',
+            report: '',
+            publication_link: 'wwww.jurnalugm.com'
+          },
+          {
+            id: '5',
+            name: 'Muhammad Nanda',
+            title: 'Argon Design System',
+            proposal: '',
+            report: '',
+            publication_link: 'wwww.jurnalugm.com'
           }
         ]
       }

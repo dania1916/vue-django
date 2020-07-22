@@ -40,40 +40,142 @@ export default new Router({
                         import ( /* webpackChunkName: "demo" */ './views/Maps.vue')
                 },
                 {
-                    path: '/kerja praktik',
-                    name: 'kerja praktik',
+                    path: '/students',
+                    name: 'Mahasiswa',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Kerja Praktik.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/Students.vue')
                 },
                 {
-                    path: '/tugas akhir',
+                    path: '/students/add',
+                    name: 'Tambah Mahasiswa',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Students/FormStudents.vue')
+                },
+                {
+                    path: '/students/{id}',
+                    name: 'Detail Mahasiswa',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Students/DetailStudents.vue')
+                },
+                {
+                    path: '/students/{id}/edit',
+                    name: 'Edit Mahasiswa',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Students/EditStudents.vue')
+                },
+                {
+                    path: '/lecturers',
+                    name: 'Dosen',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Lecturers.vue')
+                },
+                {
+                    path: '/lecturers/add',
+                    name: 'Tambah Dosen',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Lecturers/FormLecturers.vue')
+                },
+                {
+                    path: '/lecturers/{id}',
+                    name: 'Detail Dosen',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Lecturers/DetailLecturers.vue')
+                },
+                {
+                    path: '/lecturers/{id}/edit',
+                    name: 'Edit Dosen',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Lecturers/EditLecturers.vue')
+                },
+                {
+                    path: '/thesis',
                     name: 'tugas akhir',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Tugas Akhir.vue')
                 },
                 {
-                    path: '/perusahaan',
-                    name: 'perusahaan',
+                    path: '/thesis/profile',
+                    name: 'Profil',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/a/Pelaksanaan.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/TA/ProfilTA.vue')
                 },
                 {
-                    path: '/anggota',
-                    name: 'anggota',
+                    path: '/internships',
+                    name: 'kerja praktik',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Anggota.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/KP.vue')
+                },
+                {
+                    path: '/internships/member/',
+                    name: 'Anggota',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/KP/Member.vue')
+                },
+                {
+                    path: '/internships/activity/',
+                    name: 'pelaksanaan',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/KP/Implementation.vue')
+                },
+                {
+                    path: '/internships/submission',
+                    name: 'Laporan',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/KP/ThesisKP.vue')
                 },
                 {
                     path: '/students',
-                    name: 'students',
+                    name: 'Mahasiswa',
                     component: () =>
-                        import ('./views/a/Pelaksanaan.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/Students.vue')
                 },
                 {
-                    path: '/Laporan',
-                    name: 'Laporan',
+                    path: '/thesis/intern',
+                    name: 'Magang',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Laporan.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/TA/Intern.vue')
+                },
+                {
+                    path: '/thesis/submission',
+                    name: 'Laporan TA',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/TA/ThesisTA.vue')
+                },
+                {
+                    path: '/companies',
+                    name: 'Perusahaan',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Companies.vue')
+                },
+                {
+                    path: '/companies/add',
+                    name: 'Tambah Perusahaan',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Companies/FormCompanies.vue')
+                },
+                {
+                    path: '/companies/{id}',
+                    name: 'Detail Perusahaan',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Companies/DetailCompanies.vue')
+                },
+                {
+                    path: '/companies/{id}/edit',
+                    name: 'Edit Perusahaan',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Companies/EditCompanies.vue')
+                },
+                {
+                    path: '/topics',
+                    name: 'Bidang',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Topics.vue')
+                },
+                {
+                    path: '/topics/add',
+                    name: 'Tambah Bidang',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Topics/FormTopics.vue')
                 }
             ]
         },
@@ -94,6 +196,6 @@ export default new Router({
                         import ('./views/Register.vue')
                 }
             ]
-        }
+        },
     ]
 })

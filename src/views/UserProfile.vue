@@ -74,36 +74,60 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="Nama Lengkap"
-                                                        placeholder="Nama Lengkap"
+                                                        label="Nama Depan"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.NamaLengkap"
+                                                        v-model="model.first_name"
                                             />
                                         </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="NIM"
-                                                        placeholder="NIM"
+                                                        label="Nama Belakang"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.NIM"
+                                                        v-model="model.last_name"
                                             />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="Angkatan"
-                                                        placeholder="Angkatan"
+                                                        label="Tanggal Lahir"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Angkatan"
+                                                        v-model="model.date_of_birth"
                                             />
                                         </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="Prodi"
-                                                        placeholder="Prodi"
+                                                        label="NIM"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Prodi"
+                                                        v-model="model.NIM"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <h6 class="heading-small text-muted mb-4">Akun</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Email address"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="model.email"
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="No Hp"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="model.number_phone"
                                             />
                                         </div>
                                     </div>
@@ -111,17 +135,17 @@
                                         <div class="col-lg-6">
                                             <base-input alternative=""
                                                         label="Username"
-                                                        placeholder="Username"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="model.username"
                                             />
                                         </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="Email address"
-                                                        placeholder="jesse@example.com"
+                                                        label="Password"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.email"
+                                                        v-model="model.Password"
                                             />
                                         </div>
                                     </div>
@@ -134,7 +158,7 @@
                                         <div class="col-md-12">
                                             <base-input alternative=""
                                                         label="Alamat"
-                                                        placeholder="Alamat"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="model.ALamat"
                                             />
@@ -144,7 +168,7 @@
                                         <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="Kota"
-                                                        placeholder="Kota"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="model.Kota"
                                             />
@@ -152,7 +176,7 @@
                                         <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="Provinsi"
-                                                        placeholder="Provinsi"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="model.Provinsi"
                                             />
@@ -160,7 +184,7 @@
                                         <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="Kode Pos"
-                                                        placeholder="Kode Pos"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="model.zipCode"
                                             />

@@ -5,7 +5,7 @@
         <div class="container-fluid mt--7">
             <div class="row">
                 <div class="col">
-                    <projects-table title="Laporan KP"></projects-table>
+                    <projects-table title="Laporan TA"></projects-table>
                 </div>
             </div>
         </div>

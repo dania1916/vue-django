@@ -29,7 +29,12 @@ import VeeValidate from 'vee-validate' // add this
 Vue.use(VueAxios, axios)
 Vue.use(VeeValidate); //add this
 
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import { ModalPlugin } from 'bootstrap-vue'
 
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+Vue.use(ModalPlugin)
 Vue.config.productionTip = false
 
 Vue.use(ArgonDashboard)
