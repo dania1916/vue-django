@@ -9,13 +9,13 @@ class AuthService {
         username: user.username,
         password: user.password
       })
-        .then(response => {
-            if (response.data.accessToken) {
-              localStorage.setItem('user', JSON.stringify(response.data));
-            }
-    
-            return response.data;
-          });
+      .then(response => {
+        if (response.data.accessToken) {
+          localStorage.setItem('user', JSON.stringify(response.data));
+        }
+
+        return response.data;
+      });
   }
 
   logout() {
@@ -26,8 +26,7 @@ class AuthService {
     return axios.post(API_URL + 'users/', {
       username: user.username,
       email: user.email,
-      password: user.password,
-      profile: {},
+      password: user.password
     });
   }
 }
