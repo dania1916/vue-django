@@ -32,30 +32,30 @@
           <th class='text-md-center'>AKSI</th>
         </template>
 
-        <template slot-scope="{row}">
+        <template slot-scope="{student}">
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.id}}</span>
+                <span class="name mb-0 text-sm">{{student.id}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md">
-                <span class="name mb-0 text-sm">{{row.student_name}}</span>
+                <span class="name mb-0 text-sm">{{student.student_name}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.student_email}}</span>
+                <span class="name mb-0 text-sm">{{student.student_email}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.student_nim}}</span>
+                <span class="name mb-0 text-sm">{{student.student_nim}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.generation}}</span>
+                <span class="name mb-0 text-sm">{{student.generation}}</span>
               </div>
           </th>
           <td class="media-body text-md-center">
@@ -77,6 +77,8 @@
   </div>
 </template>
 <script>
+import StudentDataService from "../../services/StudentDataService";
+
   export default {
     name: 'projects-table',
     props: {
@@ -86,33 +88,27 @@
       title: String
     },
     data() {
-      return {
-        pagination: { default: 1 },
-        tableData: [
-          {
-            id: '1',
-            student_name: 'Muhammad Nanda',
-            student_email: 'apa@gmail.com',
-            student_nim: '1234567891011121312',
-            generation: '2018'
-          },
-          {
-            id: '2',
-            student_name: 'Muhammad Nanda',
-            student_email: 'apa@gmail.com',
-            student_nim: '1234567891011121312',
-            generation: '2018'
-          },
-          {
-            id: '3',
-            student_name: 'Muhammad Nanda',
-            student_email: 'apa@gmail.com',
-            student_nim: '1234567891011121312',
-            generation: '2018'
-          }
-        ]
-      }
-    }
+    return {
+      student: [],
+      id: null,
+      student_name: "",
+      student_email: "",
+      student_nim: "",
+      student_generation: "",
+    };
+    },
+  methods: {
+    students() {
+      StudentDataService.getAll()
+        .then(response => {
+          this.student = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+  }
   }
 </script>
 <style>

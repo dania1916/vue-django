@@ -29,15 +29,15 @@
           <th class="text-md-center">AKSI</th>
         </template>
 
-        <template slot-scope="{row}">
+        <template slot-scope="{topic}">
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.id}}</span>
+                <span class="name mb-0 text-sm">{{topic.id}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.topics}}</span>
+                <span class="name mb-0 text-sm">{{topic.name}}</span>
               </div>
           </th>
           <td class="media-body text-md-center">
@@ -45,11 +45,10 @@
               <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
               </a>
-
               <template>
-                <a class="dropdown-item" href="#">Detail</a>
-                <a class="dropdown-item" href="#">Edit</a>
-                <a class="dropdown-item" href="#">Delete</a>
+                <a class="dropdown-item" >Detail</a>
+                <a class="dropdown-item" >Edit</a>
+                <a class="dropdown-item" >Delete</a>
               </template>
             </base-dropdown>
           </td>
@@ -58,9 +57,13 @@
     </div>
   </div>
 </template>
+
 <script>
-  export default {
-    name: 'projects-table',
+import TopicDataService from "../../services/TopicDataService";
+
+export default {
+
+  name: 'projects-table',
     props: {
       type: {
         type: String
@@ -68,35 +71,29 @@
       title: String
     },
     data() {
-      return {
-        pagination: {
-        default: 1
-      },
-        tableData: [
-          {
-            id :'1',
-            topics: 'Jaringan'
-          },
-          {
-            id :'2',
-            topics: 'Jaringan'
-          },
-          {
-            id :'3',
-            topics: 'Jaringan'
-          },
-          {
-            id :'4',
-            topics: 'Jaringan'
-          },
-          {
-            id :'5',
-            topics: 'Jaringan'
-          },
-        ]
-      }
-    }
+    return {
+      topic: [],
+      id: null,
+      name: "",
+    };
+  },
+  methods: {
+    displaytopics() {
+      
+      TopicDataService.getAll()
+        .then(response => {
+          this.topic = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+  },
+  mounted() {
+    this.displaytopics();
   }
+};
 </script>
 <style>
 </style>

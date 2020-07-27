@@ -32,25 +32,25 @@
           
         </template>
 
-        <template slot-scope="{row}">
+        <template slot-scope="{lecturer}">
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.id}}</span>
+                <span class="name mb-0 text-sm">{{lecturer.id}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md">
-                <span class="name mb-0 text-sm">{{row.name}}</span>
+                <span class="name mb-0 text-sm">{{lecturer.name}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.email}}</span>
+                <span class="name mb-0 text-sm">{{lecturer.email}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.nip}}</span>
+                <span class="name mb-0 text-sm">{{lecturer.nip}}</span>
               </div>
           </th>
           <td class="text-center">
@@ -69,42 +69,38 @@
   </div>
 </template>
 <script>
-  export default {
-    name: 'projects-table',
+import LecturerDataService from "../../services/LecturerDataService";
+  
+export default {
+  name: 'projects-table',
     props: {
       type: {
         type: String
       },
       title: String
     },
-    data() {
-      return {
-        pagination: {
-        default: 1
-      },
-        tableData: [
-          {
-            id: '1',
-            name: 'Muhammad Nanda',
-            email: 'apa@gmail.com',
-            nip: 12345678890
-          },
-          {
-            id: '2',
-            name: 'Muhammad Nanda',
-            email: 'apa@gmail.com',
-            nip: 12345678890
-          },
-          {
-            id: '3',
-            name: 'Muhammad Nanda',
-            email: 'apa@gmail.com',
-            nip: 12345678890
-          }
-        ]
-      }
-    }
+  data() {
+    return {
+      lecturer: [],
+      id: null,
+      lecturer_name: "",
+      lecturer_email: "",
+      lecturer_nip: "",
+    };
+  },
+  methods: {
+    lecturers() {
+      LecturerDataService.getAll()
+        .then(response => {
+          this.lecturer = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
   }
+};
 </script>
 <style>
 </style>
