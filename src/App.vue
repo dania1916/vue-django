@@ -6,31 +6,17 @@
 </template>
 
 <script>
-export default {
-  computed: {
-    currentUser() {
-      return this.$store.state.auth.user;
+  export default {
+    computed : {
+      isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
     },
-    showAdminBoard() {
-      if (this.currentUser && this.currentUser.roles) {
-        return this.currentUser.roles.includes('ROLE_ADMIN');
+    methods: {
+      logout: function () {
+        this.$store.dispatch('logout')
+        .then(() => {
+          this.$router.push('/login')
+        })
       }
-
-      return false;
     },
-    showModeratorBoard() {
-      if (this.currentUser && this.currentUser.roles) {
-        return this.currentUser.roles.includes('ROLE_MODERATOR');
-      }
-
-      return false;
-    }
-  },
-  methods: {
-    logOut() {
-      this.$store.dispatch('auth/logout');
-      this.$router.push('/login');
-    }
   }
-};
 </script>

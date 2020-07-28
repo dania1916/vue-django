@@ -59,8 +59,11 @@
   </div>
 </template>
 <script>
-  export default {
-    name: 'projects-table',
+import TopicDataService from "../../services/TopicDataService";
+ 
+export default {
+ 
+  name: 'projects-table',
     props: {
       type: {
         type: String
@@ -68,35 +71,24 @@
       title: String
     },
     data() {
-      return {
-        pagination: {
-        default: 1
-      },
-        tableData: [
-          {
-            id :'1',
-            topics: 'Jaringan'
-          },
-          {
-            id :'2',
-            topics: 'Jaringan'
-          },
-          {
-            id :'3',
-            topics: 'Jaringan'
-          },
-          {
-            id :'4',
-            topics: 'Jaringan'
-          },
-          {
-            id :'5',
-            topics: 'Jaringan'
-          },
-        ]
-      }
-    }
+    return {
+      topics: [],
+      id: null,
+      name: "",
+    };
+  },
+  methods: {
+    displaytopics() {
+      
+      TopicDataService.getAll()
+        .then(response => {
+          this.topics = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
   }
+};
 </script>
-<style>
-</style>

@@ -5,20 +5,12 @@ const token = localStorage.getItem('token')
 // const token = 'dadada'
 class TopicDataService {
   getAll() {
-    return http.get("/topics");
+    return http.get("/topics", { headers:{Authorization: 'Bearer ' + token }});
   }
 
   get(id) {
     return http.get(`/topics/${id}`);
   }
-
-  // create(data) {
-  //   return http.post("/topics", data,
-  //   {
-  //     headers:{Authorization: 'Bearer ' + token }
-  //   });
-  // }
-
   create(data) {
     return http.post("/topics", data, { headers:{Authorization: 'Bearer ' + token }});
     }

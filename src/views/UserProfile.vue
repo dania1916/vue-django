@@ -51,7 +51,7 @@
                                     <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
                                 </div>
                                 <div>
-                                    <i class="ni education_hat mr-2"></i>University of Computer Science
+                                    <i class="ni education_hat mr-2"></i>{{currentUser.username}}
                                 </div>
                             </div>
                         </div>
@@ -67,137 +67,6 @@
                                 </div>
                             </div>
                         </div>
-                        <template>
-                            <form @submit.prevent>
-                                <h6 class="heading-small text-muted mb-4">Profil</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Nama Depan"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.first_name"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Nama Belakang"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.last_name"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Tanggal Lahir"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.date_of_birth"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="NIM"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.NIM"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-4" />
-                                <h6 class="heading-small text-muted mb-4">Akun</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Email address"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.email"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="No Hp"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.number_phone"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Username"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.username"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Password"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.Password"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-4" />
-                                <!-- Address -->
-                                <h6 class="heading-small text-muted mb-4">Kontak</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <base-input alternative=""
-                                                        label="Alamat"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.ALamat"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="Kota"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.Kota"
-                                            />
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="Provinsi"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.Provinsi"
-                                            />
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="Kode Pos"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="model.zipCode"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-4" />
-                                <div class="col-4 text-left">
-                                    <base-button href="#!" size="md" type="default" class="float-left">Simpan</base-button>
-                                    
-                                </div>
-                            </form>
-                        </template>
                     </card>
                 </div>
             </div>
@@ -205,23 +74,17 @@
     </div>
 </template>
 <script>
-  export default {
-    name: 'user-profile',
-    data() {
-      return {
-        model: {
-          username: '',
-          email: '',
-          firstName: '',
-          lastName: '',
-          address: '',
-          city: '',
-          country: '',
-          zipCode: '',
-          about: '',
-        }
-      }
-    },
-  };
+
+export default {
+  name: 'Profile',
+  computed: {
+    currentUser() {
+      return this.$store.state.user;
+    }
+  },
+  mounted() {
+      return this.$store.state.user;
+  }
+};
 </script>
 <style></style>
