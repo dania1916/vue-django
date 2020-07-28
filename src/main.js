@@ -26,6 +26,12 @@ import axios from 'axios'
 import VeeValidate from 'vee-validate' // add this
 
 
+Vue.prototype.$http = axios;
+const token = localStorage.getItem('token')
+if (token) {
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+}
+
 Vue.use(VueAxios, axios)
 Vue.use(VeeValidate); //add this
 
@@ -38,6 +44,8 @@ Vue.use(ModalPlugin)
 Vue.config.productionTip = false
 
 Vue.use(ArgonDashboard)
+
+
 new Vue({
     router,
     store, //add this

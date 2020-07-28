@@ -29,7 +29,9 @@
           <th class="text-md-center">AKSI</th>
         </template>
 
-        <template slot-scope="{topic}">
+        <template slot-scope="{topics}">
+          <tr v-for="topic in topics" 
+            :key="topic.id">
           <th scope="row">
             <div class="media-body text-md-center">
                 <span class="name mb-0 text-sm">{{topic.id}}</span>
@@ -52,6 +54,7 @@
               </template>
             </base-dropdown>
           </td>
+          </tr>
         </template>
       </base-table>
     </div>
@@ -64,15 +67,9 @@ import TopicDataService from "../../services/TopicDataService";
 export default {
 
   name: 'projects-table',
-    props: {
-      type: {
-        type: String
-      },
-      title: String
-    },
     data() {
     return {
-      topic: [],
+      topics: [],
       id: null,
       name: "",
     };
@@ -82,7 +79,7 @@ export default {
       
       TopicDataService.getAll()
         .then(response => {
-          this.topic = response.data;
+          this.topics = response.data;
           console.log(response.data);
         })
         .catch(e => {

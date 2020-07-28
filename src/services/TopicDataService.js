@@ -1,10 +1,9 @@
 import http from "../http-common";
+
 const token = localStorage.getItem('token')
 class TopicDataService {
     getAll() {
-        return http.get("/topics", {
-            headers: { Authorization: 'Bearer ' + token }
-        });
+        return http.get("/topics", { headers: { Authorization: 'Bearer ' + token } });
     }
 
     get(id) {
@@ -12,11 +11,8 @@ class TopicDataService {
     }
 
     create(data) {
-        return http.post("/topics", data, {
-            headers: { Authorization: 'Bearer ' + token }
-        });
+        return http.post("/topics", data, { headers: { Authorization: 'Bearer ' + token } });
     }
-
     update(id, data) {
         return http.put(`/topics/${id}`, data);
     }

@@ -8,7 +8,7 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
-                                <strong>{{currentUser.email}}</strong> Profile Testing
+                                Profile Testing
                         <h1 class="display-2 text-white">Hello Jesse</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
                         <base-button href="#!" size="md" type="default" class="float-left">Edit profile</base-button>
@@ -152,7 +152,7 @@
                                 </div>
                                 <hr class="my-4" />
                                 <!-- Address -->
-                                <h6 class="heading-small text-muted mb-4">Kontak {{currentUser.email}}</h6>
+                                <h6 class="heading-small text-muted mb-4">Kontak</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -222,16 +222,6 @@
         }
       }
     },
-      computed: {
-    currentUser() {
-      return this.$store.state.auth.user;
-    }
-  },
-  mounted() {
-    if (!this.currentUser) {
-      this.$router.push('/login');
-    }
-  }
   };
 </script>
 <style></style>

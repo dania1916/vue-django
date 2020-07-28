@@ -2,10 +2,25 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import DashboardLayout from '@/layout/DashboardLayout'
 import AuthLayout from '@/layout/AuthLayout'
+// import store from './store.js'
+
+
+// Router.beforeEach((to, from, next) => {
+//     if(to.matched.some(record => record.meta.requiresAuth)) {
+//       if (store.getters.isLoggedIn) {
+//         next()
+//         return
+//       }
+//       next('/login') 
+//     } else {
+//       next() 
+//     }
+//   })
 
 Vue.use(Router)
 
-export default new Router({
+
+let router = new Router({
     mode: "history",
     linkExactActiveClass: 'active',
     routes: [{
@@ -169,7 +184,10 @@ export default new Router({
                     path: '/topics',
                     name: 'Bidang',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/Topics.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/Topics.vue'),
+                    meta: {
+                        requiresAuth: true
+                    }
                 },
                 {
                     path: '/topics/add',
@@ -199,3 +217,6 @@ export default new Router({
         },
     ]
 })
+
+
+export default router

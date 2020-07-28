@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <base-button type="primary" class="my-4">Create account</base-button>
+                            <base-button type="primary" @click="register" class="my-4">Create account</base-button>
                         </div>
                     </form>
                 </div>
@@ -65,11 +65,26 @@
     data() {
       return {
         model: {
-          name: '',
+          name:'',
           email: '',
-          password: ''
+          password: '',
+          profile:''
         }
       }
+    },
+    methods:{
+        register: function(){
+            let data = {
+                name: this.model.name,
+                email: this.model.email,
+                password: this.model.password,
+                profile:{}
+            }
+        
+        this.$store.dispatch('register',data)
+        .then(() => this.$router.push('/'))
+        .catch(err => console.log(err))
+        }
     }
   }
 </script>

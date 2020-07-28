@@ -1,5 +1,8 @@
 import http from "../http-common";
 
+const token = localStorage.getItem('token')
+
+
 class LecturerDataService {
   getAll() {
     return http.get("/lecturers");
@@ -10,7 +13,7 @@ class LecturerDataService {
   }
 
   create(data) {
-    return http.post("/lecturers", data);
+    return http.post("/lecturers", data, { headers:{Authorization: 'Bearer ' + token }});
   }
 
   update(id, data) {

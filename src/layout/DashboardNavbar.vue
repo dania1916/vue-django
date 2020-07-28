@@ -45,9 +45,9 @@
                             <span>Support</span>
                         </router-link> -->
                         <div class="dropdown-divider"></div>
-                        <router-link to="/logout" class="dropdown-item">
+                        <router-link to="/login" class="dropdown-item">
                             <i class="ni ni-user-run"></i>
-                            <span>Logout</span>
+                            <span @click="logout">Logout</span>
                         </router-link>
                     </template>
                 </base-dropdown>
@@ -64,6 +64,9 @@
         searchQuery: ''
       };
     },
+    computed:{
+      isLoggedIn : function(){return this.$store.getters.isLoggedIn}
+    },
     methods: {
       toggleSidebar() {
         this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
@@ -73,6 +76,12 @@
       },
       toggleMenu() {
         this.showMenu = !this.showMenu;
+      },
+      logout: function(){
+        this.$store.dispatch('logout')
+        .then(()=>{
+          this.$router.push('/login')
+        })
       }
     }
   };
