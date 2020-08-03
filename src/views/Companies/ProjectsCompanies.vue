@@ -33,30 +33,30 @@
           <th></th>
         </template>
 
-        <template slot-scope="{row}">
+        <template slot-scope="{company}">
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.id}}</span>
+                <span class="name mb-0 text-sm">{{company.id}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.company_name}}</span>
+                <span class="name mb-0 text-sm">{{company.name}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.company_address}}</span>
+                <span class="name mb-0 text-sm">{{company.address}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.company_website}}</span>
+                <span class="name mb-0 text-sm">{{company.website}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.company_email}}</span>
+                <span class="name mb-0 text-sm">{{company.email}}</span>
               </div>
           </th>
 
@@ -76,7 +76,9 @@
   </div>
 </template>
 <script>
-  export default {
+import CompanyDataService from "../../services/CompanyDataService";
+
+export default {
     name: 'projects-table',
     props: {
       type: {
@@ -85,21 +87,27 @@
       title: String
     },
     data() {
-      return {
-        pagination: {
-        default: 1
-      },
-        tableData: [
-          {
-            id : '1',
-            company_name : 'Gonesinau',
-            company_address: 'Klaten',
-            company_website: 'www.gonesiau.com',
-            company_email: 'gonesinau.gmail.com'
-          }
-        ]
-      }
-    }
+    return {
+      company: [],
+      id: null,
+      name: "",
+      address: "",
+      website: "",
+      email: ""
+    };
+    },
+  methods: {
+    companies() {
+      CompanyDataService.getAll()
+        .then(response => {
+          this.company = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+  },
   }
 </script>
 <style>

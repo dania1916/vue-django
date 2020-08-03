@@ -13,6 +13,7 @@
 </template>
 <script>
   import ProjectsTable from './Topics/ProjectsTopics'
+  
   export default {
     name: 'tables',
     components: {

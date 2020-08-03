@@ -83,6 +83,7 @@
   </div>
 </template>
 <script>
+import TopicDataService from "../../services/TopicDataService";
 
   export default {
     name: 'projects-table',
@@ -97,51 +98,25 @@
         pagination: {
         default: 1
       },
-        tableData: [
-          {
-            id: '1',
-            name: 'Muhammad Nanda Jabar Rozaq',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: 'wwww.jurnalugm.com'
-          },
-          {
-            id: '2',
-            name: 'Dania Putri Nuraini',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: 'wwww.jurnalugm.com'
-          },
-          {
-            id: '3',
-            name: 'Muhammad Nanda',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: 'wwww.jurnalugm.com'
-          },
-          {
-            id: '4',
-            name: 'Muhammad Nanda',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: 'wwww.jurnalugm.com'
-          },
-          {
-            id: '5',
-            name: 'Muhammad Nanda',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: 'wwww.jurnalugm.com'
-          }
-        ]
+        tableData: 
+        [{
+          }]
       }
+    },
+    methods: {
+    retrieveTopics() {
+      TopicDataService.getAll()
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
+  },
+    mounted() {
+    this.retrieveTopics();
   }
+}
 </script>
-<style>
-</style>

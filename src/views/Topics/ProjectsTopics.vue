@@ -37,7 +37,7 @@
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.topics}}</span>
+                <span class="name mb-0 text-sm">{{row.name}}</span>
               </div>
           </th>
           <td class="media-body text-md-center">
@@ -45,11 +45,10 @@
               <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
               </a>
-
               <template>
-                <a class="dropdown-item" href="#">Detail</a>
-                <a class="dropdown-item" href="#">Edit</a>
-                <a class="dropdown-item" href="#">Delete</a>
+                <a class="dropdown-item" @click="deleteTopic(row.id)">Detail</a>
+                <a class="dropdown-item" >Edit</a>
+                <a class="dropdown-item" >Delete</a>
               </template>
             </base-dropdown>
           </td>
@@ -58,12 +57,12 @@
     </div>
   </div>
 </template>
+
 <script>
 import TopicDataService from "../../services/TopicDataService";
- 
-export default {
- 
-  name: 'projects-table',
+
+  export default {
+    name: 'projects-table',
     props: {
       type: {
         type: String
@@ -71,24 +70,39 @@ export default {
       title: String
     },
     data() {
-    return {
-      topics: [],
-      id: null,
-      name: "",
-    };
-  },
-  methods: {
-    displaytopics() {
-      
+      return {
+        pagination: {
+        default: 1
+      },
+        tableData: 
+        [{
+          }]
+      }
+    },
+    methods: {
+    retrieveTopics() {
       TopicDataService.getAll()
         .then(response => {
-          this.topics = response.data;
+          this.tableData = response.data;
           console.log(response.data);
         })
         .catch(e => {
           console.log(e);
         });
     },
+      deleteTopic() {
+      TopicDataService.delete(this.tableData.id)
+        .then(response => {
+          console.log(response.data);
+          this.$router.push({ name: "topics" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+  },
+    mounted() {
+    this.retrieveTopics();
   }
-};
+}
 </script>

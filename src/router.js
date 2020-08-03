@@ -21,7 +21,7 @@ Vue.use(Router)
 
 
 let router = new Router({
-    mode:"history",
+    mode: "history",
     linkExactActiveClass: 'active',
     routes: [{
             path: '/',
@@ -185,9 +185,9 @@ let router = new Router({
                     name: 'Bidang',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Topics.vue'),
-                    meta: { 
-                            requiresAuth: true
-                    }     
+                    meta: {
+                        requiresAuth: true
+                    }
                 },
                 {
                     path: '/topics/add',
