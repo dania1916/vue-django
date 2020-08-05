@@ -45,10 +45,11 @@
               <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
               </a>
+
               <template>
-                <a class="dropdown-item" @click="deleteTopic(row.id)">Detail</a>
-                <a class="dropdown-item" >Edit</a>
-                <a class="dropdown-item" >Delete</a>
+                <a class="dropdown-item" href="#">Detail</a>
+                <a class="dropdown-item" href="#">Edit</a>
+                <a class="dropdown-item" href="#">Delete</a>
               </template>
             </base-dropdown>
           </td>

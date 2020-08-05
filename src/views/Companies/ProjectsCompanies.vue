@@ -33,43 +33,37 @@
           <th></th>
         </template>
 
-        <template slot-scope="{company}">
+        <template slot-scope="{row}">
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{company.id}}</span>
+                <span class="name mb-0 text-sm">{{row.id}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{company.name}}</span>
+                <span class="name mb-0 text-sm">{{row.name}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{company.address}}</span>
+                <span class="name mb-0 text-sm">{{row.address}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{company.website}}</span>
+                <span class="name mb-0 text-sm">{{row.website}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{company.email}}</span>
+                <span class="name mb-0 text-sm">{{row.email}}</span>
               </div>
           </th>
-
-          <td class="text-left">
-            <base-dropdown class="dropdown" position="left">
-              <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v"></i>
-              </a>
-                <a class="dropdown-item" href="#">Detail</a>
-                <a class="dropdown-item" href="#">Edit</a>
-                <a class="dropdown-item" href="#">Delete</a>
-            </base-dropdown>
-          </td>
+          <th class="media-body text-md-center">
+            <div class="media-body">
+            <b-button pill variant="success" size="sm" :href="'/companies/' + row.id">Detail</b-button>
+            </div>
+          </th>
         </template>
       </base-table>
     </div>
@@ -78,7 +72,7 @@
 <script>
 import CompanyDataService from "../../services/CompanyDataService";
 
-export default {
+  export default {
     name: 'projects-table',
     props: {
       type: {
@@ -87,20 +81,20 @@ export default {
       title: String
     },
     data() {
-    return {
-      company: [],
-      id: null,
-      name: "",
-      address: "",
-      website: "",
-      email: ""
-    };
+      return {
+        pagination: {
+        default: 1
+      },
+        tableData: 
+        [{
+          }]
+      }
     },
-  methods: {
-    companies() {
+    methods: {
+    retrieveCompany() {
       CompanyDataService.getAll()
         .then(response => {
-          this.company = response.data;
+          this.tableData = response.data;
           console.log(response.data);
         })
         .catch(e => {
@@ -108,7 +102,10 @@ export default {
         });
     },
   },
+    mounted() {
+    this.retrieveCompany();
   }
+}
 </script>
 <style>
 </style>

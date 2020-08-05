@@ -46,17 +46,17 @@
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.title}}</span>
+                <span class="name mb-0 text-sm">{{row.thesis_title}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.proposal}}</span>
+                <span class="name mb-0 text-sm">{{row.thesis_proposal}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.report}}</span>
+                <span class="name mb-0 text-sm">{{row.thesis_report}}</span>
               </div>
           </th>
           <th scope="row">

@@ -7,73 +7,63 @@
             <div class="col-lg-10 col-md-10">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-10 py-lg-10">
-                        <div class="col text-left"> <h3>Informasi Anggota</h3> </div>
+                        <div class="col text-left"> <h3>Magang</h3> </div>
                         <form>
                             <div class="form-group row"></div>
                             <div class="form-group row">
-                                <label for="inputNama" class="col-sm-3 col-form-label text-md-right">Nama</label>
+                                <label for="inputNama" class="col-sm-3 col-form-label text-md-right">Magang</label>
                                 <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputNama">
+                                <b-form-radio v-model="selected" name="some-radios" value="A">Iya</b-form-radio>
+                                <b-form-radio v-model="selected" name="some-radios" value="B">Tidak</b-form-radio>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputNIM" class="col-sm-3 col-form-label text-md-right">NIM</label>
-                                <div class="col-sm-7">
-                                <input type="num" class="form-control" id="inputNIM">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputDosen" class="col-sm-3 col-form-label text-md-right">Dosen Pembimbing</label>
-                                <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputDosen">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="group" class="col-sm-3 col-form-label text-md-right">Group Kerja</label>
+                                <label for="group" class="col-sm-3 col-form-label text-md-right">Nama Perusahaan</label>
                                 <div class="col-sm-7">
                                 <select class="form-control">
                                     <option>Pilih</option>
-                                    <option>Individu</option>
-                                    <option>Berpasangan</option>
-                                    <option>Kelompok</option>
+                                    <option>Departemen</option>
+                                    <option>Telkom</option>
                                 </select>
                                 </div>
                             </div>
-                            <div class="form-group row" >
-                                <label class="col-sm-3"></label>
-                            <div class = "col-sm-7" > 
-                            <b-button v-b-modal.modal-no-backdrop variant="success">Tambah Anggota</b-button>
-                            <b-modal id="modal-no-backdrop" hide-backdrop content-class="shadow" title="Anggota KP">
-                            <p class="my-2">
                             <div class="form-group row">
-                                <label for="inputNama" class="col-sm-3 col-form-label text-md-right">Nama</label>
+                                <label for="inputNIM" class="col-sm-3 col-form-label text-md-right">Tanggal Mulai</label>
                                 <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputNama">
+                                    <base-input addon-left-icon="ni ni-calendar-grid-58">
+                                    <flat-picker slot-scope="{focus, blur}"
+                                        @on-open="focus"
+                                        @on-close="blur"
+                                        :config="{allowInput: true}"
+                                        class="form-control datepicker"
+                                        v-model="dates.simple">
+                                    </flat-picker>
+                                    </base-input>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputNIM" class="col-sm-3 col-form-label text-md-right">NIM</label>
+                                <label for="inputNIM" class="col-sm-3 col-form-label text-md-right">Tanggal Selesai</label>
                                 <div class="col-sm-7">
-                                <input type="num" class="form-control" id="inputNIM">
+                                    <base-input addon-left-icon="ni ni-calendar-grid-58">
+                                    <flat-picker slot-scope="{focus, blur}"
+                                        @on-open="focus"
+                                        @on-close="blur"
+                                        :config="{allowInput: true}"
+                                        class="form-control datepicker"
+                                        v-model="date.simple">
+                                    </flat-picker>
+                                    </base-input>
                                 </div>
-                            </div>
-                            </b-modal>
+                                    <label class="col-sm-3"></label>
+                                    <div class = "col-sm-1" > 
+                                    <router-link :to="{name: 'Profil'}">
+                                        <base-button type = "danger" >Kembali </base-button>
+                                    </router-link>
+                                    </div>
+                                    <div class = "col-sm-7 pl-5" >
+                                    <router-link :to="{name: 'Laporan TA'}">
+                                        <base-button type = "success">Selanjutnya</base-button>
+                                    </router-link>
+                                    </div>
                             </div> 
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label text-md-right">Anggota Tim</label>
-                                <div class="col-sm-7">
-                                <div> <b-table striped hover bordered :items="items"></b-table></div>
-                                </div>
-                            </div>
-                            <div class="form-group row" >
-                                <label class="col-sm-3"></label>
-                            <div class = "col-sm-7" > 
-                            <router-link :to="{name: 'Laporan TA'}">
-                            <base-button type = "success">Selanjutnya</base-button>
-                            </router-link>
-                            </div> 
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -86,15 +76,17 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        items: [
-          { No: 1, NAMA: 'Muhammad Nanda Jabar', NIM: '18/431564/SV/15535' },
-          { No: 2, NAMA: 'Nanda', NIM: '18/431564/SV/15535' },
-          { No: 3, NAMA: 'Jabar', NIM: '18/431564/SV/15535' }      
-        ]
-      }
-    }
-  }
+import flatPicker from "vue-flatpickr-component";
+import "flatpickr/dist/flatpickr.css";
+ 
+export default 
+{
+ components: {flatPicker},
+ data() {
+    return {
+        dates: {simple: ""},
+        date: {simple: ""},
+        }
+    },
+}
 </script>

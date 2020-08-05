@@ -67,13 +67,13 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/Students/FormStudents.vue')
                 },
                 {
-                    path: '/students/{id}',
+                    path: '/students/:id',
                     name: 'Detail Mahasiswa',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Students/DetailStudents.vue')
                 },
                 {
-                    path: '/students/{id}/edit',
+                    path: '/students/:id/edit',
                     name: 'Edit Mahasiswa',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Students/EditStudents.vue')
@@ -139,6 +139,12 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/KP/ThesisKP.vue')
                 },
                 {
+                    path: '/internships/detail',
+                    name: 'Detail',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/KP/DetailKP.vue')
+                },
+                {
                     path: '/students',
                     name: 'Mahasiswa',
                     component: () =>
@@ -157,6 +163,12 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/TA/ThesisTA.vue')
                 },
                 {
+                    path: '/thesis/detail',
+                    name: 'Detail TA',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/TA/DetailTA.vue')
+                },
+                {
                     path: '/companies',
                     name: 'Perusahaan',
                     component: () =>
@@ -169,13 +181,13 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/Companies/FormCompanies.vue')
                 },
                 {
-                    path: '/companies/{id}',
+                    path: '/companies/:id',
                     name: 'Detail Perusahaan',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Companies/DetailCompanies.vue')
                 },
                 {
-                    path: '/companies/{id}/edit',
+                    path: '/companies/:id/edit',
                     name: 'Edit Perusahaan',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Companies/EditCompanies.vue')

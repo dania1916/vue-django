@@ -18,11 +18,14 @@
                                 <div class="col-8">
                                     <h3 class="mb-0">Detail Perusahaan</h3>
                                 </div>
+                                <div class="col text-right">
+                                <b-button pill variant="primary" size="md" :href="'/companies/'+tableData.id+'/edit'">Edit</b-button>
+                                <b-button pill variant="danger" size="md" :href="'/companies/'" @click="deleteCompany">Delete</b-button>
+                                </div>
                             </div>
                         </div>
                         <!-- Profil -->
                         <template>
-                            
                             <form @submit.prevent>
                                 <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
@@ -32,7 +35,8 @@
                                                         label="Nama Perusahaan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_name"
+                                                        v-model="tableData.name"
+                                                        disabled
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -40,7 +44,8 @@
                                                         label="Jenis Usaha"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_business"
+                                                        v-model="tableData.business"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -50,9 +55,10 @@
                                         <div class="col-lg-6">  
                                             <base-input label="Alamat">
                                                         <textarea 
-                                                        class="form-control" 
-                                                        id="company_address"
-                                                        rows="6">
+                                                        class="form-control"
+                                                        rows="6"
+                                                        v-model="tableData.address"
+                                                        disabled>
                                                         </textarea>
                                             </base-input>
                                         </div>
@@ -61,13 +67,15 @@
                                                         label="Website"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_website"
+                                                        v-model="tableData.website"
+                                                        disabled
                                             />
                                             <base-input alternative=""
                                                         label="Email"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_email"
+                                                        v-model="tableData.email"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -81,7 +89,8 @@
                                                         label="Nama"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_pic_name"
+                                                        v-model="tableData.pic_name"
+                                                        disabled
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -89,7 +98,8 @@
                                                         label="Kontak"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_pic_number"
+                                                        v-model="tableData.pic_number"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -110,23 +120,61 @@
 </template>
 
 <script>
-import { BTable } from 'bootstrap-vue'
-export default {
+import CompanyDataService from "../../services/CompanyDataService";
+
+  export default {
     name: 'user-profile',
+    props: {
+      type: {
+        type: String
+      },
+      title: String
+    },
     data() {
       return {
-        model: {
-          company_name: '',
-          company_business: '',
-          company_address: '',
-          company_website: '',
-          company_email: '',
-          company_pic_name: '',
-          company_pic_number:'',
-        },
-        components: {'b-table':BTable},
+        pagination: {
+        default: 1
+      },
+        tableData: 
+        [{
+          }]
       }
     },
-  };
+    methods: {
+      getCompany(id) {
+      CompanyDataService.get(id)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+  },
+     retrieveTopics() {
+      CompanyDataService.getAll()
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    deleteCompany() {
+      CompanyDataService.delete(this.tableData.id)
+        .then(response => {
+        console.log(response.data);
+        this.$router.push({ name: "Perusahaan" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+    },
+    mounted() {
+    this.getCompany(this.$route.params.id);
+  }
+}
 </script>
 <style></style>

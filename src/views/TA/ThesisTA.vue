@@ -60,12 +60,18 @@
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                             </div>
-                            <div class="form-group row" >
+                            <div class="form-group row">
                                 <label class="col-sm-3"></label>
-                            <div class = "col-sm-7" > 
-                            <base-button type = "danger" >Kembali </base-button>
-                            <base-button type = "success" >Submit</base-button>
-                            </div> 
+                                    <div class = "col-sm-1" > 
+                                    <router-link :to="{name: 'Magang'}">
+                                        <base-button type = "danger" >Kembali </base-button>
+                                    </router-link>
+                                    </div>
+                                    <div class = "col-sm-7 pl-5" >
+                                    <router-link :to="{name: 'tugas akhir'}">
+                                        <base-button type = "success">Simpan</base-button>
+                                    </router-link>
+                                    </div>
                             </div>
                         </form>
                     </div>

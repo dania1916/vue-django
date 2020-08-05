@@ -12,58 +12,70 @@
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="form-group row"></div>
                                     <div class="form-group row">
-                                        <label for="student_name" class="col-sm-3 col-form-label text-md-right">Nama</label>
+                                        <label for="name" class="col-sm-3 col-form-label text-md-right">Nama</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" required id="student_name" v-model="student.student_name" name="student_name" placeholder="Nama Lengkap">
-                                        </div>
-                                    </div>
-                                        <div class="form-group row">
-                                        <label for="student_name" class="col-sm-3 col-form-label text-md-right">Foto</label>
-                                        <div class="col-sm-7">
-                                        <input type="file" accept="image/*"  id="file" class="form-control" ref="file" v-on:@change="handleFileUpload()">
+                                        <input type="text" class="form-control" required id="name" v-model="student.name" name="name" placeholder="Nama Lengkap">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="student_nim" class="col-sm-3 col-form-label text-md-right">NIM</label>
+                                        <label for="nim" class="col-sm-3 col-form-label text-md-right">NIM</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="student_nim" v-model="student.student_nim" name="student_nim" placeholder="18/425698/SV/14840">
+                                        <input type="text" class="form-control" id="nim" v-model="student.nim" name="nim" placeholder="Nim">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="student_number_phone" class="col-sm-3 col-form-label text-md-right">Nomor HP</label>
+                                        <label for="number_phone" class="col-sm-3 col-form-label text-md-right">Nomor Telepon</label>
                                         <div class="col-sm-7">
-                                        <input type="number" class="form-control" id="student_number_phone" v-model="student.student_number_phone" name="student_number_phone" placeholder="2020">
+                                        <input type="number" class="form-control" id="number_phone" v-model="student.number_phone" name="number_phone" placeholder="Nomor Telepon">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="student_email" class="col-sm-3 col-form-label text-md-right">Email</label>
+                                        <label for="email" class="col-sm-3 col-form-label text-md-right">Email</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="student_email" v-model="student.student_email" name="student_email" placeholder="name@mail.ugm.ac.id">
+                                        <input type="text" class="form-control" id="email" v-model="student.email" name="email" placeholder="name@mail.ugm.ac.id">
                                         </div>
                                     </div>
                                         <div class="form-group row">
-                                        <label for="student_address" class="col-sm-3 col-form-label text-md-right">Alamat</label>
+                                        <label for="address" class="col-sm-3 col-form-label text-md-right">Desa</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="student_address" v-model="student.student_address" name="student_address" placeholder="Jetis RT 07 RW 03 Kunden Karanganom">
+                                        <input type="text" class="form-control" id="address" v-model="student.village" name="village" placeholder="Desa">
                                         </div>
                                     </div>
                                         <div class="form-group row">
-                                        <label for="student_postal_code" class="col-sm-3 col-form-label text-md-right">Kode Pos</label>
+                                        <label for="postal_code" class="col-sm-3 col-form-label text-md-right">RT</label>
                                         <div class="col-sm-7">
-                                        <input type="number" class="form-control" id="student_postal_code" v-model="student.student_postal_code" name="student_postal_code" placeholder="57475">
+                                        <input type="number" class="form-control" id="postal_code" v-model="student.rt_village" name="rt_village" placeholder="Rt">
                                         </div>
                                     </div>
-                                                                        <div class="form-group row">
-                                        <label for="student_city" class="col-sm-3 col-form-label text-md-right">Kota/Kabupaten</label>
+                                        <div class="form-group row">
+                                        <label for="postal_code" class="col-sm-3 col-form-label text-md-right">RW</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="student_city" v-model="student.student_city" name="student_city" placeholder="Klaten">
+                                        <input type="number" class="form-control" id="postal_code" v-model="student.rw_village" name="rw_village" placeholder="Rw">
                                         </div>
                                     </div>
-                                                                        <div class="form-group row">
-                                        <label for="student_province" class="col-sm-3 col-form-label text-md-right">Provinsi</label>
+                                        <div class="form-group row">
+                                        <label for="address" class="col-sm-3 col-form-label text-md-right">Kecamatan</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="student_province" v-model="student.student_province" name="student_province" placeholder="Jawa Tengah">
+                                        <input type="text" class="form-control" id="address" v-model="student.sub_district" name="sub_district" placeholder="Kecamatan">
+                                        </div>
+                                    </div>
+                                        <div class="form-group row">
+                                        <label for="city" class="col-sm-3 col-form-label text-md-right">Kota/Kabupaten</label>
+                                        <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="city" v-model="student.city" name="city" placeholder="Kota / Kab">
+                                        </div>
+                                    </div>
+                                        <div class="form-group row">
+                                        <label for="province" class="col-sm-3 col-form-label text-md-right">Provinsi</label>
+                                        <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="province" v-model="student.province" name="province" placeholder="Provinsi">
+                                        </div>
+                                    </div>
+                                        <div class="form-group row">
+                                        <label for="postal_code" class="col-sm-3 col-form-label text-md-right">Kode Pos</label>
+                                        <div class="col-sm-7">
+                                        <input type="number" class="form-control" id="postal_code" v-model="student.postal_code" name="postal_code" placeholder="Kode Pos">
                                         </div>
                                     </div>
                                                   
@@ -110,36 +122,40 @@ export default {
     return {
       student: {
         id: null,
-        student_name:'',
-        student_nim:'',
-        student_number_phone:'',
-        student_email:'',
-        student_address:'',
-        file:'',
-        student_postal_code:'',
-        student_city:'',
-        student_province:'',
+        name:'',
+        nim:'',
+        number_phone:'',
+        email:'',
+        village:'',
+        rt_village:'',
+        rw_village:'',
+        sub_district:'',
+        city:'',
+        province:'',
+        postal_code:'',
       },
       submitted: false
     };
   },
   methods: {
     submitStudent() {
-      let formData = new FormData();
-      formData.append('file',this.student.file);
+      // let formData = new FormData();
+      // formData.append('file',this.student.file); 
       var data = {
-        student_name: this.student.student_name,
-        student_nim: this.student.student_nim,
-        student_number_phone: this.student.student_number_phone,
-        student_email:this.student.student_email,
-        student_address:this.student.student_address,
-        file:this.file,
-        student_city: this.student.student_city,
-        student_postal_code:this.student.student_postal_code,
-        student_province: this.student.student_province
+        name: this.student.name,
+        nim: this.student.nim,
+        number_phone: this.student.number_phone,
+        email:this.student.email,
+        village:this.student.village,
+        rt_village:this.student.rt_village,
+        rw_village:this.student.rw_village,
+        sub_district:this.student.sub_district,
+        city: this.student.city,
+        postal_code:this.student.postal_code,
+        province: this.student.province
       };
 
-      StudentDataService.create(data, formData)
+      StudentDataService.create(data)
         .then(response => {
           this.student.id = response.data.id;
           console.log(response.data);
@@ -155,8 +171,8 @@ export default {
       this.student = {};
     }
   },
-  handleFileUpload(){
-    this.student.file = this.student.$refs.file.files[0];
-  }
+  // handleFileUpload(){
+    // this.student.file = this.student.$refs.file.files[0];
+  // }
 };
 </script>

@@ -18,12 +18,16 @@
                                 <div class="col-8">
                                     <h3 class="mb-0">Detail Mahasiswa</h3>
                                 </div>
+                                <div class="col text-right">
+                                <b-button pill variant="primary" size="md" :href="'/students/'+tableData.id+'/edit'">Edit</b-button>
+                                <b-button pill variant="danger" size="md"  :href="'/students/'" @click="deleteStudent">Delete</b-button>
+                                </div>
                             </div>
                         </div>
                         <!-- Member -->
                         <template>
                             <form @submit.prevent>
-                                <h6 class="heading-small text-muted mb-4"></h6>
+                              <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -31,38 +35,110 @@
                                                         label="Nama Lengkap"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.student_name"
+                                                        v-model="tableData.name"
+                                                        disabled
                                             />
                                         </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="Alamat Email"
+                                                        label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.student_email"
+                                                        v-model="tableData.nim"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="NIM"
+                                                        label="No Telepon"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.student_nim"
+                                                        v-model="tableData.number_phone"
+                                                        disabled
                                             />
                                         </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="Angkatan"
+                                                        label="Email"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.generation"
+                                                        v-model="tableData.email"
+                                                        disabled
+                                            />
+                                        </div>
+                                    </div>
+                                    <!-- Kontak -->
+                                    <hr class="my-4" />
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Desa"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.village"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <base-input alternative=""
+                                                        label="RT"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.rt_village"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <base-input alternative=""
+                                                        label="RW"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.rw_village"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Kecamatan"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.sub_district"
+                                                        disabled
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Kota / Kabupaten"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.city"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Provinsi"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.province"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Kode Pos"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.postal_code"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
                                 </div>
-                                <hr class="my-4" />
                                 <div class="col-4 text-left">
                                     <router-link :to="{name: 'Mahasiswa'}">
                                     <base-button href="#!" size="md" type="default" class="float-left">Kembali</base-button>
@@ -78,18 +154,61 @@
 </template>
 
 <script>
-export default {
+import StudentDataService from "../../services/StudentDataService";
+
+  export default {
     name: 'user-profile',
+    props: {
+      type: {
+        type: String
+      },
+      title: String
+    },
     data() {
       return {
-        model: {
-          student_name: '',
-          student_email: '',
-          student_nim: '',
-          generation: ''
-        },
+        pagination: {
+        default: 1
+      },
+        tableData: 
+        [{
+          }]
       }
     },
-  };
+    methods: {
+      getStudent(id) {
+      StudentDataService.get(id)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+  },
+     retrieveStudent() {
+      StudentDataService.getAll()
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+     deleteStudent() {
+      StudentDataService.delete(this.tableData.id)
+        .then(response => {
+        console.log(response.data);
+        this.$router.push({ name: "Mahasiswa" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+    },
+    mounted() {
+    this.getStudent(this.$route.params.id);
+  }
+}
 </script>
 <style></style>

@@ -22,7 +22,6 @@
                         </div>
                         <!-- Profil -->
                         <template>
-                            
                             <form @submit.prevent>
                                 <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
@@ -32,7 +31,8 @@
                                                         label="Nama Perusahaan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_name"
+                                                        v-model="tableData.name"
+                                                        
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -40,7 +40,8 @@
                                                         label="Jenis Usaha"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_business"
+                                                        v-model="tableData.business"
+                                                        
                                             />
                                         </div>
                                     </div>
@@ -50,9 +51,10 @@
                                         <div class="col-lg-6">  
                                             <base-input label="Alamat">
                                                         <textarea 
-                                                        class="form-control" 
-                                                        id="company_address"
-                                                        rows="6">
+                                                        class="form-control"
+                                                        rows="6"
+                                                        v-model="tableData.address"
+                                                        >
                                                         </textarea>
                                             </base-input>
                                         </div>
@@ -61,13 +63,15 @@
                                                         label="Website"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_website"
+                                                        v-model="tableData.website"
+                                                        
                                             />
                                             <base-input alternative=""
                                                         label="Email"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_email"
+                                                        v-model="tableData.email"
+                                                        
                                             />
                                         </div>
                                     </div>
@@ -81,7 +85,8 @@
                                                         label="Nama"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_pic_name"
+                                                        v-model="tableData.pic_name"
+                                                        
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -89,7 +94,8 @@
                                                         label="Kontak"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.company_pic_number"
+                                                        v-model="tableData.pic_number"
+                                                        
                                             />
                                         </div>
                                     </div>
@@ -97,7 +103,7 @@
                                 <hr class="my-4" />
                                 <div class="col-4 text-left">
                                     <router-link :to="{name: 'Perusahaan'}">
-                                    <base-button href="#!" size="md" type="default" class="float-left">Simpan</base-button>
+                                    <base-button href="#!" size="md" type="default" class="float-left" @click="updateCompany">Simpan</base-button>
                                     </router-link>
                                 </div>
                             </form>
@@ -110,23 +116,51 @@
 </template>
 
 <script>
-import { BTable } from 'bootstrap-vue'
-export default {
+import CompanyDataService from "../../services/CompanyDataService";
+
+  export default {
     name: 'user-profile',
+    props: {
+      type: {
+        type: String
+      },
+      title: String
+    },
     data() {
       return {
-        model: {
-          company_name: '',
-          company_business: '',
-          company_address: '',
-          company_website: '',
-          company_email: '',
-          company_pic_name: '',
-          company_pic_number:'',
-        },
-        components: {'b-table':BTable},
+        pagination: {
+        default: 1
+      },
+        tableData: 
+        [{
+          }]
       }
     },
-  };
+    methods: {
+      getCompany(id) {
+      CompanyDataService.get(id)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    updateCompany() {
+    CompanyDataService.update(this.tableData.id, this.tableData)
+        .then(response => {
+          console.log(response.data);
+          this.message = 'The tutorial was updated successfully!';
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    },
+    mounted() {
+    this.getCompany(this.$route.params.id);
+        }
+}
 </script>
 <style></style>

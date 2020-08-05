@@ -28,49 +28,35 @@
           <th class='text-md-center'>NAMA</th>
           <th class="text-md-center">EMAIL</th>
           <th class='text-md-center'>NIM</th>
-          <th class='text-md-center'>ANGKATAN</th>
           <th class='text-md-center'>AKSI</th>
         </template>
 
-        <template slot-scope="{student}">
+        <template slot-scope="{row}">
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{student.id}}</span>
+                <span class="name mb-0 text-sm">{{row.id}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md">
-                <span class="name mb-0 text-sm">{{student.student_name}}</span>
+                <span class="name mb-0 text-sm">{{row.name}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{student.student_email}}</span>
+                <span class="name mb-0 text-sm">{{row.email}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{student.student_nim}}</span>
+                <span class="name mb-0 text-sm">{{row.nim}}</span>
               </div>
           </th>
-          <th scope="row">
-            <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{student.generation}}</span>
-              </div>
+          <th class="media-body text-md-center">
+            <div class="media-body">
+            <b-button pill variant="success" size="sm" :href="'/students/' + row.id">Detail</b-button>
+            </div>
           </th>
-          <td class="media-body text-md-center">
-            <base-dropdown class="dropdown" position="right">
-              <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v"></i>
-              </a>
-
-              <template>
-                <a class="dropdown-item" href="#">Detail</a>
-                <a class="dropdown-item" href="#">Edit</a>
-                <a class="dropdown-item" href="#">Delete</a>
-              </template>
-            </base-dropdown>
-          </td>
         </template>
       </base-table>
     </div>
@@ -88,28 +74,31 @@ import StudentDataService from "../../services/StudentDataService";
       title: String
     },
     data() {
-    return {
-      student: [],
-      id: null,
-      student_name: "",
-      student_email: "",
-      student_nim: "",
-      student_generation: "",
-    };
+      return {
+        pagination: {
+        default: 1
+      },
+        tableData: 
+        [{
+          }]
+      }
     },
-  methods: {
-    students() {
+    methods: {
+    retrieveStudents() {
       StudentDataService.getAll()
         .then(response => {
-          this.student = response.data;
+          this.tableData = response.data;
           console.log(response.data);
         })
         .catch(e => {
           console.log(e);
         });
     },
+  },
+    mounted() {
+    this.retrieveStudents();
   }
-  }
+}
 </script>
 <style>
 </style>
