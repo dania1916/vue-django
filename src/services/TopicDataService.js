@@ -7,27 +7,26 @@ class TopicDataService {
     }
 
     get(id) {
-        return http.get(`/topics/${id}`);
+        return http.get(`/topics/${id}`, { headers: { Authorization: 'Bearer ' + token } });
     }
 
     create(data) {
         return http.post("/topics", data, { headers: { Authorization: 'Bearer ' + token } });
     }
     update(id, data) {
-        return http.put(`/topics/${id}`, data);
+        return http.put(`/topics/${id}`, data, { headers: { Authorization: 'Bearer ' + token } });
     }
 
     delete(id) {
-        return http.delete(`/topics/${id}`);
+        return http.delete(`/topics/${id}`, { headers: { Authorization: 'Bearer ' + token } });
     }
 
     deleteAll() {
-        return http.delete(`/topics`);
+        return http.delete(`/topics`, { headers: { Authorization: 'Bearer ' + token } });
     }
 
     findByTitle(title) {
-        return http.get(`/topics?title=${title}`);
+        return http.get(`/topics?title=${title}`,{ headers: { Authorization: 'Bearer ' + token } });
     }
 }
-
 export default new TopicDataService();

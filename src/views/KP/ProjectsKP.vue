@@ -73,7 +73,7 @@
               <template>
                 <a class="dropdown-item" href="#">Detail</a>
                 <a class="dropdown-item" href="#">Edit</a>
-                <a class="dropdown-item" href="#">Delete</a>
+                <a class="dropdown-item" href="">Delete</a>
               </template>
             </base-dropdown>
           </td>
