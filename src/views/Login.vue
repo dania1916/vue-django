@@ -54,7 +54,6 @@
         </div>
 </template>
 <script>
-
   export default {
     name: 'login',
     data() {
@@ -73,6 +72,9 @@
         .then(() => this.$router.push('/'))
         .catch(err => console.log(err))
       }
+    },
+    computed:{
+        
     }
   }
 </script>

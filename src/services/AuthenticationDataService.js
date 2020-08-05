@@ -1,4 +1,6 @@
 import http from "../http-common";
+const token = localStorage.getItem('token')
+
 
 class AuthenticationDataService {
   getAll() {
@@ -6,7 +8,7 @@ class AuthenticationDataService {
   }
 
   get(id) {
-    return http.get(`/users/${id}`);
+    return http.get(`/users/${id}`,{ headers: { Authorization: 'Bearer ' + token } });
   }
 
   create(data) {

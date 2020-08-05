@@ -16,63 +16,37 @@
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Detail Dosen</h3>
+                                    <h3 class="mb-0">Detail Bidang KP</h3>
                                 </div>
                             </div>
                         </div>
                         <!-- Member -->
                         <template>
                             <form @submit.prevent>
-                                <h6 class="heading-small text-muted mb-4"></h6>
+                                <h6 class="heading-small text-muted"></h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="Nama Lengkap"
+                                                        label="Nama Bidang Konsentrasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.name" 
                                             />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Alamat Email"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.email"
-                                            />
-                                        </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="NIP"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.nip"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="NIDN"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.nidn"
-                                            />
-                                        </div>
-                                    </div>
+                                </div>
                                 </div>
                                 <hr class="my-4" />
                             <div class="form-group row" >
                             <label class="col-sm-1"></label>
                             <div class = "" > 
-                            <router-link :to="{name: 'Dosen'}">
+                            <router-link :to="{name: 'Bidang'}">
                             <base-button type = "danger" >Kembali </base-button>
                             </router-link>
                             </div>
                             <div class = "pl-3" >
-                            <router-link :to="{name: 'Dosen'}">
-                            <base-button type = "success" @click="updateLecturer">Update</base-button>
+                            <router-link :to="{name: 'Bidang'}">
+                            <base-button type = "success" @click="updateTopic">Update</base-button>
                             </router-link>
                             </div> 
                             </div>
@@ -86,7 +60,7 @@
 </template>
 
 <script>
-import LecturerDataService from "../../services/LecturerDataService";
+import TopicDataService from "../../services/TopicDataService";
 
   export default {
     name: 'user-profile',
@@ -107,8 +81,8 @@ import LecturerDataService from "../../services/LecturerDataService";
       }
     },
     methods: {
-      getLecturer(id) {
-      LecturerDataService.get(id)
+      getTopic(id) {
+      TopicDataService.get(id)
         .then(response => {
           this.tableData = response.data;
           console.log(response.data);
@@ -117,8 +91,8 @@ import LecturerDataService from "../../services/LecturerDataService";
           console.log(e);
         });
     },
-    updateLecturer() {
-    LecturerDataService.update(this.tableData.id, this.tableData)
+    updateTopic() {
+    TopicDataService.update(this.tableData.id, this.tableData)
         .then(response => {
           console.log(response.data);
           this.message = 'The tutorial was updated successfully!';
@@ -129,9 +103,8 @@ import LecturerDataService from "../../services/LecturerDataService";
     },
 
 },
-
     mounted() {
-    this.getLecturer(this.$route.params.id);
+    this.getTopic(this.$route.params.id);
   }
 }
 </script>

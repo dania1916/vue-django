@@ -31,7 +31,8 @@
                                                         label="Nama Lengkap"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.name"
+                                                        v-model="tableData.name" 
+                                                        disabled
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -39,7 +40,8 @@
                                                         label="Alamat Email"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.email"
+                                                        v-model="tableData.email"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -49,7 +51,8 @@
                                                         label="NIP"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.nip"
+                                                        v-model="tableData.nip"
+                                                        disabled
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -57,7 +60,8 @@
                                                         label="NIDN"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.nidn"
+                                                        v-model="tableData.nidn"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -78,18 +82,40 @@
 </template>
 
 <script>
-export default {
+import LecturerDataService from "../../services/LecturerDataService";
+
+  export default {
     name: 'user-profile',
+    props: {
+      type: {
+        type: String
+      },
+      title: String
+    },
     data() {
       return {
-        model: {
-          name: '',
-          email: '',
-          nip: '',
-          nidn: '',
-        },
+        pagination: {
+        default: 1
+      },
+        tableData: 
+        [{
+          }]
       }
     },
-  };
+    methods: {
+      getLecturer(id) {
+      LecturerDataService.get(id)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+  },
+    },
+    mounted() {
+    this.getLecturer(this.$route.params.id);
+  }
+}
 </script>
-<style></style>

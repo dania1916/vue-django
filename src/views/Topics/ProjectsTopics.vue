@@ -47,9 +47,8 @@
               </a>
 
               <template>
-                <a class="dropdown-item" href="#">Detail</a>
-                <a class="dropdown-item" href="#">Edit</a>
-                <a class="dropdown-item" href="#">Delete</a>
+                <a class="dropdown-item" :href="'/topics/' + row.id + '/edit'">Edit</a>
+                <a class="dropdown-item" :href="'/topics/'" @click="deleteTopic(row.id)">Delete</a>
               </template>
             </base-dropdown>
           </td>
@@ -91,8 +90,8 @@ import TopicDataService from "../../services/TopicDataService";
           console.log(e);
         });
     },
-      deleteTopic() {
-      TopicDataService.delete(this.tableData.id)
+      deleteTopic(id) {
+      TopicDataService.delete(id)
         .then(response => {
           console.log(response.data);
           this.$router.push({ name: "topics" });

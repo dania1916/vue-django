@@ -8,7 +8,6 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
-                                Profile Testing
                         <h1 class="display-2 text-white">Hello Jesse</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
                         <base-button href="#!" size="md" type="default" class="float-left">Edit profile</base-button>
@@ -51,7 +50,7 @@
                                     <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
                                 </div>
                                 <div>
-                                    <i class="ni education_hat mr-2"></i>{{currentUser.username}}
+                                    <i class="ni education_hat mr-2"></i>University of Computer Science
                                 </div>
                             </div>
                         </div>
@@ -67,6 +66,136 @@
                                 </div>
                             </div>
                         </div>
+                        <template>
+                            <form @submit.prevent>
+                                <h6 class="heading-small text-muted mb-4">Profil</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Nama Depan"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.first_name"
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Nama Belakang"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.last_name"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Tanggal Lahir"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['dob']"
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="NIM"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['nim']"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <h6 class="heading-small text-muted mb-4">Akun</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Email address"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.email"
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="No Hp"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['number_phone']"
+                                            />
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row">
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Username"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.username"
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Password"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.Password"
+                                            />
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <hr class="my-4" />
+                                <!-- Address -->
+                                 <h6 class="heading-small text-muted mb-4">Kontak</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <base-input alternative=""
+                                                        label="Alamat"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['address']"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Kota"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['city']"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Provinsi"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['province']"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Kode Pos"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['zip']"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <div class="col-4 text-left">
+                                    <base-button href="#!" size="md" type="default" @click="updateUser" class="float-left">Simpan</base-button>
+                                </div>
+                            </form>
+                        </template>
                     </card>
                 </div>
             </div>
@@ -74,17 +203,68 @@
     </div>
 </template>
 <script>
+// export default {
+//   name: 'Profile',
+//   computed: {
+//     user() {
+//         return this.$store.getters.isLoggedIn
+//     }
+//   },
+// //   mounted() {
+// //     if (!this.tableData) {
+// //       this.$router.push('/login');
+// //     }
+// //   }
+// };
+
+//is not used
+import axios from 'axios'
 
 export default {
-  name: 'Profile',
+
+    name: 'user-profile',
+    data() {
+      return {
+    tableData: '',
+    }
+    },
   computed: {
-    currentUser() {
-      return this.$store.state.user;
+    isLoggedIn() {
+        return this.$store.getters.isLoggedIn
     }
   },
-  mounted() {
-      return this.$store.state.user;
-  }
-};
+  created () {
+      this.fetchUser(this.$route.params.pk)
+      const token = localStorage.getItem('token')
+      if (token) {
+          this.fetchAuthenticatedUser(token)
+          }
+    },
+    methods:{
+        fetchUser(){
+            const token = localStorage.getItem('token')
+            const pk = localStorage.getItem('pk')
+            axios.get('http://localhost:8000/api/users/'+pk,
+            {
+                headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+            }).then(response =>{
+                this.tableData = response.data
+            })
+        },
+        updateUser() {
+        axios.update('http://localhost:8000/api/users/',this.tableData.id, this.tableData)
+        .then(response => {
+          console.log(response.data);
+          this.message = 'The tutorial was updated successfully!';
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    },
+}
 </script>
 <style></style>
+

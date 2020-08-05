@@ -18,6 +18,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="email" class="col-md-3 col-form-label text-md-right">Email</label>
+                                        <div class="col-md-7">
+                                        <input type="text" class="form-control" required v-model="lecturer.email" placeholder="Email UGM">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="nip" class="col-md-3 col-form-label text-md-right">NIP</label>
                                         <div class="col-md-7">
                                         <input type="text" class="form-control" required v-model="lecturer.nip" placeholder="Nomor Induk Pengajar">
@@ -74,6 +80,7 @@ export default {
       lecturer: {
         id: null,
         name:'',
+        email:'',
         nip:'',
         nidn:'',
       },
@@ -84,6 +91,7 @@ export default {
     submitLecturer() {
       var data = {
        name:this.lecturer.name,
+       email:this.lecturer.email,
        nip:this.lecturer.nip,
        nidn:this.lecturer.nidn
        

@@ -91,16 +91,22 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/Lecturers/FormLecturers.vue')
                 },
                 {
-                    path: '/lecturers/{id}',
+                    path: '/lecturers/:id',
                     name: 'Detail Dosen',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Lecturers/DetailLecturers.vue')
                 },
                 {
-                    path: '/lecturers/{id}/edit',
+                    path: '/lecturers/:id/edit',
                     name: 'Edit Dosen',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Lecturers/EditLecturers.vue')
+                },
+                {
+                    path: '/lecturers/:id/delete',
+                    name: 'Delete Dosen',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Lecturers/DeleteLecturers.vue')
                 },
                 {
                     path: '/thesis',
@@ -206,7 +212,13 @@ let router = new Router({
                     name: 'Tambah Bidang',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Topics/FormTopics.vue')
-                }
+                },
+                {
+                    path: '/topics/:id/edit',
+                    name: 'Edit Bidang',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Topics/EditTopics.vue')
+                },
             ]
         },
         {

@@ -32,25 +32,25 @@
           
         </template>
 
-        <template slot-scope="{lecturer}">
+        <template slot-scope="{row}">
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{lecturer.id}}</span>
+                <span class="name mb-0 text-sm">{{row.id}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md">
-                <span class="name mb-0 text-sm">{{lecturer.name}}</span>
+                <span class="name mb-0 text-sm">{{row.name}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{lecturer.email}}</span>
+                <span class="name mb-0 text-sm">{{row.email}}</span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{lecturer.nip}}</span>
+                <span class="name mb-0 text-sm">{{row.nip}}</span>
               </div>
           </th>
           <td class="text-center">
@@ -58,9 +58,11 @@
               <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
               </a>
-                <a class="dropdown-item" href="#">Detail</a>
-                <a class="dropdown-item" href="#">Edit</a>
-                <a class="dropdown-item" href="#">Delete</a>
+                <a class="dropdown-item" :href="'/lecturers/' + row.id"> Detail</a>
+                <a class="dropdown-item" :href="'/lecturers/' + row.id + '/edit'">Edit</a>
+                <a class="dropdown-item" :href="'/lecturers/' + row.id + '/delete'">Delete</a>
+                <a class="dropdown-item" :href="'/lecturers/'" @click="deleteLecturer(row.id)">Delete 2</a>
+
             </base-dropdown>
           </td>
         </template>
@@ -70,37 +72,59 @@
 </template>
 <script>
 import LecturerDataService from "../../services/LecturerDataService";
-  
-export default {
-  name: 'projects-table',
+
+  export default {
+    name: 'projects-table',
     props: {
       type: {
         type: String
       },
       title: String
     },
-  data() {
-    return {
-      lecturer: [],
-      id: null,
-      lecturer_name: "",
-      lecturer_email: "",
-      lecturer_nip: "",
-    };
-  },
-  methods: {
-    lecturers() {
+    data() {
+      return {
+        pagination: {
+        default: 1
+      },
+        tableData: 
+        [{
+          }]
+      }
+    },
+    methods: {
+    retrieveLecturer() {
       LecturerDataService.getAll()
         .then(response => {
-          this.lecturer = response.data;
+          this.tableData = response.data;
           console.log(response.data);
         })
         .catch(e => {
           console.log(e);
         });
     },
+      getLecturer(id) {
+      LecturerDataService.get(id)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+      deleteLecturer(id) {
+      LecturerDataService.delete(id)
+        .then(response => {
+          console.log(response.data);
+          this.$router.push({ name: "Dosen" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+  },
+    mounted() {
+    this.retrieveLecturer(this.$route.params.id);
   }
-};
+}
 </script>
-<style>
-</style>
