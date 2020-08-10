@@ -150,7 +150,7 @@
                                         <div class="form-group row">
                                         <label for="student_name" class="col-sm-3 col-form-label text-md-right">Foto</label>
                                         <div class="col-sm-7">
-                                        <input type="file" accept="image/*" id="file" class="form-control" ref="file" v-on:@change="handleFileUpload">
+                                        <input type="file" accept="image/*" id="file" class="form-control" ref="file" v-on:@change="handleFileUpload()">
                                         </div>
                                         </div>
                                     </div>
@@ -262,10 +262,10 @@ export default {
     },
         updateTopic() {
         let formData = new FormData();
-        formData.append('tableData.profile.photo', this.tableData.profile['photo']);
+        formData.append('tableData.profile.photo', this.tableData.profile.photo);
         const pk = localStorage.getItem('pk')
         const token = localStorage.getItem('token')
-        UserDataService.update(pk, this.tableData, this.formData,
+        UserDataService.update(pk, this.tableData, formData,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -281,7 +281,7 @@ export default {
         });
     },
     handleFileUpload(){
-        this.tableData.profile['photo'] = this.$refs.file.files[0];
+        this.tableData.profile.photo = this.$refs.file.files[0];
      }
     },
     

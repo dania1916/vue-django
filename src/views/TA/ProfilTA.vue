@@ -37,7 +37,7 @@
                                 <div class="col-sm-7">
                                 <b-form-input list="my-list-id"></b-form-input>
                                 <datalist id="my-list-id">
-                                <option v-for="size in sizes" :key="size.id">{{ size }}</option>
+                                <option v-for="lecturer in lecturers" :key="lecturer.id">{{ lecturer.name }}</option>
                                 </datalist>
                                 </div>
                                 </div>
@@ -73,7 +73,7 @@
                                 <div class="col-sm-7">
                                 <b-form-input list="my-list-id"></b-form-input>
                                 <datalist id="my-list-id">
-                                <option v-for="size in sizes" :key="size.id">{{ size }}</option>
+                                <option v-for="company in companies" :key="company.id">{{ company.name }}</option>
                                 </datalist>
                                 </div>
                                 </div>
@@ -86,7 +86,7 @@
                                              @on-close="blur"
                                              :config="{allowInput: true}"
                                              class="form-control datepicker"
-                                             v-model="dates.start_date">
+                                             v-model="start_date">
                                 </flat-picker>
                                 </base-input>
                                 </div>
@@ -98,7 +98,7 @@
                                              @on-close="blur"
                                              :config="{allowInput: true}"
                                              class="form-control datepicker"
-                                             v-model="date.end_date">
+                                             v-model="end_date">
                                 </flat-picker>
                                 </base-input>
                                 </div>
@@ -131,7 +131,7 @@
                                 <div class="col-sm-7">
                                 <b-form-input list="my-list-id"></b-form-input>
                                 <datalist id="my-list-id">
-                                <option v-for="size in sizes" :key="size.id">{{ size }}</option>
+                                <option v-for="topic in topics" :key="topic.id">{{ topic.name }}</option>
                                 </datalist>
                                 </div>
                                 </div>
@@ -207,6 +207,9 @@
 import flatPicker from "vue-flatpickr-component"
 import "flatpickr/dist/flatpickr.css"
 import ThesisDataService from "../../services/ThesisDataService"
+import LecturerDataService from "../../services/LecturerDataService";
+import CompanyDataService from "../../services/CompanyDataService";
+import TopicDataService from "../../services/TopicDataService";
 import axios from 'axios';
 
 export default {
@@ -217,15 +220,13 @@ export default {
       step:1,
       ta: {
         id: null,
-        name:'',
-        nim:'',
-        
       },
-      sizes: ['GITU','Extra Large','APA','GITU'
-      ,'Extra Large','APA','GITU'],
+      lecturers: [],
+      companies:[],
+      topics:[],
       tableData: [],
-      dates: {simple: ""},
-      date: {simple: ""},
+      dates: {},
+      date: {},
       submitted: false,
     };
   },
@@ -249,6 +250,36 @@ export default {
       { headers: { Authorization: `Bearer ${token}` }})
       .then(response =>{this.tableData = response.data})
       },
+  retrieveLecturer() {
+    LecturerDataService.getAll()
+        .then(response => {
+          this.lecturers = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+  retrieveCompany() {
+      CompanyDataService.getAll()
+        .then(response => {
+          this.companies = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+  },
+  retrieveTopics() {
+      TopicDataService.getAll()
+        .then(response => {
+          this.topics= response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
   submitStudent() {
       // let formData = new FormData();
       // formData.append('file',this.student.file); 
@@ -283,9 +314,15 @@ export default {
       
     }
   },
+      mounted() {
+    this.retrieveLecturer();
+    this.retrieveCompany();
+    this.retrieveTopics();
+
+
+  }
   // handleFileUpload(){
     // this.student.file = this.student.$refs.file.files[0];
-  
 };
 </script>
 <style>
