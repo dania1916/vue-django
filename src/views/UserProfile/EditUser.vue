@@ -11,8 +11,9 @@
                         <h1 class="display-2 text-white">Hello Jesse</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
                         <router-link :to="{name: 'edit profile'}">
-                        <base-button size="md" type="default" class="float-left">Edit profile</base-button>
-                        </router-link>                    </div>
+                        <base-button href="#!" size="md" type="default" class="float-left">Edit profile</base-button>
+                        </router-link>
+                    </div>
                 </div>
             </div>
         </base-header>
@@ -68,7 +69,7 @@
                             </div>
                         </div>
                         <template>
-                            <form @submit.prevent>
+                        <form enctype="multipart/form-data">
                                 <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
@@ -78,7 +79,6 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.first_name"
-                                                        disabled
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -87,7 +87,6 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.last_name"
-                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -97,8 +96,7 @@
                                                         label="Tanggal Lahir"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile['dob']"
-                                                        disabled
+                                                        v-model="tableData.profile.dob"
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -106,8 +104,7 @@
                                                         label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile['nim']"
-                                                        disabled
+                                                        v-model="tableData.profile.nim"
                                             />
                                         </div>
                                     </div>
@@ -124,26 +121,22 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.email"
-                                                        disabled
                                             />
                                         </div>
+                                        <!-- <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Photo"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['photo']"
+                                            />
+                                        </div> -->
                                         <div class="col-lg-6">
                                             <base-input alternative=""
                                                         label="No Hp"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile['number_phone']"
-                                                        disabled
-                                            />
-                                        </div>
-                                    </div>
-                                    <!-- <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Username"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.username"
+                                                        v-model="tableData.profile.number_phone"
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -151,10 +144,20 @@
                                                         label="Password"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.Password"
+                                                        v-model="tableData.password"
                                             />
                                         </div>
-                                    </div> -->
+                                        <div class="form-group row">
+                                        <label for="student_name" class="col-sm-3 col-form-label text-md-right">Foto</label>
+                                        <div class="col-sm-7">
+                                        <input type="file" accept="image/*" id="file" class="form-control" ref="file" v-on:@change="handleFileUpload">
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                     
+                         
+                                    </div>
                                 </div>
                                 <hr class="my-4" />
                                 <!-- Address -->
@@ -166,8 +169,7 @@
                                                         label="Alamat"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile['address']"
-                                                        disabled
+                                                        v-model="tableData.profile.address"
                                             />
                                         </div>
                                     </div>
@@ -177,8 +179,7 @@
                                                         label="Kota"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile['city']"
-                                                        disabled
+                                                        v-model="tableData.profile.city"
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -186,8 +187,7 @@
                                                         label="Provinsi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile['province']"
-                                                        disabled
+                                                        v-model="tableData.profile.province"
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -195,11 +195,14 @@
                                                         label="Kode Pos"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile['zip']"
-                                                        disabled
+                                                        v-model="tableData.profile.zip"
                                             />
                                         </div>
                                     </div>
+                                </div>
+                                <hr class="my-4" />
+                                <div class="col-4 text-left">
+                                    <base-button href="#!" size="md" type="default" @click="updateTopic()" class="float-left">Simpan</base-button>
                                 </div>
                             </form>
                         </template>
@@ -211,17 +214,17 @@
 </template>
 <script>
 
-
 import axios from 'axios'
+import UserDataService from "../../services/UserDataService";
 
 export default {
-
     name: 'user-profile',
     data() {
       return {
-    tableData: '',
-    }
+         tableData: [],
+      }
     },
+    
   computed: {
     isLoggedIn() {
         return this.$store.getters.isLoggedIn
@@ -257,7 +260,31 @@ export default {
           console.log(e);
         });
     },
+        updateTopic() {
+        let formData = new FormData();
+        formData.append('tableData.profile.photo', this.tableData.profile['photo']);
+        const pk = localStorage.getItem('pk')
+        const token = localStorage.getItem('token')
+        UserDataService.update(pk, this.tableData, this.formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`
+                }
+        })
+        .then(response => {
+          console.log(response.data);
+          this.message = 'The tutorial was updated successfully!';
+        })
+        .catch(e => {
+          console.log(e);
+        });
     },
+    handleFileUpload(){
+        this.tableData.profile['photo'] = this.$refs.file.files[0];
+     }
+    },
+    
 }
 </script>
 <style></style>
