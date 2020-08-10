@@ -49,6 +49,12 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/UserProfile.vue')
                 },
                 {
+                    path: '/profile/:id/edit',
+                    name: 'edit profile',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/UserProfile/EditUser.vue')
+                },
+                {
                     path: '/maps',
                     name: 'maps',
                     component: () =>
