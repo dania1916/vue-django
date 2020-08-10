@@ -24,12 +24,15 @@ import ArgonDashboard from './plugins/argon-dashboard'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
 import VeeValidate from 'vee-validate' // add this
+import VueSuggestion from 'vue-suggestion'
+
+
 
 
 Vue.prototype.$http = axios;
 const token = localStorage.getItem('token')
 if (token) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+    Vue.prototype.$http.defaults.headers.common['Authorization'] = token
 }
 
 Vue.use(VueAxios, axios)
@@ -45,11 +48,10 @@ Vue.config.productionTip = false
 
 Vue.use(ArgonDashboard)
 
-
 new Vue({
     router,
     store, //add this
     render: h => h(App)
 }).$mount('#app')
 
-
+Vue.use(VueSuggestion)

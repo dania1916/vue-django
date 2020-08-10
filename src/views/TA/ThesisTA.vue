@@ -45,7 +45,7 @@
                             <div class="form-group row">
                                 <label for="inputGroup" class="col-sm-3 col-form-label text-md-right ">Unggah Laporan</label>
                                 <div class="col-sm-7">
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1" ref="file" v-on:@change="handleFileUpload()">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -83,4 +83,8 @@
     
 
 </template>
+
+<script>
+
+</script>
 
