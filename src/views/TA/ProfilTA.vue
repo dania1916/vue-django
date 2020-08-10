@@ -8,7 +8,7 @@
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-10 py-lg-10">
                       <!-- PAGE 1 -->
-                        <!-- <div v-if="step === 1"> -->
+                        <div v-if="step === 1">
                         <div class="col text-left"> <h3>Data Diri</h3> </div>
                         <form>
                             <div class="form-group row"></div>
@@ -48,7 +48,7 @@
                                 </div> 
                                 </div>
                         </form>
-                        <!-- </div> -->
+                        </div>
                         <!-- PAGE 2 -->
                         <div v-if="step === 2">
                         <div class="col text-left"> <h3>Magang</h3> </div>
@@ -187,10 +187,10 @@
                                 <div class="form-group row">
                                 <label class="col-sm-3"></label>
                                 <div class = "col-sm-1" >
-                                <base-button type = "danger" >Kembali </base-button>
+                                <base-button type = "danger" @click.prevent="prev()">Kembali </base-button>
                                 </div>
                                 <div class = "col-sm-7 pl-5" >
-                                <base-button type = "success">Simpan</base-button>
+                                <base-button type = "success" @click.prevent="submit()">Simpan</base-button>
                                 </div>
                                 </div>
                         </form>
@@ -214,6 +214,7 @@ export default {
   name: "add-student",
   data() {
     return {
+      step:1,
       ta: {
         id: null,
         name:'',
@@ -278,6 +279,9 @@ export default {
     next() {
       this.step++;
     },
+    submit() {
+      
+    }
   },
   // handleFileUpload(){
     // this.student.file = this.student.$refs.file.files[0];
