@@ -8,7 +8,7 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Hello Jesse</h1>
+                        <h1 class="display-2 text-white">Hello {{tableData.first_name}}</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
                         <router-link :to="{name: 'edit profile'}">
                         <base-button href="#!" size="md" type="default" class="float-left">Edit profile</base-button>
@@ -41,19 +41,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center">
+   <div class="text-center">
                                 <h3>
-                                    Jessica Jones<span class="font-weight-light">, 27</span>
+                                    {{tableData.first_name}} {{tableData.last_name}}<span class="font-weight-light">, {{tableData.profile.nim}}</span>
                                 </h3>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                                    <i class="ni location_pin mr-2"></i>{{tableData.profile.address}}
                                 </div>
                                 <div class="h5 mt-4">
-                                    <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+                                    <i class="ni business_briefcase-24 mr-2"></i>D IV Teknologi Rekayasa Internet
                                 </div>
                                 <div>
-                                    <i class="ni education_hat mr-2"></i>University of Computer Science
-                                </div>
+                                    <i class="ni education_hat mr-2"></i>Universitas Gadjah Mada
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                                         <div class="form-group row">
                                         <label for="student_name" class="col-sm-3 col-form-label text-md-right">Foto</label>
                                         <div class="col-sm-7">
-                                        <input type="file" accept="image/*" id="file" class="form-control" ref="file" v-on:@change="handleFileUpload()">
+                                            <input type="file" @change="selectFile">
                                         </div>
                                         </div>
                                     </div>
@@ -222,6 +222,7 @@ export default {
     data() {
       return {
          tableData: [],
+         file:''
       }
     },
     
@@ -262,15 +263,26 @@ export default {
     },
         updateTopic() {
         let formData = new FormData();
-        formData.append('tableData.profile.photo', this.tableData.profile.photo);
+        formData.append('first_name', this.tableData.first_name);
+        formData.append('last_name', this.tableData.last_name);
+        formData.append('profile.nim', this.tableData.profile.nim);
+        formData.append('profile.number_phone', this.tableData.profile.number_phone);
+        formData.append('profile.address', this.tableData.profile.address);
+        formData.append('profile.province', this.tableData.profile.province);
+        formData.append('profile.city', this.tableData.profile.city);
+        formData.append('profile.zip', this.tableData.profile.zip);
+        formData.append('profile.dob', this.tableData.profile.dob);
+        formData.append('profile.photo', this.file);
+        formData.append('email', this.tableData.email);
+        formData.append('password', this.tableData.password);
         const pk = localStorage.getItem('pk')
         const token = localStorage.getItem('token')
-        UserDataService.update(pk, this.tableData, formData,
+        UserDataService.update(pk,formData,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`
-                }
+                } 
         })
         .then(response => {
           console.log(response.data);
@@ -280,8 +292,9 @@ export default {
           console.log(e);
         });
     },
-    handleFileUpload(){
-        this.tableData.profile.photo = this.$refs.file.files[0];
+    selectFile(event){
+        // this.file = this.$refs.file.files[0];
+        this.file = event.target.files[0];
      }
     },
     
