@@ -139,18 +139,6 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/KP/Member.vue')
                 },
                 {
-                    path: '/internships/activity/',
-                    name: 'pelaksanaan',
-                    component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/KP/Implementation.vue')
-                },
-                {
-                    path: '/internships/submission',
-                    name: 'Laporan',
-                    component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/KP/ThesisKP.vue')
-                },
-                {
                     path: '/internships/detail',
                     name: 'Detail',
                     component: () =>
@@ -161,18 +149,6 @@ let router = new Router({
                     name: 'Mahasiswa',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Students.vue')
-                },
-                {
-                    path: '/thesis/intern',
-                    name: 'Magang',
-                    component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/TA/Intern.vue')
-                },
-                {
-                    path: '/thesis/submission',
-                    name: 'Laporan TA',
-                    component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/TA/ThesisTA.vue')
                 },
                 {
                     path: '/thesis/detail',
