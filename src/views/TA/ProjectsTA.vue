@@ -41,7 +41,7 @@
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.name}}</span>
+                <span class="name mb-0 text-sm">{{row.name.first_name}}{{row.name.last_name}}</span>
               </div>
           </th>
           <th scope="row">
@@ -83,6 +83,7 @@
   </div>
 </template>
 <script>
+import ThesisDataService from "../../services/ThesisDataService";
   export default {
     name: 'projects-table',
     props: {
@@ -96,35 +97,27 @@
         pagination: {
         default: 1
       },
-        tableData: [
-          {
-            id: '1',
-            name: 'Muhammad Nanda Jabar Rozaq',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: ''
-          },
-          {
-            id: '2',
-            name: 'Dania Putri Nuraini',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: ''
-          },
-          {
-            id: '3',
-            name: 'Muhammad Nanda',
-            title: 'Argon Design System',
-            proposal: '',
-            report: '',
-            publication_link: ''
-          }
-        ]
+        tableData: 
+        [{
+          }]
       }
-    }
+    },
+    methods: {
+    retrieveCompany() {
+      ThesisDataService.getAll()
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+  },
+    mounted() {
+    this.retrieveCompany();
   }
+}
 </script>
 <style>
 </style>

@@ -9,9 +9,9 @@ class ThesisDataService {
     get(id) {
         return http.get(`/thesis/${id}`, { headers: { Authorization: 'Bearer ' + token } });
     }
-
     create(data) {
-        return http.post("/thesis", data, { headers: { Authorization: 'Bearer ' + token } });
+        return http.post("/thesis", data, {                 
+            headers: { Authorization: 'Bearer ' + token },'Content-Type': 'multipart/form-data', });
     }
     update(id, data) {
         return http.put(`/thesis/${id}`, data, { headers: { Authorization: 'Bearer ' + token } });
