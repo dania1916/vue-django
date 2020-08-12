@@ -251,16 +251,6 @@ export default {
                 this.tableData = response.data
             })
         },
-        updateUser() {
-        axios.update('http://localhost:8000/api/users/',this.tableData.id, this.tableData)
-        .then(response => {
-          console.log(response.data);
-          this.message = 'The tutorial was updated successfully!';
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
         updateTopic() {
         let formData = new FormData();
         formData.append('first_name', this.tableData.first_name);
@@ -293,7 +283,6 @@ export default {
         });
     },
     selectFile(event){
-        // this.file = this.$refs.file.files[0];
         this.file = event.target.files[0];
      }
     },

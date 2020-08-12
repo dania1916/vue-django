@@ -12,20 +12,13 @@
                         <div class="col text-left"> <h3>Data Diri</h3> </div>
                         <form>
                             <div class="form-group row"></div>
-                            <div>
-                                <v-select :options="lecturers"
-                                          label='name'
-                                          ></v-select>
-                            </div>
-                            <div>
-                            </div>
                                 <div class="form-group row">
                                 <label for="name" class="col-sm-3 col-form-label text-md-right">Nama</label>
                                 <div class="col-sm-7">
                                 <input  type="text" 
                                         class="form-control" 
                                         id="name" 
-                                        v-model="tableData.first_name" 
+                                        v-model="student.first_name" 
                                         disabled>
                                 </div>
                                 </div>
@@ -35,17 +28,18 @@
                                 <input  type="num" 
                                         class="form-control" 
                                         id="nim" 
-                                        v-model="tableData.profile.nim" 
+                                        v-model="student.profile.nim" 
                                         disabled>
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="group" class="col-sm-3 col-form-label text-md-right">Dosen Pembimbing</label>
                                 <div class="col-sm-7">
-                                <b-form-input v-model="lecturer_adviser" list="lecturers_list"></b-form-input>
-                                <datalist id="lecturers_list">
-                                <option v-for="lecturer in lecturers" :key="lecturer.id">{{ lecturer.name }}</option>
-                                </datalist>
+                                <v-select v-model="lecturers.lectuer_name"
+                                  @input="selectIdLecturer($event)"
+                                  :options="lecturers.lecturer_list"
+                                  label="name">
+                                </v-select>
                                 </div>
                                 </div>
                                 <div class="form-group row" >
@@ -64,24 +58,25 @@
                                 <div class="form-group row">
                                 <label for="inputNama" class="col-sm-3 col-form-label text-md-right">Magang</label>
                                 <div class="col-sm-7">
-                                <b-form-radio v-model="internship_yes" 
+                                <b-form-radio v-model="internships.status" 
                                               name="some-radios" 
-                                              value="A"
+                                              value="True"
                                               >Iya
                                 </b-form-radio>
-                                <b-form-radio v-model="internship_no" 
+                                <b-form-radio v-model="internships.status" 
                                               name="some-radios" 
-                                              value="B">Tidak
+                                              value="False">Tidak
                                 </b-form-radio>
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="group" class="col-sm-3 col-form-label text-md-right">Nama Perusahaan</label>
                                 <div class="col-sm-7">
-                                <b-form-input v-model="student_company" list=company_list></b-form-input>
-                                <datalist id="company_list">
-                                <option v-for="company in companies" :key="company.id">{{ company.name }}</option>
-                                </datalist>
+                                  <v-select v-model="companies.company_name"
+                                  @input="selectIdCompany($event)"
+                                  :options="companies.company_list"
+                                  label="name">
+                                </v-select>
                                 </div>
                                 </div>
                                 <div class="form-group row">
@@ -93,7 +88,7 @@
                                              @on-close="blur"
                                              :config="{allowInput: true}"
                                              class="form-control datepicker"
-                                             v-model="dates.start_date">
+                                             v-model="internships.start_date">
                                 </flat-picker>
                                 </base-input>
                                 </div>
@@ -105,7 +100,7 @@
                                              @on-close="blur"
                                              :config="{allowInput: true}"
                                              class="form-control datepicker"
-                                             v-model="date.end_date">
+                                             v-model="internships.end_date">
                                 </flat-picker>
                                 </base-input>
                                 </div>
@@ -130,17 +125,18 @@
                                 <input type="text" 
                                        class="form-control" 
                                        id="thesis_tittle"
-                                       v-model="tableData.thesis_tittle">
+                                       v-model="thesis.title">
                                 </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                 <label for="inputGroup" class="col-sm-3 col-form-label text-md-right">Topik Laporan</label>
                                 <div class="col-sm-7">
-                                <b-form-input list="topic_list"></b-form-input>
-                                <datalist id="topic_list">
-                                <option v-for="topic in topics" :key="topic.id">{{ topic.name }}</option>
-                                </datalist>
+                                <v-select v-model="topics.topic_name"
+                                  @input="selectIdTopic($event)"
+                                  :options="topics.topic_list"
+                                  label="name">
+                                </v-select>
                                 </div>
                                 </div>
 
@@ -150,47 +146,31 @@
                                 <input type="text" 
                                        class="form-control" 
                                        id="publication_link"
-                                       v-model="tableData.publication_link">
+                                       v-model="thesis.publication_link">
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="inputGroup" class="col-sm-3 col-form-label text-md-right ">Unggah Proposal</label>
                                 <div class="col-sm-7">
-                                <input type="file" 
-                                       class="form-control-file" 
-                                       id="thesis_proposal" 
-                                       ref="file" 
-                                       v-on:@change="handleFileUpload()">
+                                <input type="file" @change="handleFileProposal">
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="inputGroup" class="col-sm-3 col-form-label text-md-right ">Unggah Laporan</label>
                                 <div class="col-sm-7">
-                                <input type="file" 
-                                       class="form-control-file" 
-                                       id="thesis_report" 
-                                       ref="file" 
-                                       v-on:@change="handleFileUpload()">
+                                <input type="file" @change="handleFileReport">
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="inputGroup" class="col-sm-3 col-form-label text-md-right">Unggah Hand Out</label>
                                 <div class="col-sm-7">
-                                <input type="file" 
-                                       class="form-control-file" 
-                                       id="thesis_handout" 
-                                       ref="file" 
-                                       v-on:@change="handleFileUpload()">
+                                <input type="file" @change="handleFileHandOut">
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="inputGroup" class="col-sm-3 col-form-label text-md-right">Unggah PPT</label>
                                 <div class="col-sm-7">
-                                <input type="file" 
-                                       class="form-control-file" 
-                                       id="thesis_ppt" 
-                                       ref="file" 
-                                       v-on:@change="handleFileUpload()">
+                                <input type="file" @change="handleFilePPT">
                                 </div>
                                 </div>
                                 <div class="form-group row">
@@ -199,8 +179,7 @@
                                 <base-button type = "danger" @click.prevent="prev()">Kembali </base-button>
                                 </div>
                                 <div class = "col-sm-7 pl-5" >
-                                <base-button type = "success" @click.prevent="submit()">Simpan</base-button>
-                                </div>
+                                <base-button type = "success" @click="updateTopic()">Tambah</base-button>                                </div>
                                 </div>
                         </form>
                         </div>
@@ -233,21 +212,41 @@ export default {
   data() {
     return {
       step:1,
-      student_company:'',
-      companies:[],
-      lecturers:[],
-      topics:[],
-      tableData: {
-        id: null,
-        lecturer_adviser: [],
-        thesis_topic:[],
-        start_date: {},
-        end_date: {},
+      student:'',
+      companies:{
+        company_list:'',
+        company_id:'',
+        company_name:''
       },
-      
+      lecturers:{
+        lecturer_list:'',
+        lecturer_id:'',
+        lectuer_name:''
+      },
+      topics:{
+        topic_list:'',
+        topic_id:'',
+        topic_name:''
+      },
+      handleFile:{
+        proposal:'',
+        report:'',
+        ppt:'',
+        handout:'',
+      },
+      internships: {
+        status:'',
+        start_date: '',
+        end_date: ''
+      },
+      thesis:{
+        title:'',
+        publication_link:''
+      },
       submitted: false,
     };
   },
+    
   computed: {
   isLoggedIn() {
       return this.$store.getters.isLoggedIn
@@ -266,12 +265,12 @@ export default {
       const pk = localStorage.getItem('pk')
       axios.get('http://localhost:8000/api/users/'+pk,
       { headers: { Authorization: `Bearer ${token}` }})
-      .then(response =>{this.tableData = response.data})
+      .then(response =>{this.student = response.data})
       },
       retrieveLecturer() {
     LecturerDataService.getAll()
         .then(response => {
-          this.lecturers = response.data;
+          this.lecturers.lecturer_list = response.data;
           console.log(response.data);
         })
         .catch(e => {
@@ -281,7 +280,7 @@ export default {
   retrieveCompany() {
       CompanyDataService.getAll()
         .then(response => {
-          this.companies = response.data;
+          this.companies.company_list = response.data;
           console.log(response.data);
         })
         .catch(e => {
@@ -291,36 +290,12 @@ export default {
   retrieveTopics() {
       TopicDataService.getAll()
         .then(response => {
-          this.topics= response.data;
+          this.topics.topic_list= response.data;
           console.log(response.data);
         })
         .catch(e => {
           console.log(e);
         });
-    },
-  submitStudent() {
-      // let formData = new FormData();
-      // formData.append('file',this.student.file); 
-      var data = {
-        name: this.student.name,
-        nim: this.student.nim,
-        lecturer_adviser: this.student.lecturer_adviser
-      };
-
-      ThesisDataService.create(data)
-        .then(response => {
-          this.student.id = response.data.id;
-          console.log(response.data);
-          this.submitted = true;
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-    
-    newStudent() {
-      this.submitted = false;
-      this.student = {};
     },
     prev() {
       this.step--;
@@ -328,9 +303,59 @@ export default {
     next() {
       this.step++;
     },
-    submit() {
-      
+    updateTopic() {
+      const pk = localStorage.getItem('pk')
+      const token = localStorage.getItem('token')
+      let formData = new FormData();
+          formData.append('name', pk);
+          formData.append('thesis_topic', this.topics.topic_id);
+          formData.append('lecturer_adviser', this.lecturers.lecturer_id);
+          formData.append('thesis_proposal', this.handleFile.proposal);
+          formData.append('thesis_report', this.handleFile.report);
+          formData.append('thesis_ppt', this.handleFile.ppt);
+          formData.append('thesis_handout', this.handleFile.handout);
+          formData.append('thesis_title', this.thesis.title);
+          formData.append('publication_link', this.thesis.publication_link);
+          formData.append('company_name', this.companies.company_id);
+          formData.append('internship_status', this.internships.status);
+          formData.append('start_date', this.internships.start_date);
+          formData.append('end_date', this.internships.end_date);
+          ThesisDataService.create(formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`
+                } 
+        })
+        .then(response => {
+          console.log(response.data);
+          this.message = 'The tutorial was updated successfully!';
+        })
+        .catch(e => {
+          console.log(e);
+        });
+  },
+    handleFileProposal(event){
+      this.handleFile.proposal = event.target.files[0];
     },
+    handleFileReport(event){
+      this.handleFile.report = event.target.files[0];
+    },
+    handleFileHandOut(event){
+      this.handleFile.handout = event.target.files[0];
+    },
+    handleFilePPT(event){
+      this.handleFile.ppt = event.target.files[0];
+    },
+    selectIdLecturer(e) {
+      this.lecturers.lecturer_id = e.id
+    },
+    selectIdCompany(e) {
+      this.companies.company_id = e.id
+    },
+    selectIdTopic(e) {
+      this.topics.topic_id = e.id
+    }
   },
   mounted() {
     this.retrieveLecturer();
@@ -339,9 +364,6 @@ export default {
 
 
   }
-  // handleFileUpload(){
-    // this.student.file = this.student.$refs.file.files[0];
-  
 };
 </script>
 <style>
