@@ -12,6 +12,13 @@
                         <div class="col text-left"> <h3>Data Diri</h3> </div>
                         <form>
                             <div class="form-group row"></div>
+                            <div>
+                                <v-select :options="lecturers"
+                                          label='name'
+                                          ></v-select>
+                            </div>
+                            <div>
+                            </div>
                                 <div class="form-group row">
                                 <label for="name" class="col-sm-3 col-form-label text-md-right">Nama</label>
                                 <div class="col-sm-7">
@@ -28,16 +35,16 @@
                                 <input  type="num" 
                                         class="form-control" 
                                         id="nim" 
-                                        v-model="tableData.profile['nim']" 
+                                        v-model="tableData.profile.nim" 
                                         disabled>
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="group" class="col-sm-3 col-form-label text-md-right">Dosen Pembimbing</label>
                                 <div class="col-sm-7">
-                                <b-form-input list="my-list-id"></b-form-input>
-                                <datalist id="my-list-id">
-                                <option v-for="size in sizes" :key="size.id">{{ size }}</option>
+                                <b-form-input v-model="lecturer_adviser" list="lecturers_list"></b-form-input>
+                                <datalist id="lecturers_list">
+                                <option v-for="lecturer in lecturers" :key="lecturer.id">{{ lecturer.name }}</option>
                                 </datalist>
                                 </div>
                                 </div>
@@ -57,12 +64,12 @@
                                 <div class="form-group row">
                                 <label for="inputNama" class="col-sm-3 col-form-label text-md-right">Magang</label>
                                 <div class="col-sm-7">
-                                <b-form-radio v-model="selected" 
+                                <b-form-radio v-model="internship_yes" 
                                               name="some-radios" 
                                               value="A"
                                               >Iya
                                 </b-form-radio>
-                                <b-form-radio v-model="selected" 
+                                <b-form-radio v-model="internship_no" 
                                               name="some-radios" 
                                               value="B">Tidak
                                 </b-form-radio>
@@ -71,9 +78,9 @@
                                 <div class="form-group row">
                                 <label for="group" class="col-sm-3 col-form-label text-md-right">Nama Perusahaan</label>
                                 <div class="col-sm-7">
-                                <b-form-input list="my-list-id"></b-form-input>
-                                <datalist id="my-list-id">
-                                <option v-for="size in sizes" :key="size.id">{{ size }}</option>
+                                <b-form-input v-model="student_company" list=company_list></b-form-input>
+                                <datalist id="company_list">
+                                <option v-for="company in companies" :key="company.id">{{ company.name }}</option>
                                 </datalist>
                                 </div>
                                 </div>
@@ -126,15 +133,17 @@
                                        v-model="tableData.thesis_tittle">
                                 </div>
                                 </div>
+                                
                                 <div class="form-group row">
                                 <label for="inputGroup" class="col-sm-3 col-form-label text-md-right">Topik Laporan</label>
                                 <div class="col-sm-7">
-                                <b-form-input list="my-list-id"></b-form-input>
-                                <datalist id="my-list-id">
-                                <option v-for="size in sizes" :key="size.id">{{ size }}</option>
+                                <b-form-input list="topic_list"></b-form-input>
+                                <datalist id="topic_list">
+                                <option v-for="topic in topics" :key="topic.id">{{ topic.name }}</option>
                                 </datalist>
                                 </div>
                                 </div>
+
                                 <div class="form-group row">
                                 <label for="inputJudul" class="col-sm-3 col-form-label text-md-right">Link Publikasi</label>
                                 <div class="col-sm-7">
@@ -207,7 +216,16 @@
 import flatPicker from "vue-flatpickr-component"
 import "flatpickr/dist/flatpickr.css"
 import ThesisDataService from "../../services/ThesisDataService"
+import LecturerDataService from "../../services/LecturerDataService";
+import CompanyDataService from "../../services/CompanyDataService";
+import TopicDataService from "../../services/TopicDataService";
 import axios from 'axios';
+
+import Vue from 'vue'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
+
+Vue.component('v-select', vSelect)
 
 export default {
   components: {flatPicker},
@@ -215,24 +233,25 @@ export default {
   data() {
     return {
       step:1,
-      ta: {
+      student_company:'',
+      companies:[],
+      lecturers:[],
+      topics:[],
+      tableData: {
         id: null,
-        name:'',
-        nim:'',
-        
+        lecturer_adviser: [],
+        thesis_topic:[],
+        start_date: {},
+        end_date: {},
       },
-      sizes: ['GITU','Extra Large','APA','GITU'
-      ,'Extra Large','APA','GITU'],
-      tableData: [],
-      dates: {simple: ""},
-      date: {simple: ""},
+      
       submitted: false,
     };
   },
   computed: {
   isLoggedIn() {
       return this.$store.getters.isLoggedIn
-      }
+      },
   },
   created () {
     this.fetchUser(this.$route.params.pk)
@@ -249,6 +268,36 @@ export default {
       { headers: { Authorization: `Bearer ${token}` }})
       .then(response =>{this.tableData = response.data})
       },
+      retrieveLecturer() {
+    LecturerDataService.getAll()
+        .then(response => {
+          this.lecturers = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+  retrieveCompany() {
+      CompanyDataService.getAll()
+        .then(response => {
+          this.companies = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+  },
+  retrieveTopics() {
+      TopicDataService.getAll()
+        .then(response => {
+          this.topics= response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
   submitStudent() {
       // let formData = new FormData();
       // formData.append('file',this.student.file); 
@@ -281,12 +330,20 @@ export default {
     },
     submit() {
       
-    }
+    },
   },
+  mounted() {
+    this.retrieveLecturer();
+    this.retrieveCompany();
+    this.retrieveTopics();
+
+
+  }
   // handleFileUpload(){
     // this.student.file = this.student.$refs.file.files[0];
   
 };
 </script>
 <style>
+
 </style>

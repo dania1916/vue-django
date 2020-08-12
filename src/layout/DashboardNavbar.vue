@@ -20,7 +20,7 @@
                   <img alt="Image placeholder" src="img/theme/team-4-800x800.jpg">
                 </span>
                         <div class="media-body ml-2 d-none d-lg-block">
-                            <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
+                            <span class="mb-0 text-sm  font-weight-bold">{{user.first_name}} {{user.last_name}}</span>
                         </div>
                     </div>
 
@@ -56,18 +56,39 @@
     </base-nav>
 </template>
 <script>
+import axios from 'axios'
   export default {
     data() {
       return {
         activeNotifications: false,
         showMenu: false,
-        searchQuery: ''
+        searchQuery: '',
+        user:''
       };
     },
     computed:{
       isLoggedIn : function(){return this.$store.getters.isLoggedIn}
     },
+    created () {
+      this.fetchUser(this.$route.params.pk)
+      const token = localStorage.getItem('token')
+      if (token) {
+          this.fetchAuthenticatedUser(token)
+          }
+    },
     methods: {
+      fetchUser(){
+            const token = localStorage.getItem('token')
+            const pk = localStorage.getItem('pk')
+            axios.get('http://localhost:8000/api/users/'+pk,
+            {
+                headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+            }).then(response =>{
+                this.user = response.data
+            })
+        },
       toggleSidebar() {
         this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
       },
