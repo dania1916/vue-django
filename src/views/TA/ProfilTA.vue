@@ -361,8 +361,6 @@ export default {
     this.retrieveLecturer();
     this.retrieveCompany();
     this.retrieveTopics();
-
-
   }
 };
 </script>
