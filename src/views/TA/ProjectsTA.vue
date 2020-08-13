@@ -49,34 +49,26 @@
                 <span class="name mb-0 text-sm">{{row.thesis_title}}</span>
               </div>
           </th>
-          <th scope="row">
+          <th class="text-md-center" scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.thesis_proposal}}</span>
+                <span class="name mb-0 text-sm"><b-link icon="files" href="tableData.thesis_proposal" target="_blank">Download</b-link></span>
               </div>
           </th>
           <th scope="row">
-            <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.thesis_report}}</span>
+            <div class="text-md-center">
+                <span class="name mb-0 text-sm"><a icon="files" :href="tableData.thesis_report" target="_blank">Download</a></span>
               </div>
           </th>
           <th scope="row">
-            <div class="media-body">
+            <div class="text-md-center">
                 <span class="name mb-0 text-sm">{{row.publication_link}}</span>
               </div>
           </th>
-          <td class="text-left">
-            <base-dropdown class="dropdown" position="right">
-              <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v"></i>
-              </a>
-
-              <template>
-                <a class="dropdown-item" href="#">Detail</a>
-                <a class="dropdown-item" href="#">Edit</a>
-                <a class="dropdown-item" href="#">Delete</a>
-              </template>
-            </base-dropdown>
-          </td>
+          <th class="media-body text-md-center">
+            <div class="media-body">
+            <b-button pill variant="success" size="sm" :href="'/thesis/' + row.id">Detail</b-button>
+            </div>
+          </th>
         </template>
       </base-table>
     </div>

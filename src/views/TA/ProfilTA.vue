@@ -179,7 +179,10 @@
                                 <base-button type = "danger" @click.prevent="prev()">Kembali </base-button>
                                 </div>
                                 <div class = "col-sm-7 pl-5" >
-                                <base-button type = "success" @click="updateTopic()">Tambah</base-button>                                </div>
+                                <router-link :to="{name: 'tugas akhir'}">
+                                <base-button type = "success" @click="updateTopic()">Tambah</base-button>
+                                </router-link>
+                                </div>
                                 </div>
                         </form>
                         </div>

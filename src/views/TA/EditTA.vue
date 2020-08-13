@@ -18,10 +18,6 @@
                                 <div class="col-8">
                                     <h3 class="mb-0">Detail Laporan TA</h3>
                                     </div>
-                                    <div class="col text-right">
-                                    <b-button pill variant="primary" size="md" :href="'/thesis/'+tableData.id+'/edit'">Edit</b-button>
-                                    <b-button pill variant="danger" size="md" :href="'/thesis/'" @click="deleteCompany">Delete</b-button>
-                                    </div>
                                 </div>
                             </div>
                         <!-- Member -->
@@ -36,7 +32,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.name.first_name"
-                                                        disabled
+                                                        
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -45,7 +41,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.name.last_name"
-                                                        disabled
+                                                        
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -54,7 +50,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.name.profile.nim"
-                                                        disabled
+                                                        
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -63,7 +59,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.lecturer_adviser.name"
-                                                        disabled
+                                                        
                                             />
                                         </div>
                                     </div>
@@ -79,7 +75,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.company_name.name"
-                                                        disabled
+                                                        
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -88,7 +84,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.internship_status"
-                                                        disabled
+                                                        
                                             />
                                         </div>
                                     </div>
@@ -99,7 +95,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.start_date"
-                                                        disabled
+                                                        
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -108,7 +104,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.end_date"
-                                                        disabled
+                                                        
                                             />
                                         </div>
                                     </div>
@@ -124,7 +120,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.thesis_title"
-                                                        disabled
+                                                        
                                             />
                                         </div>
                                     </div>
@@ -135,7 +131,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.thesis_topic.name"
-                                                        disabled
+                                                        
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -144,43 +140,50 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.publication_link"
-                                                        disabled
+                                                        
                                             />
                                         </div>
-                                        <div class="col-lg-6">
-                                            <p><i class="fa Proposal-bold" aria-hidden="true">Proposal</i></p>
-                                            <div class="row">
-                                            <a icon="files" :href="tableData.thesis_proposal" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Proposal</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p><i class="fa Proposal-bold" aria-hidden="true">Laporan</i></p>
-                                            <div class="row">
-                                            <a icon="files" :href="tableData.thesis_report" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Laporan</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p><i class="fa Proposal-bold" aria-hidden="true">Handout</i></p>
-                                            <div class="row">
-                                            <a icon="files" :href="tableData.thesis_handout" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Handout</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p><i class="fa Proposal-bold" aria-hidden="true">PPT</i></p>
-                                            <div class="row">
-                                            <a icon="files" :href="tableData.thesis_ppt" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh PPT</a>
-                                            </div>
-                                        </div>
+                                        <div class="form-group row">
+                                <label for="inputGroup" class="col-sm-3 col-form-label text-md-right ">Unggah Proposal</label>
+                                <div class="col-sm-7">
+                                <input type="file" @change="handleFileProposal">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label for="inputGroup" class="col-sm-3 col-form-label text-md-right ">Unggah Laporan</label>
+                                <div class="col-sm-7">
+                                <input type="file" @change="handleFileReport">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label for="inputGroup" class="col-sm-3 col-form-label text-md-right">Unggah Hand Out</label>
+                                <div class="col-sm-7">
+                                <input type="file" @change="handleFileHandOut">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label for="inputGroup" class="col-sm-3 col-form-label text-md-right">Unggah PPT</label>
+                                <div class="col-sm-7">
+                                <input type="file" @change="handleFilePPT">
+                                </div>
+                                </div>
                                     </div>      
                                 </div>
                                 <hr class="my-4" />
-                                <div class="col-4 text-left">
+                                <div class="row">
+                                <div class="col-6">
                                 <router-link :to="{name: 'tugas akhir'}">
-                                <base-button href="#!" size="md" type="default" class="float-left">Kembali</base-button>
+                                <base-button type = "success" >Kembali</base-button>
                                 </router-link>
                                 </div>
-                            </form>
-                        </template>
+                                <div>
+                                <router-link :to="{name: 'tugas akhir'}">
+                                <base-button href="#!" size="md" type="default" class="float-left" @click="updateThesis">Simpan</base-button>
+                                </router-link>
+                                </div>
+                                </div>
+                                </form>
+                            </template>
                     </card>
                 </div>
             </div>
@@ -190,6 +193,8 @@
 
 <script>
 import ThesisDataService from "../../services/ThesisDataService";
+import UserDataService from "../../services/UserDataService";
+
 
   export default {
     name: 'user-profile',
@@ -206,7 +211,14 @@ import ThesisDataService from "../../services/ThesisDataService";
       },
         tableData: 
         [{
-          }]
+          }],
+
+        handleFile:{
+        proposal:'',
+        report:'',
+        ppt:'',
+        handout:'',
+      },
       }
     },
     methods: {
@@ -230,16 +242,59 @@ import ThesisDataService from "../../services/ThesisDataService";
           console.log(e);
         });
     },
-     deleteThesis() {
-      ThesisDataService.delete(this.tableData.id)
+     updateThesis() {
+        let formData = new FormData();
+          formData.append('name', pk);
+          formData.append('thesis_topic', this.topics.topic_id);
+          formData.append('lecturer_adviser', this.lecturers.lecturer_id);
+          formData.append('thesis_proposal', this.handleFile.proposal);
+          formData.append('thesis_report', this.handleFile.report);
+          formData.append('thesis_ppt', this.handleFile.ppt);
+          formData.append('thesis_handout', this.handleFile.handout);
+          formData.append('thesis_title', this.thesis.title);
+          formData.append('publication_link', this.thesis.publication_link);
+          formData.append('company_name', this.companies.company_id);
+          formData.append('internship_status', this.internships.status);
+          formData.append('start_date', this.internships.start_date);
+          formData.append('end_date', this.internships.end_date);
+        const pk = localStorage.getItem('pk')
+        const token = localStorage.getItem('token')
+        UserDataService.update(pk,formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`
+                } 
+        })
         .then(response => {
-        console.log(response.data);
-        this.$router.push({ name: "Mahasiswa" });
+          console.log(response.data);
+          this.message = 'The tutorial was updated successfully!';
         })
         .catch(e => {
           console.log(e);
         });
-    }
+    },
+    handleFileProposal(event){
+      this.handleFile.proposal = event.target.files[0];
+    },
+    handleFileReport(event){
+      this.handleFile.report = event.target.files[0];
+    },
+    handleFileHandOut(event){
+      this.handleFile.handout = event.target.files[0];
+    },
+    handleFilePPT(event){
+      this.handleFile.ppt = event.target.files[0];
+    },
+    selectIdLecturer(e) {
+      this.lecturers.lecturer_id = e.id
+    },
+    selectIdCompany(e) {
+      this.companies.company_id = e.id
+    },
+    selectIdTopic(e) {
+      this.topics.topic_id = e.id
+    },
     },
     mounted() {
     this.getThesis(this.$route.params.id);

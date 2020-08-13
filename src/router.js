@@ -127,6 +127,18 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/TA/ProfilTA.vue')
                 },
                 {
+                    path: '/thesis/:id',
+                    name: 'Detail TA',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/TA/DetailTA.vue')
+                },
+                {
+                    path: '/thesis/:id/edit',
+                    name: 'Edit TA',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/TA/EditTA.vue')
+                },
+                {
                     path: '/internships',
                     name: 'kerja praktik',
                     component: () =>
@@ -149,12 +161,6 @@ let router = new Router({
                     name: 'Mahasiswa',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Students.vue')
-                },
-                {
-                    path: '/thesis/detail',
-                    name: 'Detail TA',
-                    component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/TA/DetailTA.vue')
                 },
                 {
                     path: '/companies',

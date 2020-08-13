@@ -181,7 +181,7 @@ import StudentDataService from "../../services/StudentDataService";
           console.log(e);
         });
   },
-     retrieveTopics() {
+     retrieveStudent() {
       StudentDataService.getAll()
         .then(response => {
           this.tableData = response.data;
