@@ -31,7 +31,7 @@
                                                         label="Nama Lengkap"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.NamaLengkap"
+                                                        v-model="internship.name"
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -39,7 +39,7 @@
                                                         label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.NIM"
+                                                        v-model="internship.profile.nim"
                                             />
                                         </div>
                                     </div>
@@ -49,7 +49,7 @@
                                                         label="Dosen Pembimbing"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Angkatan"
+                                                        v-model="internship.lecturer_adviser.name"
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -57,7 +57,7 @@
                                                         label="Group Kerja"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Prodi"
+                                                        v-model="internship.Prodi"
                                             />
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                                         label="Nama Perusahaan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Perusahaan"
+                                                        v-model="internship.company_name.name"
                                             />
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                                         label="Tanggal Seminar"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Tahun"
+                                                        v-model="internship"
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -90,7 +90,7 @@
                                                         label="Tanggal Mulai"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Provinsi"
+                                                        v-model="internship.start_date"
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -98,7 +98,7 @@
                                                         label="Tanggal Selesai"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.zipCode"
+                                                        v-model="internship.end_date"
                                             />
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
                                                         label="Judul Laporan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.NamaLengkap"
+                                                        v-model="internship.title"
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -120,7 +120,7 @@
                                                         label="Topik"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.NIM"
+                                                        v-model="internship.intern_topic"
                                             />
                                         </div>
                                     </div>
@@ -157,50 +157,62 @@
         </div>
     </div>
 </template>
-
 <script>
-import { BTable } from 'bootstrap-vue'
-export default {
+import InternshipDataService from "../../services/InternshipDataService";
+
+  export default {
     name: 'user-profile',
+    props: {
+      type: {
+        type: String
+      },
+      title: String
+    },
     data() {
       return {
-        model: {
-          username: '',
-          email: '',
-          firstName: '',
-          lastName: '',
-          address: '',
-          city: '',
-          country: '',
-          zipCode: '',
-          about: '',
-        },
-        components: {'b-table':BTable},
-        fields: [
-          {
-            key: 'proposal',
-            label: 'Proposal',
-            sortable: false,
-          },
-          {
-            key: 'handout',
-            label: 'Handout',
-            sortable: false,
-          },
-          {
-            key: 'ppt_seminar',
-            label: 'PPT Seminar',
-            sortable: false,
-            // Variant applies to the whole column, including the header and footer
-          }
-        ],
-        items: [
-            {isActive: false, proposal: 'a', handout: 'b', ppt_seminar: 'c'},
-            {isActive: false, proposal: 'a', handout: 'b', ppt_seminar: 'c'},
-            {isActive: false, proposal: 'a', handout: 'b', ppt_seminar: 'c'}
-        ]
+        pagination: {
+        default: 1
+      },
+        internship: 
+        [{
+          }]
       }
     },
-  };
+    methods: {
+      getInternship(id) {
+      InternshipDataService.get(id)
+        .then(response => {
+          this.internship = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+  },
+     retrieveInternships() {
+      InternshipDataService.getAll()
+        .then(response => {
+          this.internship = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+     deleteInternship() {
+      InternshipDataService.delete(this.internship.id)
+        .then(response => {
+        console.log(response.data);
+        this.$router.push({ name: "Mahasiswa" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+    },
+    mounted() {
+    this.getInternship(this.$route.params.id);
+  }
+}
 </script>
 <style></style>
