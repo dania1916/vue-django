@@ -41,7 +41,7 @@
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.name}}</span>
+                <span class="name mb-0 text-sm">{{row.name.first_name}}{{row.name.last_name}}</span>
               </div>
           </th>
           <th scope="row">
@@ -83,7 +83,7 @@
   </div>
 </template>
 <script>
-import TopicDataService from "../../services/TopicDataService";
+import InternshipDataService from "../../services/InternshipDataService"
 
   export default {
     name: 'projects-table',
@@ -105,7 +105,7 @@ import TopicDataService from "../../services/TopicDataService";
     },
     methods: {
     retrieveTopics() {
-      TopicDataService.getAll()
+      InternshipDataService.getAll()
         .then(response => {
           this.tableData = response.data;
           console.log(response.data);
