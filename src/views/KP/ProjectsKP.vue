@@ -64,19 +64,11 @@
                 <span class="name mb-0 text-sm">{{row.publication_link}}</span>
               </div>
           </th>
-          <td class="text-left">
-            <base-dropdown class="dropdown" position="right">
-              <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v"></i>
-              </a>
-
-              <template>
-                <a class="dropdown-item" href="#">Detail</a>
-                <a class="dropdown-item" href="#">Edit</a>
-                <a class="dropdown-item" href="">Delete</a>
-              </template>
-            </base-dropdown>
-          </td>
+          <th class="media-body text-md-center">
+            <div class="media-body">
+            <b-button pill variant="success" size="sm" :href="'/internships/' + row.id">Detail</b-button>
+            </div>
+          </th>
         </template>
       </base-table>
     </div>

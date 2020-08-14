@@ -151,10 +151,16 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/KP/Member.vue')
                 },
                 {
-                    path: '/internships/detail',
-                    name: 'Detail',
+                    path: '/internships/:id',
+                    name: 'Detail KP',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/KP/DetailKP.vue')
+                },
+                {
+                    path: '/internships/:id/edit',
+                    name: 'Edit KP',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/KP/EditKP.vue')
                 },
                 {
                     path: '/students',

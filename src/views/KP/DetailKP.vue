@@ -8,7 +8,6 @@
             <div class="container-fluid d-flex align-items-center">
             </div>
         </base-header>
-
         <div class="container-fluid mt--8">
             <div class="row">
                 <div class="card-body px-lg-9 py-11">
@@ -31,7 +30,7 @@
                                                         label="Nama Lengkap"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.NamaLengkap"
+                                                        v-model="tableData.name.first_name"
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -39,7 +38,7 @@
                                                         label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.NIM"
+                                                        v-model="tableData.nim"
                                             />
                                         </div>
                                     </div>
@@ -49,7 +48,7 @@
                                                         label="Dosen Pembimbing"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Angkatan"
+                                                        v-model="tableData.Angkatan"
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -57,7 +56,7 @@
                                                         label="Group Kerja"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Prodi"
+                                                        v-model="tableData.Prodi"
                                             />
                                         </div>
                                     </div>
@@ -72,7 +71,7 @@
                                                         label="Nama Perusahaan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Perusahaan"
+                                                        v-model="tableData.Perusahaan"
                                             />
                                         </div>
                                     </div>
@@ -82,7 +81,7 @@
                                                         label="Tanggal Seminar"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Tahun"
+                                                        v-model="tableData.Tahun"
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -90,7 +89,7 @@
                                                         label="Tanggal Mulai"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.Provinsi"
+                                                        v-model="tableData.Provinsi"
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -98,7 +97,7 @@
                                                         label="Tanggal Selesai"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.zipCode"
+                                                        v-model="tableData.zipCode"
                                             />
                                         </div>
                                     </div>
@@ -112,7 +111,7 @@
                                                         label="Judul Laporan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.NamaLengkap"
+                                                        v-model="tableData.NamaLengkap"
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -120,7 +119,7 @@
                                                         label="Topik"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.NIM"
+                                                        v-model="tableData.NIM"
                                             />
                                         </div>
                                     </div>
@@ -159,48 +158,61 @@
 </template>
 
 <script>
-import { BTable } from 'bootstrap-vue'
+import InternshipDataService from "../../services/InternshipDataService";
+
 export default {
     name: 'user-profile',
+    props: {
+      type: {
+        type: String
+      },
+      title: String
+    },
     data() {
       return {
-        model: {
-          username: '',
-          email: '',
-          firstName: '',
-          lastName: '',
-          address: '',
-          city: '',
-          country: '',
-          zipCode: '',
-          about: '',
-        },
-        components: {'b-table':BTable},
-        fields: [
-          {
-            key: 'proposal',
-            label: 'Proposal',
-            sortable: false,
-          },
-          {
-            key: 'handout',
-            label: 'Handout',
-            sortable: false,
-          },
-          {
-            key: 'ppt_seminar',
-            label: 'PPT Seminar',
-            sortable: false,
-            // Variant applies to the whole column, including the header and footer
-          }
-        ],
-        items: [
-            {isActive: false, proposal: 'a', handout: 'b', ppt_seminar: 'c'},
-            {isActive: false, proposal: 'a', handout: 'b', ppt_seminar: 'c'},
-            {isActive: false, proposal: 'a', handout: 'b', ppt_seminar: 'c'}
-        ]
+        pagination: {
+        default: 1
+      },
+        tableData: 
+        [{
+          }]
       }
     },
+    methods: {
+      getInternship(id) {
+      InternshipDataService.get(id)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+  },
+     retrieveInternship() {
+      InternshipDataService.getAll()
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+     deleteInternship() {
+      InternshipDataService.delete(this.tableData.id)
+        .then(response => {
+        console.log(response.data);
+        this.$router.push({ name: "kerja praktik" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+    },
+    mounted() {
+    this.getInternship(this.$route.params.id);
+  }
   };
 </script>
 <style></style>
