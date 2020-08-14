@@ -65,7 +65,7 @@
                                 </b-form-radio>
                                 <b-form-radio v-model="internships.status" 
                                               name="some-radios" 
-                                              value="2">Tidak
+                                              value="0">Tidak
                                 </b-form-radio>
                                 </div>
                                 </div>
@@ -242,7 +242,7 @@ export default {
         handout:'',
       },
       internships: {
-        status:2,
+        status:0,
         start_date: '',
         end_date: ''
       },

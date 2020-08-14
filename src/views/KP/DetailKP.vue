@@ -30,11 +30,7 @@
                                                         label="Nama Lengkap"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
-                                                        v-model="tableData.name.first_name"
-=======
                                                         v-model="internship.name"
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -42,11 +38,7 @@
                                                         label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
-                                                        v-model="tableData.nim"
-=======
                                                         v-model="internship.profile.nim"
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
                                             />
                                         </div>
                                     </div>
@@ -56,11 +48,7 @@
                                                         label="Dosen Pembimbing"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
-                                                        v-model="tableData.Angkatan"
-=======
                                                         v-model="internship.lecturer_adviser.name"
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -68,11 +56,7 @@
                                                         label="Group Kerja"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
-                                                        v-model="tableData.Prodi"
-=======
                                                         v-model="internship.Prodi"
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
                                             />
                                         </div>
                                     </div>
@@ -87,11 +71,7 @@
                                                         label="Nama Perusahaan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
-                                                        v-model="tableData.Perusahaan"
-=======
                                                         v-model="internship.company_name.name"
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
                                             />
                                         </div>
                                     </div>
@@ -101,11 +81,7 @@
                                                         label="Tanggal Seminar"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
-                                                        v-model="tableData.Tahun"
-=======
                                                         v-model="internship"
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -113,11 +89,7 @@
                                                         label="Tanggal Mulai"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
-                                                        v-model="tableData.Provinsi"
-=======
                                                         v-model="internship.start_date"
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -125,11 +97,7 @@
                                                         label="Tanggal Selesai"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
-                                                        v-model="tableData.zipCode"
-=======
                                                         v-model="internship.end_date"
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
                                             />
                                         </div>
                                     </div>
@@ -143,11 +111,7 @@
                                                         label="Judul Laporan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
-                                                        v-model="tableData.NamaLengkap"
-=======
                                                         v-model="internship.title"
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -155,11 +119,7 @@
                                                         label="Topik"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
-                                                        v-model="tableData.NIM"
-=======
                                                         v-model="internship.intern_topic"
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
                                             />
                                         </div>
                                     </div>
@@ -199,11 +159,7 @@
 <script>
 import InternshipDataService from "../../services/InternshipDataService";
 
-<<<<<<< HEAD
-export default {
-=======
   export default {
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
     name: 'user-profile',
     props: {
       type: {
@@ -216,11 +172,7 @@ export default {
         pagination: {
         default: 1
       },
-<<<<<<< HEAD
-        tableData: 
-=======
         internship: 
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
         [{
           }]
       }
@@ -229,28 +181,17 @@ export default {
       getInternship(id) {
       InternshipDataService.get(id)
         .then(response => {
-<<<<<<< HEAD
-          this.tableData = response.data;
-=======
           this.internship = response.data;
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
           console.log(response.data);
         })
         .catch(e => {
           console.log(e);
         });
   },
-<<<<<<< HEAD
-     retrieveInternship() {
-      InternshipDataService.getAll()
-        .then(response => {
-          this.tableData = response.data;
-=======
      retrieveInternships() {
       InternshipDataService.getAll()
         .then(response => {
           this.internship = response.data;
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
           console.log(response.data);
         })
         .catch(e => {
@@ -258,17 +199,10 @@ export default {
         });
     },
      deleteInternship() {
-<<<<<<< HEAD
-      InternshipDataService.delete(this.tableData.id)
-        .then(response => {
-        console.log(response.data);
-        this.$router.push({ name: "kerja praktik" });
-=======
       InternshipDataService.delete(this.internship.id)
         .then(response => {
         console.log(response.data);
         this.$router.push({ name: "Mahasiswa" });
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
         })
         .catch(e => {
           console.log(e);
@@ -278,10 +212,6 @@ export default {
     mounted() {
     this.getInternship(this.$route.params.id);
   }
-<<<<<<< HEAD
-  };
-=======
 }
->>>>>>> e475848c626508ac94dd24ac2a5ca61e2f43a5d0
 </script>
 <style></style>
