@@ -200,9 +200,9 @@
                                 <base-button type = "success" >Kembali</base-button>
                                 </router-link>
                                 <div class="col-1"></div>
-                                <!-- <router-link :to="{name: 'tugas akhir'}"> -->
+                                <router-link :to="{name: 'tugas akhir'}">
                                 <base-button size="md" type="default" @click="updateIntern()" class="float-left">Simpan</base-button>
-                                <!-- </router-link> -->
+                                </router-link>
                                 </div>
                             </form>
                         </template>
@@ -268,24 +268,25 @@ export default {
       }
     },
     methods: {
-      updateThesis() {
+      updateIntern() {
         const pk = localStorage.getItem('pk')
         const token = localStorage.getItem('token')
         let formData = new FormData();
           formData.append('name', pk);
-          formData.append('thesis_topic', this.topics.topic_id);
-          formData.append('lecturer_adviser', this.lecturers.lecturer_id);
-          formData.append('thesis_proposal', this.handleFile.proposal);
-          formData.append('thesis_report', this.handleFile.report);
-          formData.append('thesis_ppt', this.handleFile.ppt);
-          formData.append('thesis_handout', this.handleFile.handout);
-          formData.append('thesis_title', this.tableData.title);
-          formData.append('publication_link', this.tableData.publication_link);
-          formData.append('company_name', this.companies.company_id);
-          formData.append('internship_status', this.tableData.internship_status);
+          formData.append('lecturer_adviser', this.tableData.lecturer_adviser.id);
+          formData.append('group', this.tableData.group);
+          formData.append('member', this.tableData.member.id);
+          formData.append('company_name', this.tableData.company_name.id);
           formData.append('start_date', this.tableData.start_date);
           formData.append('end_date', this.tableData.end_date);
-        InternshipDataService.update(pk,formData,
+          formData.append('title', this.tableData.title);
+          formData.append('intern_topic', this.tableData.intern_topic.id);
+          formData.append('proposal', this.handleFile.proposal);
+          formData.append('report', this.handleFile.report);
+          formData.append('ppt', this.handleFile.ppt);
+          formData.append('handout', this.handleFile.handout);
+          formData.append('publication_link', this.tableData.publication_link);
+        InternshipDataService.update(this.tableData.id,formData,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -363,13 +364,13 @@ export default {
       this.handleFile.ppt = event.target.files[0];
     },
     selectIdLecturer(e) {
-      this.lecturers.lecturer_id = e.id
+      this.tableData.lectuer_adviser = e.id
     },
     selectIdCompany(e) {
-      this.companies.company_id = e.id
+      this.tableData.company_name.id = e.id
     },
     selectIdTopic(e) {
-      this.topics.topic_id = e.id
+      this.tableData.intern_topic.id = e.id
     },
     },
     mounted() {
