@@ -14,9 +14,8 @@ class ThesisDataService {
             headers: { Authorization: 'Bearer ' + token },'Content-Type': 'multipart/form-data', });
     }
     update(id, data) {
-        return http.put(`/thesis/${id}`, data, { headers: { Authorization: 'Bearer ' + token } });
+        return http.put(`/thesis/${id}`, data, { headers: { Authorization: 'Bearer ' + token },'Content-Type': 'multipart/form-data', });
     }
-
     delete(id) {
         return http.delete(`/thesis/${id}`, { headers: { Authorization: 'Bearer ' + token } });
     }

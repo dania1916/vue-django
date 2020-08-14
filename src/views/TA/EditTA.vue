@@ -16,7 +16,7 @@
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Detail Laporan TA</h3>
+                                    <h3 class="mb-0">Edit Laporan TA</h3>
                                     </div>
                                 </div>
                             </div>
@@ -56,37 +56,45 @@
                                                         
                                             />
                                         </div>
+                                        <div class="col-lg-6">
+                                            <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Dosen Pembimbing</label>
+                                            <v-select   v-model="tableData.lecturer_adviser.name"
+                                                        @input="selectIdLecturer($event)"
+                                                        :options="lecturers.lecturer_list"
+                                                        label="name"
+                                                        >
+                                            </v-select>
+                                        </div>
                                     </div>
                                 </div>
-                                <hr class="my-4" />
+                                <hr v-if="tableData.internship_status == true" class="my-4" />
                                 <!-- Implementation -->
-                                <h6 class="heading-small text-muted mb-4">Magang</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
+                                <h6 v-if="tableData.internship_status == true" class="heading-small text-muted mb-4">Magang</h6>
+                                <div v-if="tableData.internship_status == true" class="pl-lg-4">
+                                    <div v-if="tableData.internship_status == true" class="row">
                                         <div class="col-md-6">
                                             <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Nama Perusahaan</label>
-                                            <v-select   v-model="companies.company_name"
+                                            <v-select   v-model="tableData.company_name.name"
                                                         @input="selectIdCompany($event)"
                                                         :options="companies.company_list"
                                                         label="name">
                                             </v-select>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <!-- <div class="col-lg-6">
                                             <label for="inputNama" class="col-sm-3 col-form-label text-md-right">Magang</label>
                                             <div class="row">
                                             <div class="col-1"></div>
-                                            <b-form-radio   v-model="internships.status" 
+                                            <b-form-radio   v-model="tableData.internship_status" 
                                                             name="some-radios" 
-                                                            value="True"
-                                            >Iya
+                                                            value="true">Iya
                                             </b-form-radio>
                                             <div class="col-1"></div>
-                                            <b-form-radio   v-model="internships.status" 
+                                            <b-form-radio   v-model="tableData.internship_status" 
                                                             name="some-radios" 
-                                                            value="False">Tidak
+                                                            value="false">Tidak
                                             </b-form-radio>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -97,7 +105,7 @@
                                                          @on-close="blur"
                                                          :config="{allowInput: true}"
                                                          class="form-control datepicker"
-                                                         v-model="internships.start_date">
+                                                         v-model="tableData.start_date">
                                             </flat-picker>
                                             </base-input>
                                         </div>
@@ -109,7 +117,7 @@
                                                          @on-close="blur"
                                                          :config="{allowInput: true}"
                                                          class="form-control datepicker"
-                                                         v-model="internships.end_date">
+                                                         v-model="tableData.end_date">
                                             </flat-picker>
                                             </base-input>
                                         </div>
@@ -122,7 +130,7 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Dosen Pembimbing</label>
-                                            <v-select   v-model="lecturers.lectuer_name"
+                                            <v-select   v-model="tableData.lecturer_adviser.name"
                                                         @input="selectIdLecturer($event)"
                                                         :options="lecturers.lecturer_list"
                                                         label="name"
@@ -131,7 +139,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Bidang Konsentrasi</label>
-                                            <v-select   v-model="topics.topic_name"
+                                            <v-select   v-model="tableData.thesis_topic.name"
                                                         @input="selectIdTopic($event)"
                                                         :options="topics.topic_list"
                                                         label="name"
@@ -196,9 +204,9 @@
                                 <base-button type = "success" >Kembali</base-button>
                                 </router-link>
                                 <div class="col-1"></div>
-                                <router-link :to="{name: 'tugas akhir'}">
-                                <base-button href="#!" size="md" type="default" class="float-left" @click="updateThesis">Simpan</base-button>
-                                </router-link>
+                                <!-- <router-link :to="{name: 'tugas akhir'}"> -->
+                                <base-button size="md" type="default" @click="updateThesis()" class="float-left">Simpan</base-button>
+                                <!-- </router-link> -->
                                 </div>
                                 </form>
                             </template>
@@ -211,7 +219,7 @@
 
 <script>
 import ThesisDataService from "../../services/ThesisDataService";
-import UserDataService from "../../services/UserDataService";
+// import UserDataService from "../../services/UserDataService";
 import LecturerDataService from "../../services/LecturerDataService";
 import TopicDataService from "../../services/TopicDataService";
 import CompanyDataService from "../../services/CompanyDataService";
@@ -269,6 +277,38 @@ Vue.component('v-select', vSelect)
       }
     },
     methods: {
+        updateThesis() {
+        const pk = localStorage.getItem('pk')
+        const token = localStorage.getItem('token')
+        let formData = new FormData();
+          formData.append('name', pk);
+          formData.append('thesis_topic', this.topics.topic_id);
+          formData.append('lecturer_adviser', this.lecturers.lecturer_id);
+          formData.append('thesis_proposal', this.handleFile.proposal);
+          formData.append('thesis_report', this.handleFile.report);
+          formData.append('thesis_ppt', this.handleFile.ppt);
+          formData.append('thesis_handout', this.handleFile.handout);
+          formData.append('thesis_title', this.tableData.title);
+          formData.append('publication_link', this.tableData.publication_link);
+          formData.append('company_name', this.companies.company_id);
+          formData.append('internship_status', this.tableData.internship_status);
+          formData.append('start_date', this.tableData.start_date);
+          formData.append('end_date', this.tableData.end_date);
+        ThesisDataService.update(pk,formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`
+                } 
+        })
+        .then(response => {
+          console.log(response.data);
+          this.message = 'The tutorial was updated successfully!';
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
       getThesis(id) {
       ThesisDataService.get(id)
         .then(response => {
@@ -314,38 +354,6 @@ Vue.component('v-select', vSelect)
         .then(response => {
           this.topics.topic_list= response.data;
           console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-     updateThesis() {
-        let formData = new FormData();
-          formData.append('name', pk);
-          formData.append('thesis_topic', this.topics.topic_id);
-          formData.append('lecturer_adviser', this.lecturers.lecturer_id);
-          formData.append('thesis_proposal', this.handleFile.proposal);
-          formData.append('thesis_report', this.handleFile.report);
-          formData.append('thesis_ppt', this.handleFile.ppt);
-          formData.append('thesis_handout', this.handleFile.handout);
-          formData.append('thesis_title', this.thesis.title);
-          formData.append('publication_link', this.thesis.publication_link);
-          formData.append('company_name', this.companies.company_id);
-          formData.append('internship_status', this.internships.status);
-          formData.append('start_date', this.internships.start_date);
-          formData.append('end_date', this.internships.end_date);
-        const pk = localStorage.getItem('pk')
-        const token = localStorage.getItem('token')
-        UserDataService.update(pk,formData,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    Authorization: `Bearer ${token}`
-                } 
-        })
-        .then(response => {
-          console.log(response.data);
-          this.message = 'The tutorial was updated successfully!';
         })
         .catch(e => {
           console.log(e);

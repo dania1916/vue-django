@@ -68,10 +68,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr class="my-4" />
+                                <hr v-if="tableData.internship_status == true" class="my-4" />
                                 <!-- Implementation -->
-                                <h6 class="heading-small text-muted mb-4">Magang</h6>
-                                <div class="pl-lg-4">
+                                <h6 v-if="tableData.internship_status == true" class="heading-small text-muted mb-4">Magang</h6>
+                                <div v-if="tableData.internship_status == true" class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <base-input alternative=""
@@ -82,7 +82,7 @@
                                                         disabled
                                             />
                                         </div>
-                                        <div class="col-lg-6">
+                                        <!-- <div class="col-lg-6">
                                             <base-input alternative=""
                                                         label="Magang"
                                                         placeholder=""
@@ -90,7 +90,7 @@
                                                         v-model="tableData.internship_status"
                                                         disabled
                                             />
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">

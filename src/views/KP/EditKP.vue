@@ -89,45 +89,47 @@
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <base-input alternative=""
-                                                        label="Dosen Pembimbing"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.lecturer_adviser.name"
-                                                        
-                                                        
-                                            />
+                                            <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Dosen Pembimbing</label>
+                                            <v-select   v-model="tableData.lecturer_adviser.name"
+                                                        @input="selectIdLecturer($event)"
+                                                        :options="lecturers.lecturer_list"
+                                                        label="name"
+                                                        >
+                                            </v-select>
                                         </div>
                                         <div class="col-md-6">
-                                            <base-input alternative=""
-                                                        label="Nama Perusahaan"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.company_name.name"
-                                                        
-                                                        
-                                            />
+                                            <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Nama Perusahaan</label>
+                                            <v-select   v-model="tableData.company_name.name"
+                                                        @input="selectIdCompany($event)"
+                                                        :options="companies.company_list"
+                                                        label="name">
+                                            </v-select>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Tanggal Mulai"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.start_date"
-                                                        
-                                                
-                                            />
+                                            <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Tanggal Mulai</label>
+                                            <base-input addon-left-icon="ni ni-calendar-grid-58">
+                                            <flat-picker slot-scope="{focus, blur}"
+                                                         @on-open="focus"
+                                                         @on-close="blur"
+                                                         :config="{allowInput: true}"
+                                                         class="form-control datepicker"
+                                                         v-model="tableData.start_date">
+                                            </flat-picker>
+                                            </base-input>
                                         </div>
                                         <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Tanggal Selesai"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.end_date"
-                                                        
-                                            />
+                                            <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Tanggal Selesai</label>
+                                            <base-input addon-left-icon="ni ni-calendar-grid-58">
+                                            <flat-picker slot-scope="{focus, blur}"
+                                                         @on-open="focus"
+                                                         @on-close="blur"
+                                                         :config="{allowInput: true}"
+                                                         class="form-control datepicker"
+                                                         v-model="tableData.end_date">
+                                            </flat-picker>
+                                            </base-input>
                                         </div>
                                     </div>
                                 </div>
@@ -148,19 +150,19 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="Bidang Konsentrasi"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.intern_topic.name"
-                                                        
-                                            />
-                                            <base-input alternative=""
                                                         label="Link Publikasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.publication_link"
                                                         
                                             />
+                                            <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Bidang Konsentrasi</label>
+                                            <v-select   v-model="tableData.intern_topic.name"
+                                                        @input="selectIdTopic($event)"
+                                                        :options="topics.topic_list"
+                                                        label="name"
+                                                        >
+                                            </v-select>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -192,8 +194,15 @@
                                        
                                 </div>
                                 <hr class="my-4" />
-                                <div class="col-4 text-left">
-                                    <base-button href="#!" size="md" type="default" class="float-left">Kembali</base-button>
+                                <div class="row">
+                                <div class="col-1"></div>
+                                <router-link :to="{name: 'kerja praktik'}">
+                                <base-button type = "success" >Kembali</base-button>
+                                </router-link>
+                                <div class="col-1"></div>
+                                <!-- <router-link :to="{name: 'tugas akhir'}"> -->
+                                <base-button size="md" type="default" @click="updateIntern()" class="float-left">Simpan</base-button>
+                                <!-- </router-link> -->
                                 </div>
                             </form>
                         </template>
@@ -206,8 +215,20 @@
 
 <script>
 import InternshipDataService from "../../services/InternshipDataService";
+// import UserDataService from "../../services/UserDataService";
+import LecturerDataService from "../../services/LecturerDataService";
+import TopicDataService from "../../services/TopicDataService";
+import CompanyDataService from "../../services/CompanyDataService";
+import Vue from 'vue'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
+import flatPicker from "vue-flatpickr-component"
+import "flatpickr/dist/flatpickr.css"
+
+Vue.component('v-select', vSelect)
 
 export default {
+    components: {flatPicker},
     name: 'user-profile',
     props: {
       type: {
@@ -222,10 +243,63 @@ export default {
       },
         tableData: 
         [{
-          }]
+          }],
+        lecturers:{
+        lecturer_list:'',
+        lecturer_id:'',
+        lectuer_name:''
+      },
+      companies:{
+        company_list:'',
+        company_id:'',
+        company_name:''
+      },
+      topics:{
+        topic_list:'',
+        topic_id:'',
+        topic_name:''
+      },
+      handleFile:{
+        proposal:'',
+        report:'',
+        ppt:'',
+        handout:'',
+      },
       }
     },
     methods: {
+      updateThesis() {
+        const pk = localStorage.getItem('pk')
+        const token = localStorage.getItem('token')
+        let formData = new FormData();
+          formData.append('name', pk);
+          formData.append('thesis_topic', this.topics.topic_id);
+          formData.append('lecturer_adviser', this.lecturers.lecturer_id);
+          formData.append('thesis_proposal', this.handleFile.proposal);
+          formData.append('thesis_report', this.handleFile.report);
+          formData.append('thesis_ppt', this.handleFile.ppt);
+          formData.append('thesis_handout', this.handleFile.handout);
+          formData.append('thesis_title', this.tableData.title);
+          formData.append('publication_link', this.tableData.publication_link);
+          formData.append('company_name', this.companies.company_id);
+          formData.append('internship_status', this.tableData.internship_status);
+          formData.append('start_date', this.tableData.start_date);
+          formData.append('end_date', this.tableData.end_date);
+        InternshipDataService.update(pk,formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`
+                } 
+        })
+        .then(response => {
+          console.log(response.data);
+          this.message = 'The tutorial was updated successfully!';
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
       getInternship(id) {
       InternshipDataService.get(id)
         .then(response => {
@@ -246,19 +320,63 @@ export default {
           console.log(e);
         });
     },
-     deleteInternship() {
-      InternshipDataService.delete(this.tableData.id)
+    retrieveLecturer() {
+    LecturerDataService.getAll()
         .then(response => {
-        console.log(response.data);
-        this.$router.push({ name: "kerja praktik" });
+          this.lecturers.lecturer_list = response.data;
+          console.log(response.data);
         })
         .catch(e => {
           console.log(e);
         });
-    }
+    },
+    retrieveCompany() {
+      CompanyDataService.getAll()
+        .then(response => {
+          this.companies.company_list = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+  },
+    retrieveTopics() {
+      TopicDataService.getAll()
+        .then(response => {
+          this.topics.topic_list= response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    handleFileProposal(event){
+      this.handleFile.proposal = event.target.files[0];
+    },
+    handleFileReport(event){
+      this.handleFile.report = event.target.files[0];
+    },
+    handleFileHandOut(event){
+      this.handleFile.handout = event.target.files[0];
+    },
+    handleFilePPT(event){
+      this.handleFile.ppt = event.target.files[0];
+    },
+    selectIdLecturer(e) {
+      this.lecturers.lecturer_id = e.id
+    },
+    selectIdCompany(e) {
+      this.companies.company_id = e.id
+    },
+    selectIdTopic(e) {
+      this.topics.topic_id = e.id
+    },
     },
     mounted() {
     this.getInternship(this.$route.params.id);
+    this.retrieveLecturer();
+    this.retrieveTopics();
+    this.retrieveCompany();
   }
   };
 </script>
