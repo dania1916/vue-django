@@ -47,18 +47,19 @@
                                 <div class="col-sm-7">
                                  <b-form-radio v-model="internships.group" 
                                               name="some-radios" 
-                                              value="False"
+                                              value="1"
                                               >Sendiri :v 
                                 </b-form-radio>
                                 <b-form-radio v-model="internships.group" 
                                               name="some-radios" 
-                                              value="True">Berpasangan :)
+                                              value="2">Berpasangan :)
                                 </b-form-radio>                  
                                 </div>
                                 </div>
+                                <div v-if="internships.group == 2">
                                 <div class="form-group row" >
                                 <label class="col-sm-3"></label>
-                                <div class = "col-sm-7" > 
+                                <div  class = "col-sm-7" > 
                                 <b-button v-b-modal.modal-no-backdrop variant="primary">Tambah Anggota Tim</b-button>
                                 <b-modal id="modal-no-backdrop" hide-backdrop content-class="shadow" title="Anggota KP">
                                 <p class="my-2">
@@ -103,6 +104,7 @@
                                         id="nim" 
                                         v-model="members.selected_nim" 
                                         disabled>
+                                </div>
                                 </div>
                                 </div>
                                 <div class="form-group row" >
@@ -294,7 +296,7 @@ components: {flatPicker},
       },
       internships: {
         title:'',
-        group:'',
+        group:1,
         publication_link:'',
         start_date: '',
         end_date: ''

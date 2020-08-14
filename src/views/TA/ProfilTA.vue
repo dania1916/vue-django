@@ -60,15 +60,16 @@
                                 <div class="col-sm-7">
                                 <b-form-radio v-model="internships.status" 
                                               name="some-radios" 
-                                              value="True"
-                                              >Iya
+                                              value="1"
+                                              >Ya
                                 </b-form-radio>
                                 <b-form-radio v-model="internships.status" 
                                               name="some-radios" 
-                                              value="False">Tidak
+                                              value="2">Tidak
                                 </b-form-radio>
                                 </div>
                                 </div>
+                                <div v-if="internships.status == 1">
                                 <div class="form-group row">
                                 <label for="group" class="col-sm-3 col-form-label text-md-right">Nama Perusahaan</label>
                                 <div class="col-sm-7">
@@ -104,6 +105,9 @@
                                 </flat-picker>
                                 </base-input>
                                 </div>
+                                </div>
+                               </div> 
+                               <div class="form-group row">
                                 <label class="col-sm-3"></label>
                                 <div class = "col-sm-1" > 
                                 <base-button type = "danger" @click.prevent="prev()">Kembali </base-button>
@@ -111,7 +115,7 @@
                                 <div class = "col-sm-7 pl-5" >
                                 <base-button type = "success" @click.prevent="next()">Selanjutnya</base-button>
                                 </div>
-                            </div> 
+                               </div>
                         </form>
                         </div>
                         <!-- PAGE 3 -->
@@ -238,7 +242,7 @@ export default {
         handout:'',
       },
       internships: {
-        status:'',
+        status:2,
         start_date: '',
         end_date: ''
       },
