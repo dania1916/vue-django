@@ -35,7 +35,7 @@
                                                         label="Nama Lengkap"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.name"
+                                                        v-model="tableData.first_name"
                                                         disabled
                                             />
                                         </div>

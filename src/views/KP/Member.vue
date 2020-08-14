@@ -68,7 +68,7 @@
                                 <v-select v-model="members.student_name"
                                   @input="selectIdMember($event)"
                                   :options="members.student_list"
-                                  label="name">
+                                  label="first_name">
                                 </v-select>
                                 </div>
                                 </div>
@@ -423,7 +423,7 @@ components: {flatPicker},
     },    
     selectIdMember(e) {
       this.members.member_id = e.id
-      this.members.selected_name = e.name
+      this.members.selected_name = e.first_name
       this.members.selected_nim = e.nim
     },   
     prev() {

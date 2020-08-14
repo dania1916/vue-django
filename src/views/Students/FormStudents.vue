@@ -12,9 +12,15 @@
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="form-group row"></div>
                                     <div class="form-group row">
-                                        <label for="name" class="col-sm-3 col-form-label text-md-right">Nama</label>
+                                        <label for="name" class="col-sm-3 col-form-label text-md-right">Nama Depan</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" required id="name" v-model="student.name" name="name" placeholder="Nama Lengkap">
+                                        <input type="text" class="form-control" required id="name" v-model="student.first_name" name="name" placeholder="Nama Depan">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-3 col-form-label text-md-right">Nama Belakang</label>
+                                        <div class="col-sm-7">
+                                        <input type="text" class="form-control" required id="name" v-model="student.last_name" name="name" placeholder="Nama Belakang">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -122,7 +128,8 @@ export default {
     return {
       student: {
         id: null,
-        name:'',
+        first_name:'',
+        last_name:'',
         nim:'',
         number_phone:'',
         email:'',
@@ -142,7 +149,8 @@ export default {
       // let formData = new FormData();
       // formData.append('file',this.student.file); 
       var data = {
-        name: this.student.name,
+        first_name: this.student.first_name,
+        last_name: this.student.last_name,
         nim: this.student.nim,
         number_phone: this.student.number_phone,
         email:this.student.email,
