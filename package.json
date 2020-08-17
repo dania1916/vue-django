@@ -30,6 +30,7 @@
     "vue-clipboard2": "0.3.1",
     "vue-file-input-composition-api": "^1.0.1",
     "vue-flatpickr-component": "8.1.5",
+    "vue-material": "^1.0.0-beta-15",
     "vue-router": "^3.3.4",
     "vue-select": "^3.10.7",
     "vue-suggestion": "^1.1.0",
