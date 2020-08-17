@@ -164,12 +164,40 @@
                                  <h6 class="heading-small text-muted mb-4">Kontak</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-lg-4">
                                             <base-input alternative=""
-                                                        label="Alamat"
+                                                        label="Desa"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile.address"
+                                                        v-model="tableData.profile['village']"
+                                                        
+                                            />
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <base-input alternative=""
+                                                        label="RT"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['rt_village']"
+                                                        
+                                            />
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <base-input alternative=""
+                                                        label="RW"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['rw_village']"
+                                                        
+                                            />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Kecamatan"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['sub_district']"
+                                                        
                                             />
                                         </div>
                                     </div>
@@ -195,7 +223,7 @@
                                                         label="Kode Pos"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile.zip"
+                                                        v-model="tableData.profile.postal_code"
                                             />
                                         </div>
                                     </div>
@@ -257,10 +285,13 @@ export default {
         formData.append('last_name', this.tableData.last_name);
         formData.append('profile.nim', this.tableData.profile.nim);
         formData.append('profile.number_phone', this.tableData.profile.number_phone);
-        formData.append('profile.address', this.tableData.profile.address);
+        formData.append('profile.village', this.tableData.profile.village);
+        formData.append('profile.rt_village', this.tableData.profile.rt_village);
+        formData.append('profile.rw_village', this.tableData.profile.rw_village);
+        formData.append('profile.sub_district', this.tableData.profile.sub_district);
         formData.append('profile.province', this.tableData.profile.province);
         formData.append('profile.city', this.tableData.profile.city);
-        formData.append('profile.zip', this.tableData.profile.zip);
+        formData.append('profile.postal_code', this.tableData.profile.postal_code);
         formData.append('profile.dob', this.tableData.profile.dob);
         formData.append('profile.photo', this.file);
         formData.append('email', this.tableData.email);

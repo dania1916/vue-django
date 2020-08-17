@@ -161,12 +161,39 @@
                                  <h6 class="heading-small text-muted mb-4">Kontak</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-lg-4">
                                             <base-input alternative=""
-                                                        label="Alamat"
+                                                        label="Desa"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile['address']"
+                                                        v-model="tableData.profile['village']"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <base-input alternative=""
+                                                        label="RT"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['rt_village']"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <base-input alternative=""
+                                                        label="RW"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['rw_village']"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Kecamatan"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.profile['sub_district']"
                                                         disabled
                                             />
                                         </div>
@@ -195,7 +222,7 @@
                                                         label="Kode Pos"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.profile['zip']"
+                                                        v-model="tableData.profile['postal_code']"
                                                         disabled
                                             />
                                         </div>

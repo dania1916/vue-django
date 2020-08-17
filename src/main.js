@@ -28,7 +28,6 @@ import VueSuggestion from 'vue-suggestion'
 
 
 
-
 Vue.prototype.$http = axios;
 const token = localStorage.getItem('token')
 if (token) {
