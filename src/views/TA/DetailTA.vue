@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="col text-right">
                                     <b-button pill variant="primary" size="md" :href="'/thesis/'+tableData.id+'/edit'">Edit</b-button>
-                                    <b-button pill variant="danger" size="md" :href="'/thesis/'" @click="deleteCompany">Delete</b-button>
+                                    <b-button pill variant="danger" size="md" :href="'/thesis/'" @click="deleteThesis">Delete</b-button>
                                     </div>
                                 </div>
                             </div>
