@@ -118,27 +118,24 @@
                                 <h6 class="heading-small text-muted mb-4">Laporan</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
+                                        <div class="col-lg-6">  
+                                            <base-input label="Judul Laporan">
+                                                        <textarea 
+                                                        class="form-control"
+                                                        rows="6"
+                                                        v-model="tableData.thesis_title"
+                                                        disabled>
+                                                        </textarea>
+                                            </base-input>
+                                        </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
-                                                        label="Judul Laporan"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.thesis_title"
-                                                        disabled
-                                            />
-                                        </div>
-                                    </div>
-                                        <div class=row>
-                                            <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Topik"
+                                                        label="Bidang Konsentrasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.thesis_topic.name"
                                                         disabled
                                             />
-                                        </div>
-                                        <div class="col-lg-6">
                                             <base-input alternative=""
                                                         label="Link Publikasi"
                                                         placeholder=""
@@ -147,6 +144,8 @@
                                                         disabled
                                             />
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-lg-6">
                                             <p><i class="fa Proposal-bold" aria-hidden="true">Proposal</i></p>
                                             <div class="row">
@@ -171,7 +170,8 @@
                                             <a icon="files" :href="tableData.thesis_ppt" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh PPT</a>
                                             </div>
                                         </div>
-                                    </div>      
+                                    </div>
+                                       
                                 </div>
                                 <hr class="my-4" />
                                 <div class="col-4 text-left">
