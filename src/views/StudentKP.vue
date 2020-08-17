@@ -10,7 +10,7 @@
                     <div class="col-lg-7 col-md-10">
                         <h1 class="display-2 text-white">Kerja Praktik </h1>
                         <p class="text-white mt-0 mb-5">Matakuliah yang menerapkan ilmu pengetahuan dan teknologi sesuai bidang yang ditekuni secara langsung di lapangan.</p>
-                        <router-link :to="{name: 'Anggota'}">
+                        <router-link :to="{name: 'Data KP'}">
                         <base-button type="default" size="md">Unggah Laporan</base-button>
                         </router-link>
                         </div>
@@ -28,7 +28,9 @@
                                     <h3 class="mb-0">Kerja Praktik</h3>
                                 </div>
                                 <div class="col text-right">
+                                    <router-link :to="{name: 'Ubah KP'}">
                                     <b-button pill variant="primary" size="md" >Edit</b-button>
+                                    </router-link>
                                 </div>
                             </div>
                         </div>

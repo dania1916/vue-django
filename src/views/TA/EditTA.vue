@@ -9,7 +9,7 @@
             </div>
         </base-header>
 
-        <div class="container-fluid mt--8">
+        <div class="container-fluid mt--7">
             <div class="row">
                 <div class="card-body px-lg-9 py-11">
                     <card shadow type="secondary">
@@ -80,21 +80,6 @@
                                                         label="name">
                                             </v-select>
                                         </div>
-                                        <!-- <div class="col-lg-6">
-                                            <label for="inputNama" class="col-sm-3 col-form-label text-md-right">Magang</label>
-                                            <div class="row">
-                                            <div class="col-1"></div>
-                                            <b-form-radio   v-model="tableData.internship_status" 
-                                                            name="some-radios" 
-                                                            value="true">Iya
-                                            </b-form-radio>
-                                            <div class="col-1"></div>
-                                            <b-form-radio   v-model="tableData.internship_status" 
-                                                            name="some-radios" 
-                                                            value="false">Tidak
-                                            </b-form-radio>
-                                            </div>
-                                        </div> -->
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -128,16 +113,24 @@
                                 <h6 class="heading-small text-muted mb-4">Laporan</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Dosen Pembimbing</label>
-                                            <v-select   v-model="tableData.lecturer_adviser.name"
-                                                        @input="selectIdLecturer($event)"
-                                                        :options="lecturers.lecturer_list"
-                                                        label="name"
+                                      <div class="col-lg-6">  
+                                            <base-input label="Judul Laporan">
+                                                        <textarea 
+                                                        class="form-control"
+                                                        rows="6"
+                                                        v-model="tableData.thesis_title"
                                                         >
-                                            </v-select>
+                                                        </textarea>
+                                            </base-input>
                                         </div>
                                         <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Link Publikasi"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.publication_link"
+                                                        
+                                            />
                                             <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Bidang Konsentrasi</label>
                                             <v-select   v-model="tableData.thesis_topic.name"
                                                         @input="selectIdTopic($event)"
@@ -147,26 +140,7 @@
                                             </v-select>
                                         </div>
                                     </div>
-                                    <div class="row"><label></label></div>
-                                    <div class="row"><label></label></div>
-                                    <div class="row"><label></label></div>
                                     <div class=row>
-                                            <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Judul Laporan"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.thesis_title"       
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Link Publikasi"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.publication_link"       
-                                            />
-                                        </div>
                                         <div class="form-group row">
                                         <div class='col-lg-6'>
                                         <label for="inputGroup" class="col-sm-6 col-form-label text-md-bold ">Unggah Proposal</label>

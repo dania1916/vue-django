@@ -8,87 +8,55 @@
             <div class="container-fluid d-flex align-items-center">
             </div>
         </base-header>
-        <div class="container-fluid mt--8">
+
+        <div class="container-fluid mt--7">
             <div class="row">
                 <div class="card-body px-lg-9 py-11">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Edit Laporan KP</h3>
+                                    <h3 class="mb-0">Edit Laporan TA</h3>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <!-- Member -->
                         <template>
                             <form @submit.prevent>
-                                <h6 class="heading-small text-muted mb-4">Anggota</h6>
+                                <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6">
                                             <base-input alternative=""
                                                         label="Nama Depan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.name.first_name"
+                                                        disabled
                                                         
                                             />
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6">
                                             <base-input alternative=""
                                                         label="Nama Belakang"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.name.last_name"
+                                                        disabled
                                                         
                                             />
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6">
                                             <base-input alternative=""
                                                         label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.name.profile.nim"
+                                                        disabled
                                                         
                                             />
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="Nama Depan"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.member.first_name"
-                                                        
-                                            />
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="Nama Belakang"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.member.last_name"
-                                                        
-                                            />
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <base-input alternative=""
-                                                        label="NIM"
-                                                        placeholder=""
-                                                        input-classes="form-control-alternative"
-                                                        v-model="tableData.member.nim"
-                                                        
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-4" />
-                                <!-- Implementation -->
-                                <h6 class="heading-small text-muted mb-4">Kerja Praktik</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-lg-6">
                                             <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Dosen Pembimbing</label>
                                             <v-select   v-model="tableData.lecturer_adviser.name"
                                                         @input="selectIdLecturer($event)"
@@ -97,6 +65,13 @@
                                                         >
                                             </v-select>
                                         </div>
+                                    </div>
+                                </div>
+                                <hr v-if="tableData.internship_status == true" class="my-4" />
+                                <!-- Implementation -->
+                                <h6 v-if="tableData.internship_status == true" class="heading-small text-muted mb-4">Magang</h6>
+                                <div v-if="tableData.internship_status == true" class="pl-lg-4">
+                                    <div v-if="tableData.internship_status == true" class="row">
                                         <div class="col-md-6">
                                             <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Nama Perusahaan</label>
                                             <v-select   v-model="tableData.company_name.name"
@@ -133,17 +108,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr class="my-4" />
                                 <!-- Thesis -->
+                                <hr class="my-4" />
                                 <h6 class="heading-small text-muted mb-4">Laporan</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-lg-6">  
+                                      <div class="col-lg-6">  
                                             <base-input label="Judul Laporan">
                                                         <textarea 
                                                         class="form-control"
                                                         rows="6"
-                                                        v-model="tableData.title"
+                                                        v-model="tableData.thesis_title"
                                                         >
                                                         </textarea>
                                             </base-input>
@@ -157,7 +132,7 @@
                                                         
                                             />
                                             <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Bidang Konsentrasi</label>
-                                            <v-select   v-model="tableData.intern_topic.name"
+                                            <v-select   v-model="tableData.thesis_topic.name"
                                                         @input="selectIdTopic($event)"
                                                         :options="topics.topic_list"
                                                         label="name"
@@ -194,21 +169,21 @@
                                         </div>
                                         </div>
                                         </div>
-                                    </div> 
+                                    </div>      
                                 </div>
                                 <hr class="my-4" />
                                 <div class="row">
                                 <div class="col-1"></div>
-                                <router-link :to="{name: 'kerja praktik'}">
+                                <router-link :to="{name: 'profile'}">
                                 <base-button type = "success" >Kembali</base-button>
                                 </router-link>
                                 <div class="col-1"></div>
-                                <router-link :to="{name: 'tugas akhir'}">
-                                <base-button size="md" type="default" @click="updateIntern()" class="float-left">Simpan</base-button>
+                                <router-link :to="{name: 'profile'}">
+                                <base-button size="md" type="default" @click="updateThesis()" class="float-left">Simpan</base-button>
                                 </router-link>
                                 </div>
-                            </form>
-                        </template>
+                                </form>
+                            </template>
                     </card>
                 </div>
             </div>
@@ -217,7 +192,7 @@
 </template>
 
 <script>
-import InternshipDataService from "../../services/InternshipDataService";
+import ThesisDataService from "../../services/ThesisDataService";
 // import UserDataService from "../../services/UserDataService";
 import LecturerDataService from "../../services/LecturerDataService";
 import TopicDataService from "../../services/TopicDataService";
@@ -230,7 +205,7 @@ import "flatpickr/dist/flatpickr.css"
 
 Vue.component('v-select', vSelect)
 
-export default {
+  export default {
     components: {flatPicker},
     name: 'user-profile',
     props: {
@@ -262,7 +237,12 @@ export default {
         topic_id:'',
         topic_name:''
       },
-      handleFile:{
+      internships: {
+        status:'',
+        start_date: '',
+        end_date: ''
+      },
+        handleFile:{
         proposal:'',
         report:'',
         ppt:'',
@@ -271,25 +251,24 @@ export default {
       }
     },
     methods: {
-      updateIntern() {
+        updateThesis() {
         const pk = localStorage.getItem('pk')
         const token = localStorage.getItem('token')
         let formData = new FormData();
           formData.append('name', pk);
+          formData.append('thesis_topic', this.tableData.thesis_topic.id);
           formData.append('lecturer_adviser', this.tableData.lecturer_adviser.id);
-          formData.append('group', this.tableData.group);
-          formData.append('member', this.tableData.member.id);
+          formData.append('thesis_proposal', this.handleFile.proposal);
+          formData.append('thesis_report', this.handleFile.report);
+          formData.append('thesis_ppt', this.handleFile.ppt);
+          formData.append('thesis_handout', this.handleFile.handout);
+          formData.append('thesis_title', this.tableData.thesis_title);
+          formData.append('publication_link', this.tableData.publication_link);
           formData.append('company_name', this.tableData.company_name.id);
+          formData.append('internship_status', this.tableData.internship_status);
           formData.append('start_date', this.tableData.start_date);
           formData.append('end_date', this.tableData.end_date);
-          formData.append('title', this.tableData.title);
-          formData.append('intern_topic', this.tableData.intern_topic.id);
-          formData.append('proposal', this.handleFile.proposal);
-          formData.append('report', this.handleFile.report);
-          formData.append('ppt', this.handleFile.ppt);
-          formData.append('handout', this.handleFile.handout);
-          formData.append('publication_link', this.tableData.publication_link);
-        InternshipDataService.update(this.tableData.id,formData,
+        ThesisDataService.update(this.tableData.id,formData,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -304,8 +283,8 @@ export default {
           console.log(e);
         });
     },
-      getInternship(id) {
-      InternshipDataService.get(id)
+      getThesis(id) {
+      ThesisDataService.get(id)
         .then(response => {
           this.tableData = response.data;
           console.log(response.data);
@@ -314,8 +293,8 @@ export default {
           console.log(e);
         });
   },
-     retrieveInternship() {
-      InternshipDataService.getAll()
+     retrieveThesis() {
+      ThesisDataService.getAll()
         .then(response => {
           this.tableData = response.data;
           console.log(response.data);
@@ -367,21 +346,21 @@ export default {
       this.handleFile.ppt = event.target.files[0];
     },
     selectIdLecturer(e) {
-      this.tableData.lectuer_adviser = e.id
+      this.tableData.lecturer_adviser.id = e.id
     },
     selectIdCompany(e) {
       this.tableData.company_name.id = e.id
     },
     selectIdTopic(e) {
-      this.tableData.intern_topic.id = e.id
+      this.tableData.thesis_topic.id = e.id
     },
     },
     mounted() {
-    this.getInternship(this.$route.params.id);
+    this.getThesis(this.$route.params.id);
     this.retrieveLecturer();
     this.retrieveTopics();
     this.retrieveCompany();
   }
-  };
+}
 </script>
 <style></style>

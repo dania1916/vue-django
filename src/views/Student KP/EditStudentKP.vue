@@ -1,28 +1,28 @@
 <template>
     <div>
         <base-header class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-                     style="min-height: 200px; background-size: cover; background-position: center top;">
+                     style="min-height: 200px; background-image: url(img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
             <!-- Mask -->
             <span class="mask bg-gradient-success opacity-8"></span>
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
             </div>
         </base-header>
-        <div class="container-fluid mt--8">
+
+        <div class="container-fluid mt--7">
             <div class="row">
-                <div class="card-body px-lg-9 py-11">
+                <div class="col px-9">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Edit Laporan KP</h3>
+                                    <h3 class="mb-0">Kerja Praktik</h3>
                                 </div>
                             </div>
                         </div>
-                        <!-- Member -->
                         <template>
                             <form @submit.prevent>
-                                <h6 class="heading-small text-muted mb-4">Anggota</h6>
+                                <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-4">
@@ -30,8 +30,7 @@
                                                         label="Nama Depan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.name.first_name"
-                                                        
+                                                        v-model="tableData"
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -39,16 +38,14 @@
                                                         label="Nama Belakang"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.name.last_name"
                                                         
-                                            />
+                                                        />
                                         </div>
                                         <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.name.profile.nim"
                                                         
                                             />
                                         </div>
@@ -59,7 +56,6 @@
                                                         label="Nama Depan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.member.first_name"
                                                         
                                             />
                                         </div>
@@ -68,29 +64,27 @@
                                                         label="Nama Belakang"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.member.last_name"
                                                         
-                                            />
+                                                        />
                                         </div>
                                         <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.member.nim"
                                                         
                                             />
                                         </div>
                                     </div>
                                 </div>
                                 <hr class="my-4" />
-                                <!-- Implementation -->
-                                <h6 class="heading-small text-muted mb-4">Kerja Praktik</h6>
+                                <!-- Pelaksanaan -->
+                                <h6 class="heading-small text-muted mb-4">Pelaksanaan</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Dosen Pembimbing</label>
-                                            <v-select   v-model="tableData.lecturer_adviser.name"
+                                            <v-select   v-model="tableData"
                                                         @input="selectIdLecturer($event)"
                                                         :options="lecturers.lecturer_list"
                                                         label="name"
@@ -99,7 +93,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Nama Perusahaan</label>
-                                            <v-select   v-model="tableData.company_name.name"
+                                            <v-select   v-model="tableData"
                                                         @input="selectIdCompany($event)"
                                                         :options="companies.company_list"
                                                         label="name">
@@ -134,7 +128,7 @@
                                     </div>
                                 </div>
                                 <hr class="my-4" />
-                                <!-- Thesis -->
+                                <!-- Address -->
                                 <h6 class="heading-small text-muted mb-4">Laporan</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
@@ -143,7 +137,6 @@
                                                         <textarea 
                                                         class="form-control"
                                                         rows="6"
-                                                        v-model="tableData.title"
                                                         >
                                                         </textarea>
                                             </base-input>
@@ -153,11 +146,11 @@
                                                         label="Link Publikasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.publication_link"
+                                                        v-model="tableData"
                                                         
                                             />
                                             <label for="group" class="col-lg-6-sm-6 col-form-label text-md-right">Bidang Konsentrasi</label>
-                                            <v-select   v-model="tableData.intern_topic.name"
+                                            <v-select   v-model="tableData"
                                                         @input="selectIdTopic($event)"
                                                         :options="topics.topic_list"
                                                         label="name"
@@ -165,8 +158,7 @@
                                             </v-select>
                                         </div>
                                     </div>
-                                    <div class=row>
-                                        <div class="form-group row">
+                                    <div class="form-group row">
                                         <div class='col-lg-6'>
                                         <label for="inputGroup" class="col-sm-6 col-form-label text-md-bold ">Unggah Proposal</label>
                                         <div class="col-sm-7">
@@ -194,19 +186,8 @@
                                         </div>
                                         </div>
                                         </div>
-                                    </div> 
                                 </div>
                                 <hr class="my-4" />
-                                <div class="row">
-                                <div class="col-1"></div>
-                                <router-link :to="{name: 'kerja praktik'}">
-                                <base-button type = "success" >Kembali</base-button>
-                                </router-link>
-                                <div class="col-1"></div>
-                                <router-link :to="{name: 'tugas akhir'}">
-                                <base-button size="md" type="default" @click="updateIntern()" class="float-left">Simpan</base-button>
-                                </router-link>
-                                </div>
                             </form>
                         </template>
                     </card>
@@ -215,7 +196,6 @@
         </div>
     </div>
 </template>
-
 <script>
 import InternshipDataService from "../../services/InternshipDataService";
 // import UserDataService from "../../services/UserDataService";
@@ -385,3 +365,4 @@ export default {
   };
 </script>
 <style></style>
+
