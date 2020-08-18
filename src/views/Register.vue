@@ -6,21 +6,28 @@
                     <div class="text-center text-muted mb-4">
                         <small>Sign up with credentials</small>
                     </div>
-                    <form role="form">
-
-                        <base-input class="input-group-alternative mb-3"
+                    <div class="summary text-red" v-if="$v.form.$error">
+                    Fill all the field
+                    </div>
+                    <form role="form" @submit.prevent="submit">
+                        <base-input 
+                                    :class="{ 'hasError': $v.form.name.$error }"
+                                    class="input-group-alternative mb-3"
                                     placeholder="Username"
                                     addon-left-icon="ni ni-hat-3"
                                     v-model="model.name">
                         </base-input>
+                        
 
-                        <base-input class="input-group-alternative mb-3"
+                        <base-input :class="{ 'hasError': $v.form.name.$error }"
+                                    class="input-group-alternative mb-3"
                                     placeholder="Email"
                                     addon-left-icon="ni ni-email-83"
                                     v-model="model.email">
                         </base-input>
 
-                        <base-input class="input-group-alternative"
+                        <base-input :class="{ 'hasError': $v.form.name.$error }"
+                                    class="input-group-alternative"
                                     placeholder="Password"
                                     type="password"
                                     addon-left-icon="ni ni-lock-circle-open"
@@ -60,6 +67,8 @@
     </div>
 </template>
 <script>
+import { required, email, minLength } from "vuelidate/lib/validators";
+
   export default {
     name: 'register',
     data() {
@@ -68,24 +77,38 @@
           name:'',
           email: '',
           password: '',
-          profile:''
         }
       }
     },
-    methods:{
-        register: function(){
-            let data = {
-                name: this.model.name,
-                email: this.model.email,
-                password: this.model.password,
-                profile:{}
-            }
-        
-        this.$store.dispatch('register',data)
-        .then(() => this.$router.push('/'))
-        .catch(err => console.log(err))
-        }
+    validations: {
+    form: {
+      name: { required, min: minLength(10) },
+      email: { required, email },
+      password: { required, minLength: minLength(6)}
     }
+  },
+  methods: {
+    submit() {
+      this.$v.form.$touch();
+      if(this.$v.form.$error) return
+      // to form submit after this
+      alert('Form submitted')
+    }
+  }
+    // methods:{
+    //     register: function(){
+    //         let data = {
+    //             name: this.model.name,
+    //             email: this.model.email,
+    //             password: this.model.password,
+    //             profile:{}
+    //         }
+        
+    //     this.$store.dispatch('register',data)
+    //     .then(() => this.$router.push('/'))
+    //     .catch(err => console.log(err))
+    //     }
+    // }
   }
 </script>
 <style>

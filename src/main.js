@@ -25,7 +25,11 @@ import VueAxios from 'vue-axios'
 import axios from 'axios'
 import VeeValidate from 'vee-validate' // add this
 import VueSuggestion from 'vue-suggestion'
+import Vuelidate from "vuelidate";
 
+Vue.config.productionTip = false;
+
+Vue.use(Vuelidate);
 
 
 Vue.prototype.$http = axios;

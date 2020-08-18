@@ -109,12 +109,6 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/StudentTA.vue')
                 },
                 {
-                    path: '/thesis/:id/edit',
-                    name: 'TA Mahasiswa',
-                    component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/StudentTA.vue')
-                },
-                {
                     path: '/lecturers',
                     name: 'Dosen',
                     component: () =>
