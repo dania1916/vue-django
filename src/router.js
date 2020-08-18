@@ -1,21 +1,11 @@
-import Vue from 'vue'
 import Router from 'vue-router'
 import DashboardLayout from '@/layout/DashboardLayout'
 import AuthLayout from '@/layout/AuthLayout'
+import Vue from 'vue'
 // import store from './store.js'
 
 
-// Router.beforeEach((to, from, next) => {
-//     if(to.matched.some(record => record.meta.requiresAuth)) {
-//       if (store.getters.isLoggedIn) {
-//         next()
-//         return
-//       }
-//       next('/login') 
-//     } else {
-//       next() 
-//     }
-//   })
+
 
 Vue.use(Router)
 
@@ -257,8 +247,20 @@ let router = new Router({
                 }
             ]
         },
+        // Router.beforeEach((to, from, next) => {
+        //     if(to.matched.some(record => record.meta.requiresAuth)) {
+        //       if (store.getters.isLoggedIn) {
+        //         next()
+        //         return
+        //       }
+        //       next('/login') 
+        //     } else {
+        //       next() 
+        //     }
+        //   })
     ]
 })
 
 
 export default router
+
