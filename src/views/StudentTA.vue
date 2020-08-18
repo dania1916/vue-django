@@ -28,13 +28,13 @@
                             <form @submit.prevent>
                                 <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
+                                    <div class="row" :data="tableData">
+                                        <div class="col-lg-6" :data="tableData">
+                                            <base-input :data="tableData" alternative=""
                                                         label="Nama Depan"
-                                                        placeholder=""
+                                                        placeholder="testing"
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.name.first_name"
+                                                        v-model="tableData.thesis_title"
                                                         disabled
                                             />
                                         </div>
@@ -91,7 +91,7 @@
                                             />
                                         </div> -->
                                     </div>
-                                    <div class="row">
+                                     <div class="row">
                                         <div class="col-lg-6">
                                             <base-input alternative=""
                                                         label="Tanggal Mulai"
@@ -110,7 +110,7 @@
                                                         disabled
                                             />
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                                 <!-- Thesis -->
                                 <hr class="my-4" />
@@ -189,6 +189,7 @@
 
 <script>
 import ThesisDataService from "../services/ThesisDataService";
+import axios from 'axios'
 
   export default {
     name: 'user-profile',
@@ -203,9 +204,7 @@ import ThesisDataService from "../services/ThesisDataService";
         pagination: {
         default: 1
       },
-        tableData: 
-        [{
-          }]
+        tableData:'',
       }
     },
     methods: {
@@ -220,14 +219,16 @@ import ThesisDataService from "../services/ThesisDataService";
         });
   },
      retrieveThesis() {
-      ThesisDataService.getAll()
-        .then(response => {
-          this.tableData = response.data;
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
+            const token = localStorage.getItem('token')
+            const pk = localStorage.getItem('pk')
+            axios.get('http://localhost:8000/api/thesis/user/'+pk,
+            {
+                headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+            }).then(response =>{
+                this.tableData = response.data
+            })
     },
      deleteThesis() {
       ThesisDataService.delete(this.tableData.id)
@@ -241,7 +242,8 @@ import ThesisDataService from "../services/ThesisDataService";
     }
     },
     mounted() {
-    this.getThesis(this.$route.params.id);
+    // this.getThesis(this.$route.params.id);
+    this.retrieveThesis();
   }
 }
 </script>

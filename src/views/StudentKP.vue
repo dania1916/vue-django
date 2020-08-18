@@ -199,6 +199,7 @@
 </template>
 <script>
 import InternshipDataService from "../services/InternshipDataService";
+import axios from 'axios'
 
 export default {
     name: 'user-profile',
@@ -230,14 +231,16 @@ export default {
         });
   },
      retrieveInternship() {
-      InternshipDataService.getAll()
-        .then(response => {
-          this.tableData = response.data;
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
+            const token = localStorage.getItem('token')
+            const pk = localStorage.getItem('pk')
+            axios.get('http://localhost:8000/api/internships/user/'+pk,
+            {
+                headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+            }).then(response =>{
+                this.tableData = response.data
+            })
     },
      deleteInternship() {
       InternshipDataService.delete(this.tableData.id)
@@ -251,7 +254,7 @@ export default {
     }
     },
     mounted() {
-    this.getInternship(this.$route.params.id);
+    this.retrieveInternship();
   }
   };
 </script>
