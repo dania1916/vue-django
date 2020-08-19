@@ -19,14 +19,14 @@
                         </base-input>
                         
 
-                        <base-input :class="{ 'hasError': $v.form.name.$error }"
+                        <base-input :class="{ 'hasError': $v.form.email.$error }"
                                     class="input-group-alternative mb-3"
                                     placeholder="Email"
                                     addon-left-icon="ni ni-email-83"
                                     v-model="model.email">
                         </base-input>
 
-                        <base-input :class="{ 'hasError': $v.form.name.$error }"
+                        <base-input :class="{ 'hasError': $v.form.password.$error }"
                                     class="input-group-alternative"
                                     placeholder="Password"
                                     type="password"
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <base-button type="primary" @click="register" class="my-4">Create account</base-button>
+                            <base-button type="primary" @click="submit" class="my-4">Create account</base-button>
                         </div>
                     </form>
                 </div>

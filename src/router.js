@@ -87,7 +87,7 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/Student KP/formkp.vue')
                 },
                 {
-                    path: '/intern/:id/editkp',
+                    path: '/internship/user/:id/editkp',
                     name: 'Ubah KP',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Student KP/EditStudentKP.vue')
@@ -97,6 +97,12 @@ let router = new Router({
                     name: 'TA Mahasiswa',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/StudentTA.vue')
+                },
+                {
+                    path: '/thesis/user/:id/editta',
+                    name: 'Ubah TA',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Student TA/EditStudentTA.vue')
                 },
                 {
                     path: '/lecturers',
@@ -263,4 +269,3 @@ let router = new Router({
 
 
 export default router
-
