@@ -26,6 +26,7 @@ import axios from 'axios'
 import VeeValidate from 'vee-validate' // add this
 import VueSuggestion from 'vue-suggestion'
 import Vuelidate from "vuelidate";
+import { ValidationProvider, ValidationObserver } from 'vee-validate';
 
 Vue.config.productionTip = false;
 
@@ -58,3 +59,6 @@ new Vue({
 }).$mount('#app')
 
 Vue.use(VueSuggestion)
+Vue.component('validation-provider', ValidationProvider)
+Vue.component('validation-observer', ValidationObserver)
+

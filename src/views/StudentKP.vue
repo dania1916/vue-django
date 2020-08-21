@@ -151,13 +151,11 @@
                                                         label="Bidang Konsentrasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
                                             />
                                             <base-input alternative=""
                                                         label="Link Publikasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
                                             />
                                         </div>
                                     </div>

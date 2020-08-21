@@ -96,7 +96,7 @@
                                     </div> 
                                 </form>
                             </div>
-                            <div v-else>
+                            <!-- <div v-else>
                               <div class="col">
                                 <div class="form-group row"></div>
                                 <base-alert type="success">
@@ -109,7 +109,9 @@
 
                                  <div class="form-group row"></div>
                                 </div> 
-                            </div>
+                                <router-link :to="{name: 'Mahasiswa'}">
+                                </router-link>
+                            </div> -->
                            </div>
                         </div>
                     </div>
@@ -168,6 +170,7 @@ export default {
           this.student.id = response.data.id;
           console.log(response.data);
           this.submitted = true;
+          this.$router.push('/')
         })
         .catch(e => {
           console.log(e);
