@@ -37,7 +37,7 @@
                                 <span class="text-muted">Remember me</span>
                             </base-checkbox>
                             <div class="text-center">
-                                <base-button type="primary" @click="login" class="my-4">Sign in</base-button>
+                                <base-button type="primary" @click="login" class="my-4">Sign In</base-button>
                             </div>
                         </form>
                     </div>
@@ -69,6 +69,7 @@
         let email = this.model.email
         let password = this.model.password
         this.$store.dispatch('login', {email, password})
+        
         .then(() => this.$router.push('/'))
         .catch(err => console.log(err))
       }

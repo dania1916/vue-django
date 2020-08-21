@@ -4,51 +4,42 @@
             <div class="card bg-secondary shadow border-0">
                 <div class="card-body px-lg-5 py-lg-5">
                     <div class="text-center text-muted mb-4">
-                        <small>Sign up with credentials</small>
+                       <strong> <small>Sign Up with Credentials</small></strong>
                     </div>
-                    <div class="summary text-red" v-if="$v.form.$error">
-                    Fill all the field
-                    </div>
-                    <form role="form" @submit.prevent="submit">
-                        <base-input 
-                                    :class="{ 'hasError': $v.form.name.$error }"
-                                    class="input-group-alternative mb-3"
-                                    placeholder="Username"
-                                    addon-left-icon="ni ni-hat-3"
-                                    v-model="model.name">
-                        </base-input>
-                        
-
-                        <base-input :class="{ 'hasError': $v.form.email.$error }"
-                                    class="input-group-alternative mb-3"
-                                    placeholder="Email"
-                                    addon-left-icon="ni ni-email-83"
-                                    v-model="model.email">
-                        </base-input>
-
-                        <base-input :class="{ 'hasError': $v.form.password.$error }"
-                                    class="input-group-alternative"
-                                    placeholder="Password"
-                                    type="password"
-                                    addon-left-icon="ni ni-lock-circle-open"
-                                    v-model="model.password">
-                        </base-input>
-
-                        <div class="text-muted font-italic">
-                            <small>password strength: <span class="text-success font-weight-700">strong</span></small>
-                        </div>
-
-                        <div class="row my-4">
+                    <validation-observer>
+                    <form role="form" @submit.prevent="handleSubmit">
+                      <div class="form-group">
+                        <div class="form-group">
+                              <input  type="text" v-model="model.first_name" v-validate="'required'" id="firstName" name="firstName" placeholder="First Name" class="form-control" :class="{ 'is-invalid': submitted && errors.has('firstName') }" />
+                              <div v-if="submitted && errors.has('firstName')" class="invalid-feedback">{{ errors.first('firstName') }}</div>
+                          </div>
+                           <div class="form-group">
+                              <input  type="text" v-model="model.last_name" v-validate="'required'" id="lastName" name="lastName" placeholder="List Name" class="form-control" :class="{ 'is-invalid': submitted && errors.has('lastName') }" />
+                              <div v-if="submitted && errors.has('lastName')" class="invalid-feedback">{{ errors.first('lastName') }}</div>
+                          </div>
+                          <div class="form-group">
+                              <input type="email" v-model="model.email" placeholder="Email" v-validate="'required|email'" id="email" name="email" class="form-control" :class="{ 'is-invalid': submitted && errors.has('email') }" />
+                              <div v-if="submitted && errors.has('email')" class="invalid-feedback">{{ errors.first('email') }}</div>
+                          </div>
+                          <div class="form-group">
+                              <input type="password" v-model="model.password" placeholder="Password" v-validate="{ required: true, min: 6 }" id="password" name="password" class="form-control" :class="{ 'is-invalid': submitted && errors.has('password') }" />
+                              <div v-if="submitted && errors.has('password')" class="invalid-feedback">{{ errors.first('password') }}</div>
+                          </div>
                             <div class="col-12">
                                 <base-checkbox class="custom-control-alternative">
                                     <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
                                 </base-checkbox>
                             </div>
+                    
+                        <div class="form-group">
+                           <div class="text-center">
+                            <base-button type="primary"  @click="handleSubmit" v-bind:disabled="invalid" class="my-4">Create Account</base-button>
+                           </div>
                         </div>
-                        <div class="text-center">
-                            <base-button type="primary" @click="submit" class="my-4">Create account</base-button>
-                        </div>
+                      </div>
                     </form>
+                  </validation-observer>
+                  <!-- </div> -->
                 </div>
             </div>
             <div class="row mt-3">
@@ -65,19 +56,24 @@
             </div>
         </div>
     </div>
+    
 </template>
 <script>
+
 import { required, email, minLength } from "vuelidate/lib/validators";
 
-  export default {
+
+export default {
     name: 'register',
     data() {
       return {
         model: {
-          name:'',
+          first_name:'',
+          last_name:'',
           email: '',
           password: '',
-        }
+        },
+        submitted: false
       }
     },
     validations: {
@@ -87,29 +83,23 @@ import { required, email, minLength } from "vuelidate/lib/validators";
       password: { required, minLength: minLength(6)}
     }
   },
-  methods: {
-    submit() {
-      this.$v.form.$touch();
-      if(this.$v.form.$error) return
-      // to form submit after this
-      alert('Form submitted')
-    }
-  }
-    // methods:{
-    //     register: function(){
-    //         let data = {
-    //             name: this.model.name,
-    //             email: this.model.email,
-    //             password: this.model.password,
-    //             profile:{}
-    //         }
-        
-    //     this.$store.dispatch('register',data)
-    //     .then(() => this.$router.push('/'))
-    //     .catch(err => console.log(err))
-    //     }
-    // }
+    methods:{
+      handleSubmit() {
+        let data = {
+                first_name: this.model.first_name,
+                last_name: this.model.last_name,
+                email: this.model.email,
+                password: this.model.password,
+                profile:{}
+            }
+            this.$store.dispatch('register', data)
+            this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/login')
+                }
+            });
+        }
+    },
   }
 </script>
-<style>
-</style>

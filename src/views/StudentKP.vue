@@ -160,15 +160,21 @@
                                                         label="Bidang Konsentrasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
+<<<<<<< HEAD
                                                         v-model="tableData.intern_topic.name"
                                                         disabled
+=======
+>>>>>>> 209bf3a43bfe12305967237c2479ee4b85fa5699
                                             />
                                             <base-input alternative=""
                                                         label="Link Publikasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
+<<<<<<< HEAD
                                                          v-model="tableData.publication_link"
                                                         disabled
+=======
+>>>>>>> 209bf3a43bfe12305967237c2479ee4b85fa5699
                                             />
                                         </div>
                                     </div>
