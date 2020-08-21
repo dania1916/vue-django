@@ -45,7 +45,7 @@
                                 <div class="form-group row" >
                                 <label class="col-sm-3"></label>
                                 <div class = "col-sm-1" > 
-                                <router-link :to="{name: 'tugas akhir'}">
+                                <router-link :to="{name: 'TA Mahasiswa'}">
                                 <base-button type = "danger">Kembali </base-button>
                                 </router-link>
                                 </div>
@@ -188,7 +188,7 @@
                                 <base-button type = "danger" @click.prevent="prev()">Kembali </base-button>
                                 </div>
                                 <div class = "col-sm-7 pl-5" >
-                                <router-link :to="{name: 'tugas akhir'}">
+                                <router-link :to="{name: 'TA Mahasiswa'}">
                                 <base-button type = "success" @click="updateTopic()">Tambah</base-button>
                                 </router-link>
                                 </div>

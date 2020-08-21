@@ -84,30 +84,36 @@
                                         <input type="number" class="form-control" id="postal_code" v-model="student.postal_code" name="postal_code" placeholder="Kode Pos">
                                         </div>
                                     </div>
-                                                  
-                                    <div class="form-group row">
-                                        <label for="inputNamaPerusahaan" class="col-sm-3 col-form-label"></label>
-                                        <div class="col-sm-7">
-                                            <base-button @click="submitStudent" class="btn btn-success" type="success">Submit</base-button>
-                                            <router-link :to="{name: 'Mahasiswa'}">
-                                            <base-button type="danger">Kembali</base-button>
-                                            </router-link>
-                                        </div> 
+                                    <div class="form-group row" >
+                                    <label class="col-sm-3"></label>
+                                    <div class = "col-sm-1" > 
+                                    <router-link :to="{name: 'Mahasiswa'}">
+                                    <base-button type = "danger">Kembali </base-button>
+                                    </router-link>
+                                    </div>
+                                    <div class = "col-sm-7 pl-5" > 
+                                    <base-button @click="submitStudent" class="btn btn-success" type="success">Submit</base-button>
+                                    </div>
                                     </div> 
                                 </form>
                             </div>
                             <div v-else>
-                              <div class="col">
+                                <div class="col-pr-1">
                                 <div class="form-group row"></div>
                                 <base-alert type="success">
-                                <strong>Success!</strong> Data mahasiswa baru berhasil ditambahkan!
+                                <strong>Success!</strong> Data mahasiswa berhasil ditambahkan!
                                 </base-alert>
                                 </div> 
-                                <div class="col">
-                                 <base-button type="secondary" @click="newStudent">Detail</base-button>
+                                <div class="form-group row">
+                                <div class="col-sm-1">
+                                <router-link :to="{name: 'Mahasiswa'}">
+                                <base-button type = "danger">Kembali </base-button>
+                                </router-link>
+                                </div>
+                                <div class = "col-sm-7 pl-5" >
                                 <base-button type="primary" @click="newStudent">Tambah Mahasiswa</base-button>
-
                                  <div class="form-group row"></div>
+                                </div>
                                 </div> 
                             </div>
                            </div>

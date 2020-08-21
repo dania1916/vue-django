@@ -26,7 +26,7 @@
                                     <div class="form-group row">
                                         <label for="nip" class="col-md-3 col-form-label text-md-right">NIP</label>
                                         <div class="col-md-7">
-                                        <input type="text" class="form-control" required v-model="lecturer.nip" placeholder="Nomor Induk Pengajar">
+                                        <input type="text" class="form-control" required v-model="lecturer.nip" placeholder="Nomor Induk Pegawai">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -35,29 +35,37 @@
                                         <input type="text" class="form-control" required v-model="lecturer.nidn" placeholder="Nomor Induk Dosen Nasional">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="inputNamaPerusahaan" class="col-sm-3 col-form-label"></label>
-                                        <div class="col-sm-7">
-                                            <base-button @click="submitLecturer" class="btn btn-success" type="success">Submit</base-button>
-                                            <router-link :to="{name: 'Dosen'}">
-                                            <base-button type="danger">Kembali</base-button>
-                                            </router-link>
-                                        </div>   
+                                    <div class="form-group row" >
+                                    <label class="col-sm-3"></label>
+                                    <div class = "col-sm-1" > 
+                                    <router-link :to="{name: 'Dosen'}">
+                                    <base-button type = "danger">Kembali </base-button>
+                                    </router-link>
+                                    </div>
+                                    <div class = "col-sm-7 pl-5" > 
+                                    <base-button @click="submitLecturer" class="btn btn-success" type="success">Submit</base-button>
+                                    </div>
                                     </div>                                                                 
                                 </form>
                             </div>
-                      <div v-else>
-                        <div class="col">
-                          <div class="form-group row"></div>
-                            <base-alert type="success">
-                              <strong>Success!</strong> Data mahasiswa baru berhasil ditambahkan!
-                            </base-alert>
-                        </div> 
-                          <div class="col">
-                            <base-button type="secondary" @click="newLecturer">Detail</base-button>
-                            <base-button type="primary" @click="newLecturer">Tambah Mahasiswa</base-button>
-                            <div class="form-group row"></div>
-                            </div> 
+                            <div v-else>
+                                <div class="col-pr-1">
+                                <div class="form-group row"></div>
+                                <base-alert type="success">
+                                <strong>Success!</strong> Data dosen berhasil ditambahkan!
+                                </base-alert>
+                                </div> 
+                                <div class="form-group row">
+                                <div class="col-sm-1">
+                                <router-link :to="{name: 'Dosen'}">
+                                <base-button type = "danger">Kembali </base-button>
+                                </router-link>
+                                </div>
+                                <div class = "col-sm-7 pl-5" >
+                                <base-button type="primary" @click="newLecturer">Tambah Dosen</base-button>
+                                 <div class="form-group row"></div>
+                                </div>
+                                </div>
                           </div>
                         </div>
                       </div>

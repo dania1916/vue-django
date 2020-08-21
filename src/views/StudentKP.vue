@@ -1,7 +1,7 @@
 <template>
     <div>
         <base-header class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-                     style="min-height: 600px; background-image: url(img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+                     style="min-height: 500px; background-image: url(img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
             <!-- Mask -->
             <span class="mask bg-gradient-success opacity-8"></span>
             <!-- Header container -->
@@ -20,7 +20,7 @@
 
         <div class="container-fluid mt--7">
             <div class="row">
-                <div class="col px-9">
+                <div class="col px-8">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
@@ -28,9 +28,7 @@
                                     <h3 class="mb-0">Kerja Praktik</h3>
                                 </div>
                                 <div class="col text-right">
-                                    <router-link :to="{name: 'Ubah KP'}">
-                                    <b-button pill variant="primary" size="md" >Edit</b-button>
-                                    </router-link>
+                                    <b-button pill variant="primary" size="md" :href="'/internship/user/'+tableData.id+'/editkp'">Edit</b-button>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +42,8 @@
                                                         label="Nama Depan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData"
+                                                        v-model="tableData.name.first_name"
+                                                        disabled
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -52,7 +51,8 @@
                                                         label="Nama Belakang"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="tableData.name.last_name"
+                                                        disabled
                                                         />
                                         </div>
                                         <div class="col-lg-4">
@@ -60,7 +60,8 @@
                                                         label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="tableData.name.profile.nim"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -70,7 +71,8 @@
                                                         label="Nama Depan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="tableData.member.first_name"
+                                                        disabled
                                             />
                                         </div>
                                         <div class="col-lg-4">
@@ -78,7 +80,8 @@
                                                         label="Nama Belakang"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="tableData.member.last_name"
+                                                        disabled
                                                         />
                                         </div>
                                         <div class="col-lg-4">
@@ -86,7 +89,8 @@
                                                         label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="tableData.member.nim"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -101,7 +105,8 @@
                                                         label="Dosen Pembimbing"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                           
+                                                        v-model="tableData.lecturer_adviser.name"
+                                                        disabled   
                                             />
                                         </div>
                                         <div class="col-md-6">
@@ -109,7 +114,8 @@
                                                         label="Nama Perusahaan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="tableData.company_name.name"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -119,7 +125,8 @@
                                                         label="Tanggal Mulai"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
+                                                         v-model="tableData.start_date"
+                                                        disabled
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -127,7 +134,8 @@
                                                         label="Tanggal Selesai"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="tableData.end_date"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -142,7 +150,8 @@
                                                         <textarea 
                                                         class="form-control"
                                                         rows="6"
-                                                        >
+                                                        v-model="tableData.title"
+                                                        disabled>
                                                         </textarea>
                                             </base-input>
                                         </div>
@@ -151,13 +160,15 @@
                                                         label="Bidang Konsentrasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="tableData.intern_topic.name"
+                                                        disabled
                                             />
                                             <base-input alternative=""
                                                         label="Link Publikasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        
+                                                         v-model="tableData.publication_link"
+                                                        disabled
                                             />
                                         </div>
                                     </div>
@@ -165,25 +176,25 @@
                                         <div class="col-lg-6">
                                             <p><i class="fa Proposal-bold" aria-hidden="true">Proposal</i></p>
                                             <div class="row">
-                                            <a icon="files" href="#" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Proposal</a>
+                                            <a icon="files" :href="tableData.proposal" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Proposal</a>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <p><i class="fa Proposal-bold" aria-hidden="true">Laporan</i></p>
                                             <div class="row">
-                                            <a icon="files" href="#" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Laporan</a>
+                                            <a icon="files" :href="tableData.report" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Laporan</a>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <p><i class="fa Proposal-bold" aria-hidden="true">Handout</i></p>
                                             <div class="row">
-                                            <a icon="files" href="#" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Handout</a>
+                                            <a icon="files" :href="tableData.handout" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Handout</a>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <p><i class="fa Proposal-bold" aria-hidden="true">PPT</i></p>
                                             <div class="row">
-                                            <a icon="files" href="#" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh PPT</a>
+                                            <a icon="files" :href="tableData.ppt" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh PPT</a>
                                             </div>
                                         </div>
                                     </div>

@@ -75,7 +75,7 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/Students/EditStudents.vue')
                 },
                 {
-                    path: '/intern',
+                    path: '/internship/user',
                     name: 'KP Mahasiswa',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/StudentKP.vue')
@@ -97,6 +97,12 @@ let router = new Router({
                     name: 'TA Mahasiswa',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/StudentTA.vue')
+                },
+                {
+                    path: '/thesis/formta',
+                    name: 'Data TA',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Student TA/formta.vue')
                 },
                 {
                     path: '/thesis/user/:id/editta',

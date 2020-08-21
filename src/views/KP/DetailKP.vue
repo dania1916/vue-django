@@ -197,7 +197,9 @@
                                 </div>
                                 <hr class="my-4" />
                                 <div class="col-4 text-left">
+                                    <router-link :to="{name: 'kerja praktik'}">
                                     <base-button href="#!" size="md" type="default" class="float-left">Kembali</base-button>
+                                    </router-link>
                                 </div>
                             </form>
                         </template>

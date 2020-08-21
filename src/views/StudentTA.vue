@@ -1,17 +1,26 @@
 <template>
     <div>
         <base-header class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-                     style="min-height: 200px; background-size: cover; background-position: center top;">
+                     style="min-height: 500px; background-image: url(img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
             <!-- Mask -->
             <span class="mask bg-gradient-success opacity-8"></span>
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
+                <div class="row">
+                    <div class="col-lg-7 col-md-10">
+                        <h1 class="display-2 text-white">Tugas akhir</h1>
+                        <p class="text-white mt-0 mb-5">karya ilmiah yang disusun oleh mahasiswa setiap program studi berdasarkan hasil penelitian suatu masalah yang dilakukan secara seksama dengan bimbingan dosen pembimbing.</p>
+                        <router-link :to="{name: 'Data TA'}">
+                        <base-button type="default" size="md">Unggah Laporan</base-button>
+                        </router-link>
+                        </div>
+                </div>
             </div>
         </base-header>
 
-        <div class="container-fluid mt--8">
+        <div class="container-fluid mt--7">
             <div class="row">
-                <div class="card-body px-lg-9 py-11">
+                <div class="col px-8">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
@@ -19,7 +28,7 @@
                                     <h3 class="mb-0">Detail Laporan TA</h3>
                                     </div>
                                     <div class="col text-right">
-                                    <b-button pill variant="primary" size="md" :href="'/thesis/'+tableData.id+'/edit'">Edit</b-button>
+                                    <b-button pill variant="primary" size="md" :href="'/thesis/user/'+tableData.id+'/editta'">Edit</b-button>
                                     </div>
                                 </div>
                             </div>

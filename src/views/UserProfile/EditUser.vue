@@ -10,9 +10,6 @@
                     <div class="col-lg-7 col-md-10">
                         <h1 class="display-2 text-white">Hello {{tableData.first_name}}</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-                        <router-link :to="{name: 'edit profile'}">
-                        <base-button href="#!" size="md" type="default" class="float-left">Edit profile</base-button>
-                        </router-link>
                     </div>
                 </div>
             </div>
@@ -229,8 +226,17 @@
                                     </div>
                                 </div>
                                 <hr class="my-4" />
-                                <div class="col-4 text-left">
-                                    <base-button href="#!" size="md" type="default" @click="updateTopic()" class="float-left">Simpan</base-button>
+                                <div class="form-group row">
+                                <div class = "col-sm-1" >
+                                <router-link :to="{name: 'profile'}">
+                                <base-button type = "danger">Kembali </base-button>
+                                </router-link>
+                                </div>
+                                <div class = "col-sm-7 pl-6" >
+                                <router-link :to="{name: 'profile'}">
+                                <base-button type = "success" @click="updateTopic()">Simpan</base-button>   
+                                </router-link>                             
+                                </div>
                                 </div>
                             </form>
                         </template>
