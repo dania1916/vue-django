@@ -1,17 +1,26 @@
 <template>
     <div>
         <base-header class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-                     style="min-height: 200px; background-size: cover; background-position: center top;">
+                     style="min-height: 500px; background-image: url(img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
             <!-- Mask -->
             <span class="mask bg-gradient-success opacity-8"></span>
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
+                <div class="row">
+                    <div class="col-lg-7 col-md-10">
+                        <h1 class="display-2 text-white">Tugas akhir</h1>
+                        <p class="text-white mt-0 mb-5">Matakuliah yang menerapkan ilmu pengetahuan dan teknologi sesuai bidang yang ditekuni secara langsung di lapangan.</p>
+                        <!-- <router-link :to="{name: 'Data KP'}"> -->
+                        <base-button type="default" size="md">Unggah Laporan</base-button>
+                        <!-- </router-link> -->
+                        </div>
+                </div>
             </div>
         </base-header>
 
         <div class="container-fluid mt--7">
             <div class="row">
-                <div class="card-body px-lg-9 py-11">
+                <div class="col px-8">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
@@ -172,15 +181,17 @@
                                     </div>      
                                 </div>
                                 <hr class="my-4" />
-                                <div class="row">
-                                <div class="col-1"></div>
-                                <router-link :to="{name: 'profile'}">
-                                <base-button type = "success" >Kembali</base-button>
+                                <div class="form-group row">
+                                <div class = "col-sm-1" >
+                                <router-link :to="{name: 'TA Mahasiswa'}">
+                                <base-button type = "danger">Kembali </base-button>
                                 </router-link>
-                                <div class="col-1"></div>
-                                <router-link :to="{name: 'profile'}">
-                                <base-button size="md" type="default" @click="updateThesis()" class="float-left">Simpan</base-button>
-                                </router-link>
+                                </div>
+                                <div class = "col-sm-7 pl-5" >
+                                <router-link :to="{name: 'KP Mahasiswa'}">
+                                <base-button type = "success" @click="updateThesis()">Simpan</base-button>   
+                                </router-link>                             
+                                </div>
                                 </div>
                                 </form>
                             </template>

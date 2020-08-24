@@ -41,7 +41,7 @@
           </th>
           <th scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm">{{row.name.first_name}}{{row.name.last_name}}</span>
+                <span class="name mb-0 text-sm">{{row.name.first_name}} {{row.name.last_name}}</span>
               </div>
           </th>
           <th scope="row">
@@ -51,12 +51,12 @@
           </th>
           <th class="text-md-center" scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm"><b-link icon="files" href="tableData.thesis_proposal" target="_blank">Download</b-link></span>
+                <span class="name mb-0 text-sm"><b-link icon="files" href="#" target="_blank">{{row.thesis_proposal}}</b-link></span>
               </div>
           </th>
           <th scope="row">
             <div class="text-md-center">
-                <span class="name mb-0 text-sm"><a icon="files" :href="tableData.thesis_report" target="_blank">Download</a></span>
+                <span class="name mb-0 text-sm"><b-button pill variant="default" size="sm" @click="onClick()">DownLoad</b-button></span>
               </div>
           </th>
           <th scope="row">
@@ -76,6 +76,9 @@
 </template>
 <script>
 import ThesisDataService from "../../services/ThesisDataService";
+import axios from 'axios'
+
+
   export default {
     name: 'projects-table',
     props: {
@@ -94,7 +97,15 @@ import ThesisDataService from "../../services/ThesisDataService";
           }]
       }
     },
+
     methods: {
+    fetchUser(){
+            const token = localStorage.getItem('token')
+            const pk = localStorage.getItem('pk')
+            axios.get('http://localhost:8000/api/users/'+pk,
+            { headers: { Authorization: `Bearer ${token}`}})
+            .then(response =>{this.tableData = response.data})
+            },
     retrieveCompany() {
       ThesisDataService.getAll()
         .then(response => {
@@ -105,9 +116,26 @@ import ThesisDataService from "../../services/ThesisDataService";
           console.log(e);
         });
     },
+    onClick() {
+              axios({
+                    url: 'http://127.0.0.1:8000/api/thesis',
+                    method: 'GET',
+                    responseType: 'blob',
+                }).then((response) => {
+                     var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                     var fileLink = document.createElement('a');
+   
+                     fileLink.href = fileURL;
+                     fileLink.setAttribute('download', 'file.pdf');
+                     document.body.appendChild(fileLink);
+   
+                     fileLink.click();
+                });
+          }
   },
     mounted() {
     this.retrieveCompany();
+    this.getThesis(this.$route.params.id);
   }
 }
 </script>

@@ -172,15 +172,17 @@
                                     </div>      
                                 </div>
                                 <hr class="my-4" />
-                                <div class="row">
-                                <div class="col-1"></div>
-                                <router-link :to="{name: 'tugas akhir'}">
-                                <base-button type = "success" >Kembali</base-button>
+                                <div class="form-group row">
+                                <div class = "col-sm-1" >
+                                <router-link :to="{name: 'Detail TA'}">
+                                <base-button type = "danger">Kembali </base-button>
                                 </router-link>
-                                <div class="col-1"></div>
-                                <router-link :to="{name: 'tugas akhir'}">
-                                <base-button size="md" type="default" @click="updateThesis()" class="float-left">Simpan</base-button>
-                                </router-link>
+                                </div>
+                                <div class = "col-sm-7 pl-5" >
+                                <router-link :to="{name: 'Detail TA'}">
+                                <base-button type = "success" @click="updateThesis()">Simpan</base-button>   
+                                </router-link>                             
+                                </div>
                                 </div>
                                 </form>
                             </template>

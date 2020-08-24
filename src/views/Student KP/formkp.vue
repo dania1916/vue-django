@@ -109,11 +109,14 @@
                                 </div>
                                 <div class="form-group row" >
                                 <label class="col-sm-3"></label>
-                                <div class = "col-sm-7" > 
-                                <router-link :to="{name: 'pelaksanaan'}">
-                                <base-button type = "success" @click.prevent="next()">Selanjutnya</base-button>
+                                <div class = "col-sm-1" > 
+                                <router-link :to="{name: 'KP Mahasiswa'}">
+                                <base-button type = "danger">Kembali </base-button>
                                 </router-link>
-                                </div> 
+                                </div>
+                                <div class = "col-sm-7 pl-5" > 
+                                <base-button type = "success" @click.prevent="next()">Selanjutnya</base-button>
+                                </div>
                                 </div>
                         </form>
                         </div>

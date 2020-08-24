@@ -54,29 +54,37 @@
                                         <input type="email" class="form-control" required v-model="company.pic_number" placeholder="Nomor HP PIC">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="inputNamaPerusahaan" class="col-sm-3 col-form-label"></label>
-                                        <div class="col-sm-7">
-                                            <base-button @click="submitCompany" class="btn btn-success" type="success">Submit</base-button>
-                                            <router-link :to="{name: 'Perusahaan'}">
-                                            <base-button type="danger">Kembali</base-button>
-                                            </router-link>
-                                        </div>   
+                                    <div class="form-group row" >
+                                    <label class="col-sm-3"></label>
+                                    <div class = "col-sm-1" > 
+                                    <router-link :to="{name: 'Perusahaan'}">
+                                    <base-button type = "danger">Kembali </base-button>
+                                    </router-link>
+                                    </div>
+                                    <div class = "col-sm-7 pl-5" > 
+                                    <base-button @click="submitCompany" class="btn btn-success" type="success">Submit</base-button>
+                                    </div>
                                     </div>
                                 </form>
                             </div>
                          <div v-else>
-                        <div class="col">
-                          <div class="form-group row"></div>
-                            <base-alert type="success">
-                              <strong>Success!</strong> Data mahasiswa baru berhasil ditambahkan!
-                            </base-alert>
-                        </div> 
-                          <div class="col">
-                            <base-button type="secondary" @click="newCompany">Detail</base-button>
-                            <base-button type="primary" @click="newCompany">Tambah Mahasiswa</base-button>
-                            <div class="form-group row"></div>
-                            </div> 
+                           <div class="col-pr-1">
+                                <div class="form-group row"></div>
+                                <base-alert type="success">
+                                <strong>Success!</strong> Data perusahaan berhasil ditambahkan!
+                                </base-alert>
+                                </div> 
+                                <div class="form-group row">
+                                <div class="col-sm-1">
+                                <router-link :to="{name: 'Perusahaan'}">
+                                <base-button type = "danger">Kembali </base-button>
+                                </router-link>
+                                </div>
+                                <div class = "col-sm-7 pl-5" >
+                                <base-button type="primary" @click="newCompany">Tambah Dosen</base-button>
+                                 <div class="form-group row"></div>
+                                </div>
+                                </div>
                           </div>
                         </div>
                         </div>

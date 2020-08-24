@@ -1,15 +1,15 @@
 <template>
- <div>
+  <div>
     <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
-    </base-header>
+      </base-header>
         <div class="container-fluid mt--7">
          <div class="row justify-content-center">
             <div class="col-lg-10 col-md-10">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-10 py-lg-10">
-                        <!-- PAGE 1 -->
+                      <!-- PAGE 1 -->
                         <div v-if="step === 1">
-                        <div class="col text-left"> <h3>Informasi Anggota</h3> </div>
+                        <div class="col text-left"> <h3>Data Diri</h3> </div>
                         <form>
                             <div class="form-group row"></div>
                                 <div class="form-group row">
@@ -33,84 +33,19 @@
                                 </div>
                                 </div>
                                 <div class="form-group row">
-                                <label for="inputDosen" class="col-sm-3 col-form-label text-md-right">Dosen Pembimbing</label>
+                                <label for="group" class="col-sm-3 col-form-label text-md-right">Dosen Pembimbing</label>
                                 <div class="col-sm-7">
-                                 <v-select v-model="lecturers.lectuer_name"
+                                <v-select v-model="lecturers.lectuer_name"
                                   @input="selectIdLecturer($event)"
                                   :options="lecturers.lecturer_list"
                                   label="name">
                                 </v-select>
                                 </div>
                                 </div>
-                                <div class="form-group row">
-                                <label for="group" class="col-sm-3 col-form-label text-md-right">Group Kerja</label>
-                                <div class="col-sm-7">
-                                 <b-form-radio v-model="internships.group" 
-                                              name="some-radios" 
-                                              value="0"
-                                              >Sendiri :v 
-                                </b-form-radio>
-                                <b-form-radio v-model="internships.group" 
-                                              name="some-radios" 
-                                              value="1">Berpasangan :)
-                                </b-form-radio>                  
-                                </div>
-                                </div>
-                                <div v-if="internships.group == 1">
-                                <div class="form-group row" >
-                                <label class="col-sm-3"></label>
-                                <div  class = "col-sm-7" > 
-                                <b-button v-b-modal.modal-no-backdrop variant="primary">Tambah Anggota Tim</b-button>
-                                <b-modal id="modal-no-backdrop" hide-backdrop content-class="shadow" title="Anggota KP">
-                                <p class="my-2">
-                                <div class="form-group row">
-                                <label  for="inputNama" class="col-sm-3 col-form-label text-md-right">Nama</label>
-                                <div class="col-sm-7">
-                                <v-select v-model="members.student_name"
-                                  @input="selectIdMember($event)"
-                                  :options="members.student_list"
-                                  label="first_name">
-                                </v-select>
-                                </div>
-                                </div>
-                                <div class="form-group row">
-                                <label for="inputNIM" class="col-sm-3 col-form-label text-md-right">NIM</label>
-                                <div class="col-sm-7">
-                                <input  type="num" 
-                                        class="form-control" 
-                                        id="nim" 
-                                        v-model="members.selected_nim" 
-                                        disabled>
-                                </div>
-                                </div>
-                                </b-modal>
-                                </div> 
-                                </div>
-                                <div class="form-group row">
-                                <label for="name" class="col-sm-3 col-form-label text-md-right">Nama Anggota</label>
-                                <div class="col-sm-7">
-                                 <input  type="num" 
-                                        class="form-control" 
-                                        id="nim" 
-                                        v-model="members.selected_name" 
-                                        disabled>
-                                </div>
-                                </div>
-                                <div class="form-group row">
-                                <label for="nim" class="col-sm-3 col-form-label text-md-right">NIM Anggota</label>
-                                <div class="col-sm-7">
-                                <input  type="num" 
-                                        class="form-control" 
-                                        id="nim" 
-                                        v-model="members.selected_nim" 
-                                        disabled>
-                                </div>
-                                </div>
-                                </div>
                                 <div class="form-group row" >
                                 <label class="col-sm-3"></label>
                                 <div class = "col-sm-1" > 
-                                <router-link :to="{name: 'kerja praktik'}">
+                                <router-link :to="{name: 'TA Mahasiswa'}">
                                 <base-button type = "danger">Kembali </base-button>
                                 </router-link>
                                 </div>
@@ -122,9 +57,25 @@
                         </div>
                         <!-- PAGE 2 -->
                         <div v-if="step === 2">
-                        <div class="col text-left"> <h3>Informasi Kegiatan</h3> </div>
-                            <form>
-                           <div class="form-group row">
+                        <div class="col text-left"> <h3>Magang</h3> </div>
+                        <form>
+                            <div class="form-group row"></div>
+                                <div class="form-group row">
+                                <label for="inputNama" class="col-sm-3 col-form-label text-md-right">Magang</label>
+                                <div class="col-sm-7">
+                                <b-form-radio v-model="internships.status" 
+                                              name="some-radios" 
+                                              value="1"
+                                              >Ya
+                                </b-form-radio>
+                                <b-form-radio v-model="internships.status" 
+                                              name="some-radios" 
+                                              value="0">Tidak
+                                </b-form-radio>
+                                </div>
+                                </div>
+                                <div v-if="internships.status == 1">
+                                <div class="form-group row">
                                 <label for="group" class="col-sm-3 col-form-label text-md-right">Nama Perusahaan</label>
                                 <div class="col-sm-7">
                                   <v-select v-model="companies.company_name"
@@ -159,6 +110,9 @@
                                 </flat-picker>
                                 </base-input>
                                 </div>
+                                </div>
+                               </div> 
+                               <div class="form-group row">
                                 <label class="col-sm-3"></label>
                                 <div class = "col-sm-1" > 
                                 <base-button type = "danger" @click.prevent="prev()">Kembali </base-button>
@@ -166,10 +120,11 @@
                                 <div class = "col-sm-7 pl-5" >
                                 <base-button type = "success" @click.prevent="next()">Selanjutnya</base-button>
                                 </div>
-                            </div> 
-                            </form>
-                            </div>
-                           <div v-if="step === 3">
+                               </div>
+                        </form>
+                        </div>
+                        <!-- PAGE 3 -->
+                        <div v-if="step === 3">
                         <div class="col text-left"> <h3>Informasi Laporan</h3> </div>
                         <form>
                             <div class="form-group row"></div>
@@ -179,7 +134,7 @@
                                 <input type="text" 
                                        class="form-control" 
                                        id="thesis_tittle"
-                                       v-model="internships.title">
+                                       v-model="thesis.title">
                                 </div>
                                 </div>
                                 
@@ -233,29 +188,28 @@
                                 <base-button type = "danger" @click.prevent="prev()">Kembali </base-button>
                                 </div>
                                 <div class = "col-sm-7 pl-5" >
-                                
-                                <base-button type = "success" @click="updateTopic()">Tambah</base-button>                                </div>
+                                <router-link :to="{name: 'TA Mahasiswa'}">
+                                <base-button type = "success" @click="updateTopic()">Tambah</base-button>
+                                </router-link>
                                 </div>
-                            </form>
-                            </div>
+                                </div>
+                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
          </div>
         </div>
     </div>
-    
-
 </template>
 
 <script>
 import flatPicker from "vue-flatpickr-component"
 import "flatpickr/dist/flatpickr.css"
-import InternshipDataService from "../../services/InternshipDataService"
+import ThesisDataService from "../../services/ThesisDataService"
 import LecturerDataService from "../../services/LecturerDataService";
 import CompanyDataService from "../../services/CompanyDataService";
 import TopicDataService from "../../services/TopicDataService";
-import StudentDataService from "../../services/StudentDataService";
 import axios from 'axios';
 
 import Vue from 'vue'
@@ -265,18 +219,12 @@ import 'vue-select/dist/vue-select.css';
 Vue.component('v-select', vSelect)
 
 export default {
-components: {flatPicker},
-    data() {
-      return {
-        step:1,
-        student:'',
-        members:{
-         student_list:'',
-         student_id:1,
-         student_name:'',
-         selected_name:'',
-         selected_nim:'',
-        },
+  components: {flatPicker},
+  name: "add-student",
+  data() {
+    return {
+      step:1,
+      student:'',
       companies:{
         company_list:'',
         company_id:'',
@@ -299,32 +247,32 @@ components: {flatPicker},
         handout:'',
       },
       internships: {
-        title:'',
-        group:0,
-        publication_link:'',
+        status:0,
         start_date: '',
         end_date: ''
       },
       thesis:{
-
+        title:'',
+        publication_link:''
       },
       submitted: false,
-      }
-    },
-      computed: {
-        isLoggedIn() {
-                return this.$store.getters.isLoggedIn
-        },
+    };
+  },
+    
+  computed: {
+  isLoggedIn() {
+      return this.$store.getters.isLoggedIn
       },
-    created () {
+  },
+  created () {
     this.fetchUser(this.$route.params.pk)
     const token = localStorage.getItem('token')
       if (token) {
       this.fetchAuthenticatedUser(token)
       }
     },
-    methods:{      
-    fetchUser(){
+  methods: {
+  fetchUser(){
       const token = localStorage.getItem('token')
       const pk = localStorage.getItem('pk')
       axios.get('http://localhost:8000/api/users/'+pk,
@@ -361,36 +309,30 @@ components: {flatPicker},
           console.log(e);
         });
     },
-     retrieveStudents() {
-      StudentDataService.getAll()
-        .then(response => {
-          this.members.student_list= response.data;
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
+    prev() {
+      this.step--;
+    },
+    next() {
+      this.step++;
     },
     updateTopic() {
       const pk = localStorage.getItem('pk')
       const token = localStorage.getItem('token')
       let formData = new FormData();
           formData.append('name', pk);
+          formData.append('thesis_topic', this.topics.topic_id);
           formData.append('lecturer_adviser', this.lecturers.lecturer_id);
-          formData.append('group', this.internships.group);
-          formData.append('member', this.members.student_id);
+          formData.append('thesis_proposal', this.handleFile.proposal);
+          formData.append('thesis_report', this.handleFile.report);
+          formData.append('thesis_ppt', this.handleFile.ppt);
+          formData.append('thesis_handout', this.handleFile.handout);
+          formData.append('thesis_title', this.thesis.title);
+          formData.append('publication_link', this.thesis.publication_link);
           formData.append('company_name', this.companies.company_id);
+          formData.append('internship_status', this.internships.status);
           formData.append('start_date', this.internships.start_date);
           formData.append('end_date', this.internships.end_date);
-          formData.append('title', this.internships.title);
-          formData.append('intern_topic', this.topics.topic_id);
-          formData.append('proposal', this.handleFile.proposal);
-          formData.append('report', this.handleFile.report);
-          formData.append('ppt', this.handleFile.ppt);
-          formData.append('handout', this.handleFile.handout);
-          formData.append('publication_link', this.internships.publication_link);
-
-          InternshipDataService.create(formData,
+          ThesisDataService.create(formData,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -419,34 +361,21 @@ components: {flatPicker},
     },
     selectIdLecturer(e) {
       this.lecturers.lecturer_id = e.id
-
     },
     selectIdCompany(e) {
       this.companies.company_id = e.id
     },
     selectIdTopic(e) {
       this.topics.topic_id = e.id
-    },    
-    selectIdMember(e) {
-      this.members.student_id = e.id
-      this.members.selected_name = e.first_name
-      this.members.selected_nim = e.nim
-    },   
-    prev() {
-      this.step--;
-    },
-    next() {
-      this.step++;
-    },
-    submit() {
-      alert('Submit to blah and show blah and etc.');      
     }
   },
-    mounted() {
+  mounted() {
     this.retrieveLecturer();
     this.retrieveCompany();
     this.retrieveTopics();
-    this.retrieveStudents();
   }
-  };
+};
 </script>
+<style>
+
+</style>

@@ -17,13 +17,13 @@
         
         <sidebar-item :link="{name: 'User Profile', icon: 'ni ni-circle-08 text-blue', path: '/profile'}"/>
         <sidebar-item :link="{name: 'Mahasiswa', icon: 'ni ni-single-02 text-yellow', path: '/students'}"/>
-        <sidebar-item :link="{name: 'Aktivitas KP', icon: 'ni ni-single-02 text-yellow', path: '/intern'}"/>
-        <sidebar-item :link="{name: 'Aktivitas TA', icon: 'ni ni-single-02 text-yellow', path: '/thesis/user'}"/>
         <sidebar-item :link="{name: 'Dosen', icon: 'ni ni-single-02 text-orange', path: '/lecturers'}"/>
-        <sidebar-item :link="{name: 'Kerja Praktik', icon: 'ni ni-briefcase-24 text-blue', path: '/internships'}"/>
-        <sidebar-item :link="{name: 'Tugas Akhir', icon: 'ni ni-archive-2 text-red', path: '/thesis'}"/>
+        <sidebar-item :link="{name: 'Aktivitas Kerja Praktik', icon: 'ni ni-briefcase-24 text-blue', path: '/internship/user'}"/>
+        <sidebar-item :link="{name: 'Aktivitas Tugas Akhir', icon: 'ni ni-box-2 text-red', path: '/thesis/user'}"/>
+        <sidebar-item :link="{name: 'Kerja Praktik', icon: 'ni ni-single-copy-04 text-blue', path: '/internships'}"/>
+        <sidebar-item :link="{name: 'Tugas Akhir', icon: 'ni ni-folder-17 text-red', path: '/thesis'}"/>
         <sidebar-item :link="{name: 'Perusahaan', icon: 'ni ni-bullet-list-67 text-black', path: '/companies'}"/>
-        <sidebar-item :link="{name: 'Bidang KP', icon: 'ni ni-bullet-list-67 text-red', path: '/topics'}"/>
+        <sidebar-item :link="{name: 'Bidang KP', icon: 'ni ni-bullet-list-67 text-grey', path: '/topics'}"/>
         
         
       </template>

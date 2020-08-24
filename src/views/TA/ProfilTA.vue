@@ -44,9 +44,14 @@
                                 </div>
                                 <div class="form-group row" >
                                 <label class="col-sm-3"></label>
-                                <div class = "col-sm-7" > 
+                                <div class = "col-sm-1" > 
+                                <router-link :to="{name: 'tugas akhir'}">
+                                <base-button type = "danger">Kembali </base-button>
+                                </router-link>
+                                </div>
+                                <div class = "col-sm-7 pl-5" > 
                                 <base-button type = "success" @click.prevent="next()">Selanjutnya</base-button>
-                                </div> 
+                                </div>
                                 </div>
                         </form>
                         </div>
@@ -274,7 +279,7 @@ export default {
       { headers: { Authorization: `Bearer ${token}` }})
       .then(response =>{this.student = response.data})
       },
-      retrieveLecturer() {
+  retrieveLecturer() {
     LecturerDataService.getAll()
         .then(response => {
           this.lecturers.lecturer_list = response.data;
