@@ -13,12 +13,171 @@
                         <router-link :to="{name: 'Data TA'}">
                         <base-button type="default" size="md">Unggah Laporan</base-button>
                         </router-link>
-                        </div>
+                    </div>
                 </div>
             </div>
         </base-header>
+        <!-- When data is null -->
+        <div v-if="tableData == ''" class="container-fluid mt--7">
+            <div class="row">
+                <div class="col px-8"  >
+                    <div class="row" />
+                    <card shadow type="secondary">
+                        <div slot="header" class="bg-white border-0">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0">Detail Laporan TA</h3>
+                                    </div>
+                                    <div class="col text-right">
+                                    <b-button pill variant="primary" size="md" :href="'/thesis/user/'+tableData.id+'/editta'">Edit</b-button>
+                                    </div>
+                            </div>
+                        </div>
+                        <!-- Member -->
+                        <template>
+                            <form @submit.prevent>
+                                <h6 class="heading-small text-muted mb-4">Profil</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row" :data="tableData">
+                                         <div v-if="tableData !== null"/>
+                                        <div class="col-lg-6" :data="tableData">
+                                            <base-input :data="tableData" alternative=""
+                                                        label="Nama Depan"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-6" :data="tableData" v-if="tableData.name !== null">
+                                            <base-input alternative=""
+                                                        label="Nama Belakang"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="NIM"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Dosen Pembimbing"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        disabled
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr v-if="tableData.internship_status == true" class="my-4" />
+                                <!-- Implementation -->
+                                <h6 v-if="tableData.internship_status == true" class="heading-small text-muted mb-4">Magang</h6>
+                                <div v-if="tableData.internship_status == true" class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <base-input alternative=""
+                                                        label="Nama Perusahaan"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        disabled
+                                            />
+                                        </div>
+                                    </div>
+                                     <div class="row">
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Tanggal Mulai"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Tanggal Selesai"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        disabled
+                                            />
+                                        </div>
+                                    </div> 
+                                </div>
+                                <!-- Thesis -->
+                                <hr class="my-4" />
+                                <h6 class="heading-small text-muted mb-4">Laporan</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-6">  
+                                            <base-input label="Judul Laporan">
+                                                        <textarea 
+                                                        class="form-control"
+                                                        rows="6"
+                                                        disabled>
+                                                        </textarea>
+                                            </base-input>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
+                                                        label="Bidang Konsentrasi"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        disabled
+                                            />
+                                            <base-input alternative=""
+                                                        label="Link Publikasi"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        disabled
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <p><i class="fa Proposal-bold" aria-hidden="true">Proposal</i></p>
+                                            <div class="row">
+                                            <a icon="files" :href="tableData.thesis_proposal" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Proposal</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p><i class="fa Proposal-bold" aria-hidden="true">Laporan</i></p>
+                                            <div class="row">
+                                            <a icon="files" :href="tableData.thesis_report" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Laporan</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p><i class="fa Proposal-bold" aria-hidden="true">Handout</i></p>
+                                            <div class="row">
+                                            <a icon="files" :href="tableData.thesis_handout" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh Handout</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p><i class="fa Proposal-bold" aria-hidden="true">PPT</i></p>
+                                            <div class="row">
+                                            <a icon="files" :href="tableData.thesis_ppt" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh PPT</a>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                </div>
 
-        <div class="container-fluid mt--7">
+                                <hr class="my-4" />
+                                <div class="col-4 text-left">
+                                <router-link :to="{name: 'tugas akhir'}">
+                                <base-button href="#!" size="md" type="default" class="float-left">Kembali</base-button>
+                                </router-link>
+                                </div>
+                            </form>
+                        </template>
+                    </card>
+                </div>
+            </div>
+        </div>
+           <!-- When data inputed! -->
+        <div v-else class="container-fluid mt--7">
             <div class="row">
                 <div class="col px-8">
                     <card shadow type="secondary">
@@ -30,24 +189,25 @@
                                     <div class="col text-right">
                                     <b-button pill variant="primary" size="md" :href="'/thesis/user/'+tableData.id+'/editta'">Edit</b-button>
                                     </div>
-                                </div>
                             </div>
+                        </div>
                         <!-- Member -->
                         <template>
                             <form @submit.prevent>
                                 <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
                                     <div class="row" :data="tableData">
+                                         <div v-if="tableData !== null"/>
                                         <div class="col-lg-6" :data="tableData">
                                             <base-input :data="tableData" alternative=""
                                                         label="Nama Depan"
-                                                        placeholder="testing"
+                                                        placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.thesis_title"
                                                         disabled
                                             />
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-6" :data="tableData" v-if="tableData.name !== null">
                                             <base-input alternative=""
                                                         label="Nama Belakang"
                                                         placeholder=""
@@ -178,9 +338,9 @@
                                             <a icon="files" :href="tableData.thesis_ppt" target="_blank"><img class="gambar" src="img/theme/download.png">  Unduh PPT</a>
                                             </div>
                                         </div>
-                                    </div>
-                                       
+                                    </div>   
                                 </div>
+
                                 <hr class="my-4" />
                                 <div class="col-4 text-left">
                                 <router-link :to="{name: 'tugas akhir'}">

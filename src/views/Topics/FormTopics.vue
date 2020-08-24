@@ -116,7 +116,27 @@ export default {
     newTopic() {
       this.submitted = false;
       this.topic = {};
-    }
+    },
+        handleSubmit() {
+        let data = {
+                name: this.topic.name
+            }
+                  TopicDataService.create(data)
+                      .then(response => {
+                        this.topic.id = response.data.id;
+                        console.log(response.data);
+                        this.submitted = true;
+                      })
+                      .catch(e => {
+                        console.log(e);
+                      });
+            this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/topics')
+                }
+            });
+        }
   },
 };
 </script>
