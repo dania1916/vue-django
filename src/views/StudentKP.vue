@@ -46,7 +46,8 @@
                                                         disabled
                                             />
                                         </div>
-                                        <div class="col-lg-4">
+                                         <!-- Pelaksanaan -->
+                                <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="Nama Belakang"
                                                         placeholder=""
@@ -93,10 +94,6 @@
                                                         disabled
                                             />
                                         </div>
-                                    </div>
-                                </div>
-                                <hr class="my-4" />
-                                <!-- Pelaksanaan -->
                                 <h6 class="heading-small text-muted mb-4">Pelaksanaan</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
@@ -160,21 +157,15 @@
                                                         label="Bidang Konsentrasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
                                                         v-model="tableData.intern_topic.name"
                                                         disabled
-=======
->>>>>>> 209bf3a43bfe12305967237c2479ee4b85fa5699
                                             />
                                             <base-input alternative=""
                                                         label="Link Publikasi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-<<<<<<< HEAD
                                                          v-model="tableData.publication_link"
                                                         disabled
-=======
->>>>>>> 209bf3a43bfe12305967237c2479ee4b85fa5699
                                             />
                                         </div>
                                     </div>
@@ -206,6 +197,10 @@
                                     </div>
                                 </div>
                                 <hr class="my-4" />
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                               
                             </form>
                         </template>
                     </card>
@@ -233,6 +228,35 @@ export default {
       },
         tableData: 
         [{
+            name:{
+                first_name:'',
+                last_name:'',
+                profile:{
+                    nim:''
+                }
+            },
+            member:{
+                first_name:'fddaas',
+                last_name:'sfsfss',
+                nim:'13423242'
+            },
+            lecturer_adviser:{
+                name:''
+            },
+            company_name:{
+                name:''
+            },
+            start_date:'',
+            end_date:'',
+            title:'',
+            intern_topic:{
+                name:''
+            },
+            publication_link:'',
+            proposal:'',
+            report:'',
+            handout:'',
+            ppt:''
           }]
       }
     },

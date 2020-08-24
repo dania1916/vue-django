@@ -39,7 +39,7 @@
           </th>
           <th scope="row">
             <div class="media-body text-md">
-                <span class="name mb-0 text-sm">{{row.first_name}}{{row.last_name}}</span>
+                <span class="name mb-0 text-sm">{{row.first_name}} {{row.last_name}}</span>
               </div>
           </th>
           <th scope="row">

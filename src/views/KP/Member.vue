@@ -47,16 +47,16 @@
                                 <div class="col-sm-7">
                                  <b-form-radio v-model="internships.group" 
                                               name="some-radios" 
-                                              value="1"
+                                              value="0"
                                               >Sendiri :v 
                                 </b-form-radio>
                                 <b-form-radio v-model="internships.group" 
                                               name="some-radios" 
-                                              value="2">Berpasangan :)
+                                              value="1">Berpasangan :)
                                 </b-form-radio>                  
                                 </div>
                                 </div>
-                                <div v-if="internships.group == 2">
+                                <div v-if="internships.group == 1">
                                 <div class="form-group row" >
                                 <label class="col-sm-3"></label>
                                 <div  class = "col-sm-7" > 
@@ -233,6 +233,7 @@
                                 <base-button type = "danger" @click.prevent="prev()">Kembali </base-button>
                                 </div>
                                 <div class = "col-sm-7 pl-5" >
+                                
                                 <base-button type = "success" @click="updateTopic()">Tambah</base-button>                                </div>
                                 </div>
                             </form>
@@ -271,7 +272,7 @@ components: {flatPicker},
         student:'',
         members:{
          student_list:'',
-         student_id:'',
+         student_id:1,
          student_name:'',
          selected_name:'',
          selected_nim:'',
@@ -299,7 +300,7 @@ components: {flatPicker},
       },
       internships: {
         title:'',
-        group:1,
+        group:0,
         publication_link:'',
         start_date: '',
         end_date: ''
@@ -377,7 +378,7 @@ components: {flatPicker},
           formData.append('name', pk);
           formData.append('lecturer_adviser', this.lecturers.lecturer_id);
           formData.append('group', this.internships.group);
-          formData.append('member', this.members.member_id);
+          formData.append('member', this.members.student_id);
           formData.append('company_name', this.companies.company_id);
           formData.append('start_date', this.internships.start_date);
           formData.append('end_date', this.internships.end_date);
@@ -427,7 +428,7 @@ components: {flatPicker},
       this.topics.topic_id = e.id
     },    
     selectIdMember(e) {
-      this.members.member_id = e.id
+      this.members.student_id = e.id
       this.members.selected_name = e.first_name
       this.members.selected_nim = e.nim
     },   

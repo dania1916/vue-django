@@ -279,7 +279,7 @@ export default {
       { headers: { Authorization: `Bearer ${token}` }})
       .then(response =>{this.student = response.data})
       },
-      retrieveLecturer() {
+  retrieveLecturer() {
     LecturerDataService.getAll()
         .then(response => {
           this.lecturers.lecturer_list = response.data;

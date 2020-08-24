@@ -91,19 +91,14 @@
                                     <base-button type = "danger">Kembali </base-button>
                                     </router-link>
                                     </div>
-                                    <div class = "col-sm-7 pl-5" > 
+                                    <div class = "col-sm-7 pl-5" >
                                     <base-button @click="submitStudent" class="btn btn-success" type="success">Submit</base-button>
                                     </div>
                                     </div> 
                                 </form>
                             </div>
-<<<<<<< HEAD
                             <div v-else>
                                 <div class="col-pr-1">
-=======
-                            <!-- <div v-else>
-                              <div class="col">
->>>>>>> 209bf3a43bfe12305967237c2479ee4b85fa5699
                                 <div class="form-group row"></div>
                                 <base-alert type="success">
                                 <strong>Success!</strong> Data mahasiswa berhasil ditambahkan!
@@ -120,9 +115,7 @@
                                  <div class="form-group row"></div>
                                 </div>
                                 </div> 
-                                <router-link :to="{name: 'Mahasiswa'}">
-                                </router-link>
-                            </div> -->
+                            </div>
                            </div>
                         </div>
                     </div>
@@ -181,7 +174,7 @@ export default {
           this.student.id = response.data.id;
           console.log(response.data);
           this.submitted = true;
-          this.$router.push('/')
+          
         })
         .catch(e => {
           console.log(e);
