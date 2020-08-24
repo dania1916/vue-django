@@ -7,51 +7,66 @@
             <div class="col-lg-10 col-md-10">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-10 py-lg-10">
-                      <div v-if="!submitted">
+                      <!-- <div v-if="!submitted"> -->
                             <div class="col"> <h3>Tambah Perusahaan</h3> </div>
+                            <validation-observer>
                                 <form>
                                     <div class="form-group row"></div>
                                     <div class="form-group row">
                                         <label for="name" class="col-md-3 col-form-label text-md-right">Nama</label>
                                         <div class="col-md-7">
-                                        <input type="text" class="form-control" required v-model="company.name" placeholder="Nama Perusahaan">
+                                        <input type="text" class="form-control" required v-model="company.name" placeholder="Nama Perusahaan"
+                                        id="name" name="name" v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('name') }">
+                                        <div v-if="submitted && errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="business" class="col-md-3 col-form-label text-md-right">Jenis Bisnis</label>
                                         
                                         <div class="col-md-7">
-                                        <input type="text" class="form-control" required v-model="company.business" placeholder="IT Consultant, ISP, Pertambangan">
+                                        <input type="text" class="form-control" required v-model="company.business" placeholder="IT Consultant, ISP, Pertambangan"
+                                        id="business" name="business" v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('business') }">
+                                        <div v-if="submitted && errors.has('business')" class="invalid-feedback">{{ errors.first('business') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="address" class="col-md-3 col-form-label text-md-right">Alamat</label>
                                         <div class="col-md-7">
-                                        <textarea class="form-control" required v-model="company.address" rows="3" placeholder="Alamat Lengkap"></textarea>
+                                        <textarea class="form-control" required v-model="company.address" rows="3" placeholder="Alamat Lengkap"
+                                        id="address" name="address" v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('address') }"></textarea>
+                                        <div v-if="submitted && errors.has('address')" class="invalid-feedback">{{ errors.first('address') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="website" class="col-md-3 col-form-label text-md-right">Website</label>
                                         <div class="col-md-7">
-                                        <input type="text" class="form-control" required v-model="company.website" placeholder="Website Perusahaan">
+                                        <input type="text" class="form-control" required v-model="company.website" placeholder="Website Perusahaan" 
+                                        id="website" name="website" v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('website') }">
+                                        <div v-if="submitted && errors.has('website')" class="invalid-feedback">{{ errors.first('website') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="email" class="col-md-3 col-form-label text-md-right">Email</label>
                                         <div class="col-md-7">
-                                        <input type="email" class="form-control" required v-model="company.email"  placeholder="Email Perusahaan">
+                                        <input type="email" class="form-control" required v-model="company.email"  placeholder="Email Perusahaan"
+                                        id="email" name="email" v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('email') }">
+                                        <div v-if="submitted && errors.has('email')" class="invalid-feedback">{{ errors.first('email') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="pic_name" class="col-md-3 col-form-label text-md-right">Nama PIC</label>
                                         <div class="col-md-7">
-                                        <input type="email" class="form-control" required v-model="company.pic_name" placeholder="Nama PIC Perusahaan">
+                                        <input type="text" class="form-control" required v-model="company.pic_name" placeholder="Nama PIC Perusahaan"
+                                        id="pic" name="pic" v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('pic') }">
+                                        <div v-if="submitted && errors.has('pic')" class="invalid-feedback">{{ errors.first('pic') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="pic_number" class="col-md-3 col-form-label text-md-right">Nomor Telepon PIC</label>
                                         <div class="col-md-7">
-                                        <input type="email" class="form-control" required v-model="company.pic_number" placeholder="Nomor HP PIC">
+                                        <input type="text" class="form-control" required v-model="company.pic_number" placeholder="Nomor HP PIC"
+                                        id="phone" name="phone" v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('phone') }">
+                                        <div v-if="submitted && errors.has('phone')" class="invalid-feedback">{{ errors.first('phone') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row" >
@@ -62,12 +77,13 @@
                                     </router-link>
                                     </div>
                                     <div class = "col-sm-7 pl-5" > 
-                                    <base-button @click="submitCompany" class="btn btn-success" type="success">Submit</base-button>
+                                    <base-button @click="submitCompany" v-bind:disabled="invalid" class="btn btn-success" type="success">Submit</base-button>
                                     </div>
                                     </div>
                                 </form>
-                            </div>
-                         <div v-else>
+                                </validation-observer>
+                            <!-- </div> -->
+                         <!-- <div v-else>
                            <div class="col-pr-1">
                                 <div class="form-group row"></div>
                                 <base-alert type="success">
@@ -85,7 +101,7 @@
                                  <div class="form-group row"></div>
                                 </div>
                                 </div>
-                          </div>
+                          </div> -->
                         </div>
                         </div>
                     </div>
@@ -99,6 +115,7 @@
 
 <script>
 import CompanyDataService from "../../services/CompanyDataService";
+import { required, email } from "vuelidate/lib/validators";
 
 export default {
   name: "add-student",
@@ -116,6 +133,17 @@ export default {
       },
       submitted: false
     };
+  },
+  validations: {
+    form: {
+      name: { required },
+      email: { required, email },
+      business: { required },
+      address: { required },
+      website: {required },
+      pic: { required },
+      phone: { required }
+    }
   },
   methods: {
     submitCompany() {
@@ -138,6 +166,12 @@ export default {
         .catch(e => {
           console.log(e);
         });
+        this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/companies')
+                }
+            });
     },
     
     newCompany() {

@@ -7,14 +7,23 @@
             <div class="col-lg-10 col-md-10">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-10 py-lg-10">
-                        <div v-if="!submitted">
+                        <!-- <div v-if="!submitted"> -->
                             <div class="col"> <h3>Tambah Topik / Bidang</h3> </div>
+                            <validation-observer>
                                 <form>
                                     <div class="form-group row"></div>
                                     <div class="form-group row">
                                         <label for="name" class="col-md-3 col-form-label text-md-right">Nama Topik</label>
                                         <div class="col-md-7">
-                                        <input type="text" class="form-control" required id="name" v-model="topic.name" name="name" placeholder="IoT, Network Automation, SysAdmin">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               v-validate="'required'" 
+                                               id="name" 
+                                               v-model="topic.name" 
+                                               name="name" 
+                                               placeholder="IoT, Network Automation, SysAdmin"
+                                               :class="{ 'is-invalid': submitted && errors.has('name') }">
+                                               <div  v-if="submitted && errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</div>
                                         </div>
                                     </div> 
                                     <div class="form-group row" >
@@ -25,12 +34,13 @@
                                     </router-link>
                                     </div>
                                     <div class = "col-sm-7 pl-5" > 
-                                    <base-button @click="submitTopic" class="btn btn-success" type="success">Submit</base-button>
+                                    <base-button @click="submitTopic" v-bind:disabled="invalid" class="btn btn-success" type="success">Submit</base-button>
                                     </div>
                                     </div>                                      
                                 </form>
-                            </div>
-                          <div v-else>
+                                </validation-observer>
+                            <!-- </div> -->
+                          <!-- <div v-else>
                             <div class="col-pr-1">
                                 <div class="form-group row"></div>
                                 <base-alert type="success">
@@ -48,7 +58,7 @@
                                  <div class="form-group row"></div>
                                 </div>
                                 </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
@@ -62,6 +72,7 @@
 
 <script>
 import TopicDataService from "../../services/TopicDataService";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "add-student",
@@ -73,6 +84,11 @@ export default {
       },
       submitted: false
     };
+  },
+  validations: {
+    form: {
+      name: { required }
+    }
   },
   methods: {
     submitTopic() {
@@ -89,6 +105,12 @@ export default {
         .catch(e => {
           console.log(e);
         });
+        this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/topics')
+                }
+            });
     },
     
     newTopic() {

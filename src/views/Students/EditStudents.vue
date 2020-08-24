@@ -22,6 +22,7 @@
                         </div>
                         <!-- Member -->
                         <template>
+                          <validation-observer>
                             <form @submit.prevent>
                               <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
@@ -31,9 +32,8 @@
                                                         label="Nama Lengkap"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.name"
-                                                        
-                                            />
+                                                        v-model="tableData.first_name"
+                                                        />
                                         </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
@@ -41,8 +41,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.nim"
-                                                        
-                                            />
+                                                        />
                                         </div>
                                     </div>
                                     <div class="row">
@@ -52,8 +51,13 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.number_phone"
-                                                        
+                                                        id="phone" 
+                                                        name="phone"
+                                                        v-validate="'required'"
+                                                        :class="{ 'is-invalid': submitted && errors.has('phone') }"
+     
                                             />
+                                            <div  v-if="submitted && errors.has('phone')" class="invalid-feedback">{{ errors.first('phone') }}</div>
                                         </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
@@ -61,8 +65,14 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.email"
-                                                        
+                                                        id="email" 
+                                                        name="email"
+                                                        v-validate="'required'"
+                                                        :class="{ 'is-invalid': submitted && errors.has('email') }"
+     
                                             />
+                                            <div  v-if="submitted && errors.has('email')" class="invalid-feedback">{{ errors.first('email') }}</div>
+                                            
                                         </div>
                                     </div>
                                     <!-- Kontak -->
@@ -74,8 +84,14 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.village"
-                                                        
+                                                        id="village" 
+                                                        name="village"
+                                                        v-validate="'required'"
+                                                        :class="{ 'is-invalid': submitted && errors.has('village') }"
+     
                                             />
+                                            <div  v-if="submitted && errors.has('village')" class="invalid-feedback">{{ errors.first('village') }}</div>
+                                            
                                         </div>
                                         <div class="col-lg-2">
                                             <base-input alternative=""
@@ -83,8 +99,14 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.rt_village"
-                                                        
+                                                        id="rt" 
+                                                        name="rt"
+                                                        v-validate="'required'"
+                                                        :class="{ 'is-invalid': submitted && errors.has('rt') }"
+     
                                             />
+                                            <div  v-if="submitted && errors.has('rt')" class="invalid-feedback">{{ errors.first('rt') }}</div>
+                                            
                                         </div>
                                         <div class="col-lg-2">
                                             <base-input alternative=""
@@ -92,8 +114,14 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.rw_village"
-                                                        
+                                                        id="rw" 
+                                                        name="rw"
+                                                        v-validate="'required'"
+                                                        :class="{ 'is-invalid': submitted && errors.has('rw') }"
+     
                                             />
+                                            <div  v-if="submitted && errors.has('rw')" class="invalid-feedback">{{ errors.first('rw') }}</div>
+                                            
                                         </div>
                                         <div class="col-lg-4">
                                             <base-input alternative=""
@@ -101,8 +129,14 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.sub_district"
-                                                        
+                                                        id="district" 
+                                                        name="district"
+                                                        v-validate="'required'"
+                                                        :class="{ 'is-invalid': submitted && errors.has('district') }"
+     
                                             />
+                                            <div  v-if="submitted && errors.has('district')" class="invalid-feedback">{{ errors.first('district') }}</div>
+                                            
                                         </div>
                                     </div>
                                     <div class="row">
@@ -112,8 +146,14 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.city"
-                                                        
+                                                        id="city" 
+                                                        name="city"
+                                                        v-validate="'required'"
+                                                        :class="{ 'is-invalid': submitted && errors.has('city') }"
+     
                                             />
+                                            <div  v-if="submitted && errors.has('city')" class="invalid-feedback">{{ errors.first('city') }}</div>
+                                            
                                         </div>
                                         <div class="col-lg-4">
                                             <base-input alternative=""
@@ -121,8 +161,14 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.province"
-                                                        
+                                                        id="province" 
+                                                        name="province"
+                                                        v-validate="'required'"
+                                                        :class="{ 'is-invalid': submitted && errors.has('province') }"
+     
                                             />
+                                            <div  v-if="submitted && errors.has('province')" class="invalid-feedback">{{ errors.first('province') }}</div>
+                                            
                                         </div>
                                         <div class="col-lg-4">
                                             <base-input alternative=""
@@ -130,17 +176,24 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.postal_code"
-                                                        
+                                                        id="postal_code" 
+                                                        name="postal_code"
+                                                        v-validate="'required'"
+                                                        :class="{ 'is-invalid': submitted && errors.has('postal_code') }"
+     
                                             />
+                                            <div  v-if="submitted && errors.has('postal_code')" class="invalid-feedback">{{ errors.first('postal_code') }}</div>
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 text-left">
                                     <router-link :to="{name: 'Mahasiswa'}">
-                                    <base-button href="#!" size="md" type="default" class="float-left" @click="updateStudent">Simpan</base-button>
+                                    <base-button href="#!" size="md" type="default" class="float-left" @click="updateStudent" v-bind:disabled="invalid">Simpan</base-button>
                                     </router-link>
                                 </div>
                             </form>
+                            </validation-observer>
                         </template>
                     </card>
                 </div>
@@ -151,7 +204,7 @@
 
 <script>
 import StudentDataService from "../../services/StudentDataService";
-
+import { required, email } from "vuelidate/lib/validators";
   export default {
     name: 'user-profile',
     props: {
@@ -170,6 +223,18 @@ import StudentDataService from "../../services/StudentDataService";
           }]
       }
     },
+ validations: {
+    form: {
+      phone: { required },
+      email: { required, email },
+      village: { required },
+      rt: { required },
+      rw: { required },
+      city: { required },
+      province: { required },
+      postal_code: {required }
+    }
+  },
     methods: {
       getStudent(id) {
       StudentDataService.get(id)

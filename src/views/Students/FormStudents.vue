@@ -8,80 +8,105 @@
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-10 py-lg-10">
                             <div class="col"> <h3>Mahasiswa Baru</h3> </div>
-                                <div v-if="!submitted">
+                                <!-- <div v-if="!submitted"> -->
+                                <validation-observer>
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="form-group row"></div>
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-3 col-form-label text-md-right">Nama Depan</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" required id="name" v-model="student.first_name" name="name" placeholder="Nama Depan">
+                                        <input type="text" class="form-control" id="name" v-model="student.first_name" name="name" placeholder="Nama Depan"
+                                        v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('name') }">
+                                        <div v-if="submitted && errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="name" class="col-sm-3 col-form-label text-md-right">Nama Belakang</label>
+                                        <label for="last" class="col-sm-3 col-form-label text-md-right">Nama Belakang</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" required id="name" v-model="student.last_name" name="name" placeholder="Nama Belakang">
+                                        <input type="text" class="form-control" id="last_name" v-model="student.last_name" name="last_name" placeholder="Nama Belakang"
+                                        v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('last_name') }">
+                                        <div v-if="submitted && errors.has('last_name')" class="invalid-feedback">{{ errors.first('last_name') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="nim" class="col-sm-3 col-form-label text-md-right">NIM</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="nim" v-model="student.nim" name="nim" placeholder="Nim">
+                                        <input type="text" class="form-control" id="nim" v-model="student.nim" name="nim" placeholder="Nim"
+                                        v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('nim') }">
+                                        <div v-if="submitted && errors.has('nim')" class="invalid-feedback">{{ errors.first('nim') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="number_phone" class="col-sm-3 col-form-label text-md-right">Nomor Telepon</label>
                                         <div class="col-sm-7">
-                                        <input type="number" class="form-control" id="number_phone" v-model="student.number_phone" name="number_phone" placeholder="Nomor Telepon">
+                                        <input type="number" class="form-control" id="number_phone" v-model="student.number_phone" name="number_phone" placeholder="Nomor Telepon"
+                                        v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('number_phone') }">
+                                        <div v-if="submitted && errors.has('number_phone')" class="invalid-feedback">{{ errors.first('number_phone') }}</div>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="email" class="col-sm-3 col-form-label text-md-right">Email</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="email" v-model="student.email" name="email" placeholder="name@mail.ugm.ac.id">
+                                        <input type="text" class="form-control" id="email" v-model="student.email" name="email" placeholder="name@mail.ugm.ac.id"
+                                         v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('email') }">
+                                        <div v-if="submitted && errors.has('email')" class="invalid-feedback">{{ errors.first('email') }}</div>
                                         </div>
                                     </div>
                                         <div class="form-group row">
                                         <label for="address" class="col-sm-3 col-form-label text-md-right">Desa</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="address" v-model="student.village" name="village" placeholder="Desa">
+                                        <input type="text" class="form-control" id="address" v-model="student.village" name="village" placeholder="Desa"
+                                        v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('village') }">
+                                        <div v-if="submitted && errors.has('village')" class="invalid-feedback">{{ errors.first('village') }}</div>
                                         </div>
                                     </div>
                                         <div class="form-group row">
                                         <label for="postal_code" class="col-sm-3 col-form-label text-md-right">RT</label>
                                         <div class="col-sm-7">
-                                        <input type="number" class="form-control" id="postal_code" v-model="student.rt_village" name="rt_village" placeholder="Rt">
+                                        <input type="number" class="form-control" id="postal_code" v-model="student.rt_village" name="rt_village" placeholder="Rt"
+                                        v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('rt_village') }">
+                                        <div v-if="submitted && errors.has('rt_village')" class="invalid-feedback">{{ errors.first('rt_village') }}</div>
                                         </div>
                                     </div>
                                         <div class="form-group row">
                                         <label for="postal_code" class="col-sm-3 col-form-label text-md-right">RW</label>
                                         <div class="col-sm-7">
-                                        <input type="number" class="form-control" id="postal_code" v-model="student.rw_village" name="rw_village" placeholder="Rw">
+                                        <input type="number" class="form-control" id="postal_code" v-model="student.rw_village" name="rw_village" placeholder="Rw"
+                                         v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('rw_village') }">
+                                        <div v-if="submitted && errors.has('rw_village')" class="invalid-feedback">{{ errors.first('rw_village') }}</div>
                                         </div>
                                     </div>
                                         <div class="form-group row">
                                         <label for="address" class="col-sm-3 col-form-label text-md-right">Kecamatan</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="address" v-model="student.sub_district" name="sub_district" placeholder="Kecamatan">
+                                        <input type="text" class="form-control" id="address" v-model="student.sub_district" name="sub_district" placeholder="Kecamatan"
+                                        v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('sub_district') }">
+                                        <div v-if="submitted && errors.has('sub_district')" class="invalid-feedback">{{ errors.first('sub_district') }}</div>
                                         </div>
                                     </div>
                                         <div class="form-group row">
                                         <label for="city" class="col-sm-3 col-form-label text-md-right">Kota/Kabupaten</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="city" v-model="student.city" name="city" placeholder="Kota / Kab">
+                                        <input type="text" class="form-control" id="city" v-model="student.city" name="city" placeholder="Kota / Kab"
+                                        v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('city') }">
+                                        <div v-if="submitted && errors.has('city')" class="invalid-feedback">{{ errors.first('city') }}</div>
                                         </div>
                                     </div>
                                         <div class="form-group row">
                                         <label for="province" class="col-sm-3 col-form-label text-md-right">Provinsi</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="province" v-model="student.province" name="province" placeholder="Provinsi">
+                                        <input type="text" class="form-control" id="province" v-model="student.province" name="province" placeholder="Provinsi"
+                                         v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('province') }">
+                                        <div v-if="submitted && errors.has('province')" class="invalid-feedback">{{ errors.first('province') }}</div>
                                         </div>
                                     </div>
                                         <div class="form-group row">
                                         <label for="postal_code" class="col-sm-3 col-form-label text-md-right">Kode Pos</label>
                                         <div class="col-sm-7">
-                                        <input type="number" class="form-control" id="postal_code" v-model="student.postal_code" name="postal_code" placeholder="Kode Pos">
+                                        <input type="number" class="form-control" id="postal_code" v-model="student.postal_code" name="postal_code" placeholder="Kode Pos"
+                                        v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('postal_code') }">
+                                        <div v-if="submitted && errors.has('postal_code')" class="invalid-feedback">{{ errors.first('postal_code') }}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row" >
@@ -92,12 +117,13 @@
                                     </router-link>
                                     </div>
                                     <div class = "col-sm-7 pl-5" >
-                                    <base-button @click="submitStudent" class="btn btn-success" type="success">Submit</base-button>
+                                    <base-button @click="submitStudent" v-bind:disabled="invalid" class="btn btn-success" type="success">Submit</base-button>
                                     </div>
                                     </div> 
                                 </form>
-                            </div>
-                            <div v-else>
+                              </validation-observer>
+                            <!-- </div> -->
+                            <!-- <div v-else>
                                 <div class="col-pr-1">
                                 <div class="form-group row"></div>
                                 <base-alert type="success">
@@ -115,7 +141,7 @@
                                  <div class="form-group row"></div>
                                 </div>
                                 </div> 
-                            </div>
+                            </div> -->
                            </div>
                         </div>
                     </div>
@@ -127,6 +153,7 @@
 
 <script>
 import StudentDataService from "../../services/StudentDataService";
+import { required, email} from "vuelidate/lib/validators";
 
 export default {
   name: "add-student",
@@ -149,6 +176,22 @@ export default {
       },
       submitted: false
     };
+  },
+  validations: {
+    form: {
+      name: { required },
+      last_name: { required },
+      nim: { required },
+      number_phone: { required },
+      email: { required, email },
+      village: { required },
+      rt_village: { required },
+      rw_village: { required },
+      sub_district: { required },
+      city: { required },
+      province: { required },
+      postal_code: { required },
+    }
   },
   methods: {
     submitStudent() {
@@ -179,6 +222,12 @@ export default {
         .catch(e => {
           console.log(e);
         });
+        this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/students')
+                }
+            });
     },
     
     newStudent() {
