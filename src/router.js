@@ -259,19 +259,19 @@ let router = new Router({
                 }
             ]
         },
-        // Router.beforeEach((to, from, next) => {
-        //     if(to.matched.some(record => record.meta.requiresAuth)) {
-        //       if (store.getters.isLoggedIn) {
-        //         next()
-        //         return
-        //       }
-        //       next('/login') 
-        //     } else {
-        //       next() 
-        //     }
-        //   })
     ]
 })
 
+router.beforeEach((to, from, next) => {
+    const publicPages = ['/login'];
+    const authRequired = !publicPages.includes(to.path);
+    const loggedIn = localStorage.getItem('token');
+    if (authRequired && !loggedIn) {
+      return next('/login');
+    }
+  
+    next();
+})
 
 export default router
+

@@ -51,12 +51,12 @@
           </th>
           <th class="text-md-center" scope="row">
             <div class="media-body">
-                <span class="name mb-0 text-sm"><b-link icon="files" href="#" target="_blank">{{row.thesis_proposal}}</b-link></span>
+                <span class="name mb-0 text-sm"><b-button pill variant="default" size="sm" :href="row.thesis_proposal">Download</b-button></span>
               </div>
           </th>
           <th scope="row">
             <div class="text-md-center">
-                <span class="name mb-0 text-sm"><b-button pill variant="default" size="sm" @click="onClick()">DownLoad</b-button></span>
+                <span class="name mb-0 text-sm"><b-button pill variant="default" size="sm" :href="row.thesis_report">Download</b-button></span>
               </div>
           </th>
           <th scope="row">

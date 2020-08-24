@@ -34,7 +34,7 @@
         <template slot-scope="{row}">
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.id}}</span>
+                <span class="name mb-0 text-sm">{{row.url}}</span>
               </div>
           </th>
           <th scope="row">
@@ -63,7 +63,7 @@
   </div>
 </template>
 <script>
-import StudentDataService from "../../services/StudentDataService";
+import UserDataService from "../../services/UserDataService";
 
   export default {
     name: 'projects-table',
@@ -85,7 +85,7 @@ import StudentDataService from "../../services/StudentDataService";
     },
     methods: {
     retrieveStudents() {
-      StudentDataService.getAll()
+      UserDataService.getAll()
         .then(response => {
           this.tableData = response.data;
           console.log(response.data);

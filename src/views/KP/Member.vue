@@ -15,20 +15,21 @@
                                 <div class="form-group row">
                                 <label for="name" class="col-sm-3 col-form-label text-md-right">Nama</label>
                                 <div class="col-sm-7">
-                                <input  type="text" 
-                                        class="form-control" 
-                                        id="name" 
-                                        v-model="student.first_name" 
-                                        disabled>
+                                <v-select v-model="students.student_name"
+                                  @input="selectIdStudent($event)"
+                                  :options="students.student_list"
+                                  label="first_name">
+                                </v-select>
                                 </div>
                                 </div>
+
                                 <div class="form-group row">
                                 <label for="nim" class="col-sm-3 col-form-label text-md-right">NIM</label>
                                 <div class="col-sm-7">
                                 <input  type="num" 
                                         class="form-control" 
                                         id="nim" 
-                                        v-model="student.profile.nim" 
+                                        v-model="students.student_nim" 
                                         disabled>
                                 </div>
                                 </div>
@@ -256,6 +257,7 @@ import LecturerDataService from "../../services/LecturerDataService";
 import CompanyDataService from "../../services/CompanyDataService";
 import TopicDataService from "../../services/TopicDataService";
 import StudentDataService from "../../services/StudentDataService";
+import UserDataService from "../../services/UserDataService";
 import axios from 'axios';
 
 import Vue from 'vue'
@@ -270,6 +272,12 @@ components: {flatPicker},
       return {
         step:1,
         student:'',
+        students:{
+          student_list:'',
+          student_id:'',
+          student_name:'',
+          student_nim:''
+        },
         members:{
          student_list:'',
          student_id:1,
@@ -361,10 +369,20 @@ components: {flatPicker},
           console.log(e);
         });
     },
-     retrieveStudents() {
+     retrieveMember() {
       StudentDataService.getAll()
         .then(response => {
           this.members.student_list= response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+      retrieveStudent() {
+      UserDataService.getAll()
+        .then(response => {
+          this.students.student_list= response.data;
           console.log(response.data);
         })
         .catch(e => {
@@ -431,6 +449,10 @@ components: {flatPicker},
       this.members.student_id = e.id
       this.members.selected_name = e.first_name
       this.members.selected_nim = e.nim
+    },
+    selectIdStudent(e) {
+      this.students.student_id = e.id
+      this.students.student_nim = e.profile.nim
     },   
     prev() {
       this.step--;
@@ -444,9 +466,10 @@ components: {flatPicker},
   },
     mounted() {
     this.retrieveLecturer();
+    this.retrieveStudent();
     this.retrieveCompany();
     this.retrieveTopics();
-    this.retrieveStudents();
+    this.retrieveMembers();
   }
   };
 </script>
