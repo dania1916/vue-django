@@ -10,27 +10,20 @@
                         <!-- <div v-if="!submitted"> -->
                             <div class="col"> <h3>Tambah Topik / Bidang</h3> </div>
                             <validation-observer>
-                    <!-- <form role="form" @submit.prevent="handleSubmit">
-                      <div class="form-group">
-                        <div class="form-group">
-                              <input  type="text" v-model="topic.name" v-validate="'required'" id="firstName" name="firstName" placeholder="First Name" class="form-control" :class="{ 'is-invalid': submitted && errors.has('firstName') }" />
-                              <div v-if="submitted && errors.has('firstName')" class="invalid-feedback">{{ errors.first('firstName') }}</div>
-                          </div>
-                        <div class="form-group">
-                           <div class="text-center">
-                            <base-button type="primary"  @click="handleSubmit" v-bind:disabled="invalid" class="my-4">Create Account</base-button>
-                           </div>
-                        </div>
-                      </div>
-                    </form> -->
-                  </validation-observer>
-                                <form role="form" @submit.prevent="handleSubmit">
+                                <form>
                                     <div class="form-group row"></div>
                                     <div class="form-group row">
                                         <label for="name" class="col-md-3 col-form-label text-md-right">Nama Topik</label>
                                         <div class="col-md-7">
-                                        <input  type="text" v-model="topic.name" v-validate="'required'" name="topics Name" placeholder="Bidang Konsentrasi" class="form-control" :class="{ 'is-invalid': submitted && errors.has('topics Name') }" />
-                                        <div v-if="submitted && errors.has('topics Name')" class="invalid-feedback">{{ errors.first('topics Name') }}</div>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               v-validate="'required'" 
+                                               id="name" 
+                                               v-model="topic.name" 
+                                               name="name" 
+                                               placeholder="IoT, Network Automation, SysAdmin"
+                                               :class="{ 'is-invalid': submitted && errors.has('name') }">
+                                               <div  v-if="submitted && errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</div>
                                         </div>
                                     </div> 
                                     <div class="form-group row" >
@@ -41,12 +34,13 @@
                                     </router-link>
                                     </div>
                                     <div class = "col-sm-7 pl-5" > 
-                                    <base-button @click="submitTopic" class="btn btn-success" type="success">Submit</base-button>
+                                    <base-button @click="submitTopic" v-bind:disabled="invalid" class="btn btn-success" type="success">Submit</base-button>
                                     </div>
                                     </div>                                      
                                 </form>
-                            <!-- </div>
-                          <div v-else>
+                                </validation-observer>
+                            <!-- </div> -->
+                          <!-- <div v-else>
                             <div class="col-pr-1">
                                 <div class="form-group row"></div>
                                 <base-alert type="success">
@@ -78,6 +72,7 @@
 
 <script>
 import TopicDataService from "../../services/TopicDataService";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "add-student",
@@ -89,6 +84,11 @@ export default {
       },
       submitted: false
     };
+  },
+  validations: {
+    form: {
+      name: { required }
+    }
   },
   methods: {
     submitTopic() {
@@ -105,6 +105,12 @@ export default {
         .catch(e => {
           console.log(e);
         });
+        this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/topics')
+                }
+            });
     },
     
     newTopic() {

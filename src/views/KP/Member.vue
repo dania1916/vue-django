@@ -7,6 +7,7 @@
             <div class="col-lg-10 col-md-10">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-10 py-lg-10">
+                      
                         <!-- PAGE 1 -->
                         <div v-if="step === 1">
                         <div class="col text-left"> <h3>Informasi Anggota</h3> </div>
@@ -39,7 +40,8 @@
                                  <v-select v-model="lecturers.lectuer_name"
                                   @input="selectIdLecturer($event)"
                                   :options="lecturers.lecturer_list"
-                                  label="name">
+                                  label="name"
+                                  >
                                 </v-select>
                                 </div>
                                 </div>
@@ -116,7 +118,7 @@
                                 </router-link>
                                 </div>
                                 <div class = "col-sm-7 pl-5" > 
-                                <base-button type = "success" @click.prevent="next()">Selanjutnya</base-button>
+                                <base-button type = "success" @click.prevent="next()" >Selanjutnya</base-button>
                                 </div>
                                 </div>
                         </form>
@@ -172,6 +174,7 @@
                             </div>
                            <div v-if="step === 3">
                         <div class="col text-left"> <h3>Informasi Laporan</h3> </div>
+                        <validation-observer>
                         <form>
                             <div class="form-group row"></div>
                                 <div class="form-group row">
@@ -179,8 +182,12 @@
                                 <div class="col-sm-7">
                                 <input type="text" 
                                        class="form-control" 
-                                       id="thesis_tittle"
-                                       v-model="internships.title">
+                                       id="tittle"
+                                       v-model="internships.title"
+                                       name="tittle"
+                                       v-validation="'required'"
+                                       :class="{ 'is-invalid': submitted && errors.has('tittle') }">
+                                <div  v-if="submitted && errors.has('tittle')" class="invalid-feedback">{{ errors.first('tittle') }}</div>
                                 </div>
                                 </div>
                                 
@@ -201,7 +208,11 @@
                                 <input type="text" 
                                        class="form-control" 
                                        id="publication_link"
-                                       v-model="thesis.publication_link">
+                                       v-model="thesis.publication_link"
+                                       name="publication_link"
+                                       v-validation="'required'"
+                                       :class="{ 'is-invalid': submitted && errors.has('publication_link') }">
+                                <div  v-if="submitted && errors.has('publication_link')" class="invalid-feedback">{{ errors.first('publication_link') }}</div>
                                 </div>
                                 </div>
                                 <div class="form-group row">
@@ -235,10 +246,12 @@
                                 </div>
                                 <div class = "col-sm-7 pl-5" >
                                 
-                                <base-button type = "success" @click="updateTopic()">Tambah</base-button>                                </div>
+                                <base-button type = "success" @click="updateTopic()" v-bind:disabled="invalid">Tambah</base-button>                                </div>
                                 </div>
                             </form>
+                            </validation-observer>
                             </div>
+                        
                     </div>
                 </div>
             </div>
@@ -257,9 +270,8 @@ import LecturerDataService from "../../services/LecturerDataService";
 import CompanyDataService from "../../services/CompanyDataService";
 import TopicDataService from "../../services/TopicDataService";
 import StudentDataService from "../../services/StudentDataService";
-import UserDataService from "../../services/UserDataService";
+import { required } from "vuelidate/lib/validators";
 import axios from 'axios';
-
 import Vue from 'vue'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
@@ -319,6 +331,11 @@ components: {flatPicker},
       submitted: false,
       }
     },
+    validations: {
+    form: {
+      tittle: { required },
+      publication_link: { required }
+    } },
       computed: {
         isLoggedIn() {
                 return this.$store.getters.isLoggedIn
@@ -415,13 +432,16 @@ components: {flatPicker},
                     Authorization: `Bearer ${token}`
                 } 
         })
-        .then(response => {
-          console.log(response.data);
-          this.message = 'The tutorial was updated successfully!';
-        })
+        this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/internships')
+                }
+            })
         .catch(e => {
           console.log(e);
         });
+        
   },
     handleFileProposal(event){
       this.handleFile.proposal = event.target.files[0];

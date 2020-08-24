@@ -22,6 +22,7 @@
                         </div>
                         <!-- Member -->
                         <template>
+                          <validation-observer>
                             <form @submit.prevent>
                                 <h6 class="heading-small text-muted"></h6>
                                 <div class="pl-lg-4">
@@ -32,7 +33,13 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.name" 
+                                                        id="name" 
+                                                        name="name"
+                                                        v-validate="'required'"
+                                                        :class="{ 'is-invalid': submitted && errors.has('name') }"
+     
                                             />
+                                            <div  v-if="submitted && errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</div>
                                     </div>
                                 </div>
                                 </div>
@@ -45,12 +52,13 @@
                             </router-link>
                             </div>
                             <div class = "pl-3" >
-                            <router-link :to="{name: 'Bidang'}">
-                            <base-button type = "success" @click="updateTopic">Update</base-button>
-                            </router-link>
+                            
+                            <base-button type = "success" @click="updateTopic" v-bind:disabled="invalid">Update</base-button>
+                            
                             </div> 
                             </div>
                             </form>
+                            </validation-observer>
                         </template>
                     </card>
                 </div>
@@ -61,7 +69,7 @@
 
 <script>
 import TopicDataService from "../../services/TopicDataService";
-
+import { required } from "vuelidate/lib/validators";
   export default {
     name: 'user-profile',
     props: {
@@ -80,6 +88,11 @@ import TopicDataService from "../../services/TopicDataService";
           }]
       }
     },
+    validations: {
+    form: {
+      name: { required },
+    }
+  },
     methods: {
       getTopic(id) {
       TopicDataService.get(id)
@@ -90,6 +103,7 @@ import TopicDataService from "../../services/TopicDataService";
         .catch(e => {
           console.log(e);
         });
+        
     },
     updateTopic() {
     TopicDataService.update(this.tableData.id, this.tableData)

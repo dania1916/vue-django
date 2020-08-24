@@ -7,7 +7,7 @@
             <div class="col-lg-10 col-md-10">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-10 py-lg-10">
-                       
+                          <!-- <div v-if="!submitted"> -->
                             <div class="col"> <h3>Tambah Dosen</h3> </div>
                                 <validation-observer>
                                 <form  role="form" @submit.prevent="submitLecturer">
@@ -81,7 +81,7 @@
                                     </div>                                                                 
                                 </form>
                                 </validation-observer>
-                            
+                            <!-- </div> -->
                             <!-- <div v-else>
                                     <div class="col-pr-1">
                                     <div class="form-group row"></div>
