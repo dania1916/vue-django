@@ -7,27 +7,43 @@
             <div class="col-lg-10 col-md-10">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-10 py-lg-10">
-                        <div v-if="!submitted">
+                        <!-- <div v-if="!submitted"> -->
                             <div class="col"> <h3>Tambah Topik / Bidang</h3> </div>
-                                <form>
+                            <validation-observer>
+                    <!-- <form role="form" @submit.prevent="handleSubmit">
+                      <div class="form-group">
+                        <div class="form-group">
+                              <input  type="text" v-model="topic.name" v-validate="'required'" id="firstName" name="firstName" placeholder="First Name" class="form-control" :class="{ 'is-invalid': submitted && errors.has('firstName') }" />
+                              <div v-if="submitted && errors.has('firstName')" class="invalid-feedback">{{ errors.first('firstName') }}</div>
+                          </div>
+                        <div class="form-group">
+                           <div class="text-center">
+                            <base-button type="primary"  @click="handleSubmit" v-bind:disabled="invalid" class="my-4">Create Account</base-button>
+                           </div>
+                        </div>
+                      </div>
+                    </form> -->
+                  </validation-observer>
+                                <form role="form" @submit.prevent="handleSubmit">
                                     <div class="form-group row"></div>
                                     <div class="form-group row">
                                         <label for="name" class="col-md-3 col-form-label text-md-right">Nama Topik</label>
                                         <div class="col-md-7">
-                                        <input type="text" class="form-control" required id="name" v-model="topic.name" name="name" placeholder="IoT, Network Automation, SysAdmin">
+                                        <input  type="text" v-model="topic.name" v-validate="'required'" name="topics Name" placeholder="Bidang Konsentrasi" class="form-control" :class="{ 'is-invalid': submitted && errors.has('topics Name') }" />
+                                        <div v-if="submitted && errors.has('topics Name')" class="invalid-feedback">{{ errors.first('topics Name') }}</div>
                                         </div>
                                     </div>   
                                     <div class="form-group row">
                                         <label for="inputNamaPerusahaan" class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-7">
-                                            <base-button @click="submitTopic" class="btn btn-success" type="success">Submit</base-button>
+                                            <base-button @click="handleSubmit" v-bind:disabled="invalid" class="btn btn-success" type="success">Submit</base-button>
                                             <router-link :to="{name: 'Bidang'}">
                                             <base-button type="danger">Kembali</base-button>
                                             </router-link>
                                         </div>   
                                     </div>                                      
                                 </form>
-                            </div>
+                            <!-- </div>
                           <div v-else>
                             <div class="col">
                               <div class="form-group row"></div>
@@ -40,7 +56,7 @@
                                 <base-button type="primary" @click="newTopic">Tambah Mahasiswa</base-button>
                               <div class="form-group row"></div>
                             </div> 
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
@@ -86,7 +102,28 @@ export default {
     newTopic() {
       this.submitted = false;
       this.topic = {};
-    }
+    },
+        handleSubmit() {
+        let data = {
+                name: this.topic.name
+                
+            }
+                  TopicDataService.create(data)
+                      .then(response => {
+                        this.topic.id = response.data.id;
+                        console.log(response.data);
+                        this.submitted = true;
+                      })
+                      .catch(e => {
+                        console.log(e);
+                      });
+            this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/topics')
+                }
+            });
+        }
   },
 };
 </script>

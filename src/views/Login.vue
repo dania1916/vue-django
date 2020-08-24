@@ -19,6 +19,37 @@
                         <div class="text-center text-muted mb-4">
                             <small>Or sign in with credentials</small>
                         </div>
+    <!-- <form @submit.prevent="login">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          v-model.trim="$v.username.$model"
+          name="username"
+          class="form-control"
+          :class="{ 'is-invalid': submitted && $v.username.$error }"
+        >
+        <div v-if="submitted && !$v.username.required" class="invalid-feedback">Username is required</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          v-model.trim="$v.password.$model"
+          name="password"
+          class="form-control"
+          :class="{ 'is-invalid': submitted && $v.password.$error }"
+        >
+        <div v-if="submitted && !$v.password.required" class="invalid-feedback">Password is required</div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" @click="login"  :disabled="loading">
+          <span class="spinner-border spinner-border-sm" v-show="loading"></span>
+          <span>Login</span>
+        </button>
+      </div>
+      <div v-if="error" class="alert alert-danger">{{ error }}</div>
+    </form> -->
                         <form role="form">
                             <base-input class="input-group-alternative mb-3"
                                         placeholder="Email"
@@ -52,8 +83,9 @@
                 </div>
             </div>
         </div>
-</template>
-<script>
+</template><script>
+import { required } from "vuelidate/lib/validators";
+
   export default {
     name: 'login',
     data() {
@@ -64,20 +96,40 @@
         }
       }
     },
+    validations: {
+        username: { required },
+        password: { required }
+  },
     methods:{
       login: function () {
         let email = this.model.email
         let password = this.model.password
         this.$store.dispatch('login', {email, password})
-        
         .then(() => this.$router.push('/'))
         .catch(err => console.log(err))
       }
     },
-    computed:{
-        
+        onSubmit() {
+      this.submitted = true;
+
+      // stop here if form is invalid
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      }
+
+      this.loading = true;
+      this.$store.dispatch('login', this.model.email, this.model.password)
+    //   authenticationService.login(this.model.username, this.model.password).then(
+        error => {
+          this.error = error;
+          this.loading = false;
+        }
+    //   );
     }
   }
 </script>
+<style>
+</style>
 <style>
 </style>
