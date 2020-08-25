@@ -45,8 +45,7 @@
                                                         disabled
                                             />
                                         </div>
-                                         <!-- Pelaksanaan -->
-                                <div class="col-lg-4">
+                                        <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="Nama Belakang"
                                                         placeholder=""
@@ -88,6 +87,10 @@
                                                         disabled
                                             />
                                         </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <!-- Pelaksanaan -->
                                 <h6 class="heading-small text-muted mb-4">Pelaksanaan</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
@@ -128,7 +131,7 @@
                                     </div>
                                 </div>
                                 <hr class="my-4" />
-                                <!-- Address -->
+                                <!-- Laporan -->
                                 <h6 class="heading-small text-muted mb-4">Laporan</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
@@ -184,10 +187,6 @@
                                     </div>
                                 </div>
                                 <hr class="my-4" />
-                                    </div>
-                                </div>
-                                <hr class="my-4" />
-                               
                             </form>
                         </template>
                     </card>
@@ -223,8 +222,7 @@
                                                         disabled
                                             />
                                         </div>
-                                         <!-- Pelaksanaan -->
-                                <div class="col-lg-4">
+                                        <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="Nama Belakang"
                                                         placeholder=""
@@ -271,6 +269,10 @@
                                                         disabled
                                             />
                                         </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <!-- Pelaksanaan -->
                                 <h6 class="heading-small text-muted mb-4">Pelaksanaan</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
@@ -319,7 +321,7 @@
                                 <h6 class="heading-small text-muted mb-4">Laporan</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-lg-6">  
+                                        <div class="col-lg-6">
                                             <base-input label="Judul Laporan">
                                                         <textarea 
                                                         class="form-control"
@@ -374,10 +376,6 @@
                                     </div>
                                 </div>
                                 <hr class="my-4" />
-                                    </div>
-                                </div>
-                                <hr class="my-4" />
-                               
                             </form>
                         </template>
                     </card>
@@ -389,7 +387,6 @@
 <script>
 import InternshipDataService from "../services/InternshipDataService";
 import axios from 'axios'
-
 export default {
     name: 'user-profile',
     props: {
@@ -446,4 +443,3 @@ export default {
   };
 </script>
 <style></style>
-

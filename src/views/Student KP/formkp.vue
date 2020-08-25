@@ -271,7 +271,7 @@ components: {flatPicker},
         student:'',
         members:{
          student_list:'',
-         student_id:'',
+         student_id:1,
          student_name:'',
          selected_name:'',
          selected_nim:'',
@@ -299,7 +299,7 @@ components: {flatPicker},
       },
       internships: {
         title:'',
-        group:1,
+        group:0,
         publication_link:'',
         start_date: '',
         end_date: ''
@@ -377,7 +377,7 @@ components: {flatPicker},
           formData.append('name', pk);
           formData.append('lecturer_adviser', this.lecturers.lecturer_id);
           formData.append('group', this.internships.group);
-          formData.append('member', this.members.member_id);
+          formData.append('member', this.members.student_id);
           formData.append('company_name', this.companies.company_id);
           formData.append('start_date', this.internships.start_date);
           formData.append('end_date', this.internships.end_date);
