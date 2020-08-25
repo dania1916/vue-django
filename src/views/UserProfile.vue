@@ -12,7 +12,8 @@
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
                         <router-link :to="{name: 'edit profile'}">
                         <base-button size="md" type="default" class="float-left">Edit profile</base-button>
-                        </router-link>                    </div>
+                        </router-link>                    
+                        </div>
                 </div>
             </div>
         </base-header>

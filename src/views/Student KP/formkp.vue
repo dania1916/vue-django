@@ -123,6 +123,7 @@
                         <!-- PAGE 2 -->
                         <div v-if="step === 2">
                         <div class="col text-left"> <h3>Informasi Kegiatan</h3> </div>
+                        
                             <form>
                            <div class="form-group row">
                                 <label for="group" class="col-sm-3 col-form-label text-md-right">Nama Perusahaan</label>
@@ -169,8 +170,10 @@
                             </div> 
                             </form>
                             </div>
+                            <!-- Page 3 -->
                            <div v-if="step === 3">
                         <div class="col text-left"> <h3>Informasi Laporan</h3> </div>
+                        <validation-observer>
                         <form>
                             <div class="form-group row"></div>
                                 <div class="form-group row">
@@ -179,7 +182,12 @@
                                 <input type="text" 
                                        class="form-control" 
                                        id="thesis_tittle"
-                                       v-model="internships.title">
+                                       v-model="internships.title"
+                                        name="tittle"
+                                       required
+                                       v-validate="'required'"
+                                       :class="{ 'is-invalid': submitted && errors.has('tittle') }">
+                                <div  v-if="submitted && errors.has('tittle')" class="invalid-feedback">{{ errors.first('tittle') }}</div>
                                 </div>
                                 </div>
                                 
@@ -200,7 +208,11 @@
                                 <input type="text" 
                                        class="form-control" 
                                        id="publication_link"
-                                       v-model="thesis.publication_link">
+                                       v-model="thesis.publication_link"
+                                        name="publication_link"
+                                       v-validate="'required'"
+                                       :class="{ 'is-invalid': submitted && errors.has('publication_link') }">
+                                <div  v-if="submitted && errors.has('publication_link')" class="invalid-feedback">{{ errors.first('publication_link') }}</div>
                                 </div>
                                 </div>
                                 <div class="form-group row">
@@ -236,6 +248,7 @@
                                 <base-button type = "success" @click="updateTopic()">Tambah</base-button>                                </div>
                                 </div>
                             </form>
+                            </validation-observer>
                             </div>
                     </div>
                 </div>
@@ -256,7 +269,7 @@ import CompanyDataService from "../../services/CompanyDataService";
 import TopicDataService from "../../services/TopicDataService";
 import StudentDataService from "../../services/StudentDataService";
 import axios from 'axios';
-
+import { required } from "vuelidate/lib/validators";
 import Vue from 'vue'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
@@ -309,6 +322,12 @@ components: {flatPicker},
       },
       submitted: false,
       }
+    },
+    validations: {
+    form: {
+      tittle: { required },
+      publication_link: { required },
+    }
     },
       computed: {
         isLoggedIn() {
@@ -396,13 +415,15 @@ components: {flatPicker},
                     Authorization: `Bearer ${token}`
                 } 
         })
-        .then(response => {
-          console.log(response.data);
-          this.message = 'The tutorial was updated successfully!';
-        })
         .catch(e => {
           console.log(e);
         });
+        this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/internships')
+                }
+            })
   },
     handleFileProposal(event){
       this.handleFile.proposal = event.target.files[0];

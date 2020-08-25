@@ -126,6 +126,7 @@
                         <!-- PAGE 3 -->
                         <div v-if="step === 3">
                         <div class="col text-left"> <h3>Informasi Laporan</h3> </div>
+                        <validation-observer>
                         <form>
                             <div class="form-group row"></div>
                                 <div class="form-group row">
@@ -134,7 +135,11 @@
                                 <input type="text" 
                                        class="form-control" 
                                        id="thesis_tittle"
-                                       v-model="thesis.title">
+                                       v-model="thesis.title"
+                                       name="name"
+                                       v-validate="'required'"
+                                       :class="{ 'is-invalid': submitted && errors.has('name') }">
+                                <div  v-if="submitted && errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</div>
                                 </div>
                                 </div>
                                 
@@ -155,7 +160,11 @@
                                 <input type="text" 
                                        class="form-control" 
                                        id="publication_link"
-                                       v-model="thesis.publication_link">
+                                       v-model="thesis.publication_link"
+                                       name="publication_link"
+                                       v-validate="'required'"
+                                       :class="{ 'is-invalid': submitted && errors.has('publication_link') }">
+                                <div  v-if="submitted && errors.has('publication_link')" class="invalid-feedback">{{ errors.first('publication_link') }}</div>
                                 </div>
                                 </div>
                                 <div class="form-group row">
@@ -188,12 +197,13 @@
                                 <base-button type = "danger" @click.prevent="prev()">Kembali </base-button>
                                 </div>
                                 <div class = "col-sm-7 pl-5" >
-                                <router-link :to="{name: 'TA Mahasiswa'}">
+                                
                                 <base-button type = "success" @click="updateTopic()">Tambah</base-button>
-                                </router-link>
+                                
                                 </div>
                                 </div>
                         </form>
+                        </validation-observer>
                         </div>
                     </div>
                 </div>
@@ -211,7 +221,7 @@ import LecturerDataService from "../../services/LecturerDataService";
 import CompanyDataService from "../../services/CompanyDataService";
 import TopicDataService from "../../services/TopicDataService";
 import axios from 'axios';
-
+import { required } from "vuelidate/lib/validators";
 import Vue from 'vue'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
@@ -258,7 +268,12 @@ export default {
       submitted: false,
     };
   },
-    
+    validations: {
+    form: {
+      tittle: { required },
+      publication_link: { required },
+    }
+    },
   computed: {
   isLoggedIn() {
       return this.$store.getters.isLoggedIn
@@ -339,13 +354,15 @@ export default {
                     Authorization: `Bearer ${token}`
                 } 
         })
-        .then(response => {
-          console.log(response.data);
-          this.message = 'The tutorial was updated successfully!';
-        })
         .catch(e => {
           console.log(e);
         });
+        this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/thesis/user')
+                }
+            })
   },
     handleFileProposal(event){
       this.handleFile.proposal = event.target.files[0];

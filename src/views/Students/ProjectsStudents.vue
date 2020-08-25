@@ -9,11 +9,14 @@
             {{title}}
           </h3>
         </div>
-          <div class="col text-right">
-          <router-link :to="{name: 'Tambah Mahasiswa'}">
-          <base-button type="primary" size="md" href="#">Tambah Data</base-button>
-          </router-link>
-          </div>
+        <div class="col-md-3 text-right">
+          <base-input       placeholder="Search"
+                            class="text-black"
+                            alternative=""
+                            addon-right-icon="fas fa-search"
+                            >
+        </base-input>
+        </div>
       </div>
     </div>
 

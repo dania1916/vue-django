@@ -28,7 +28,6 @@
                                 <div v-if="submitted && errors.has('publication_link')" class="invalid-feedback">{{ errors.first('publication_link') }}</div>
                                 </div>
                                 </div>
-
                                 <div class="form-group row">
                                 <label for="nim" class="col-sm-3 col-form-label text-md-right">NIM</label>
                                 <div class="col-sm-7">

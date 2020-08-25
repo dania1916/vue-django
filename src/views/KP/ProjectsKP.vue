@@ -9,10 +9,13 @@
             {{title}}
           </h3>
         </div>
-        <div class="col text-right">
-          <router-link :to="{name: 'Anggota'}">
-          <base-button type="primary" size="md">Tambah Laporan</base-button>
-          </router-link>
+        <div class="col-md-3 text-right">
+          <base-input       placeholder="Search"
+                            class="text-black"
+                            alternative=""
+                            addon-right-icon="fas fa-search"
+                            >
+        </base-input>
         </div>
       </div>
     </div>
@@ -51,12 +54,12 @@
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm"><b-button pill variant="default" size="sm" :href="row.proposal">Download</b-button></span>
+                <span class="name mb-0 text-sm"><b-button pill variant="primary" size="sm" :href="row.proposal">Download</b-button></span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm"><b-button pill variant="default" size="sm" :href="row.report">Download</b-button></span>
+                <span class="name mb-0 text-sm"><b-button pill variant="primary" size="sm" :href="row.report">Download</b-button></span>
               </div>
           </th>
           <th scope="row">
