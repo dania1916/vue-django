@@ -19,8 +19,13 @@
                                 <v-select v-model="students.student_name"
                                   @input="selectIdStudent($event)"
                                   :options="students.student_list"
-                                  label="first_name">
+                                  label="first_name"
+                                  name="publication_link"
+                                  v-validate="'required'"
+                                  :class="{ 'is-invalid': submitted && errors.has('publication_link') }"
+                                  >
                                 </v-select>
+                                <div v-if="submitted && errors.has('publication_link')" class="invalid-feedback">{{ errors.first('publication_link') }}</div>
                                 </div>
                                 </div>
 
@@ -185,7 +190,8 @@
                                        id="tittle"
                                        v-model="internships.title"
                                        name="tittle"
-                                       v-validation="'required'"
+                                       required
+                                       v-validate="'required'"
                                        :class="{ 'is-invalid': submitted && errors.has('tittle') }">
                                 <div  v-if="submitted && errors.has('tittle')" class="invalid-feedback">{{ errors.first('tittle') }}</div>
                                 </div>
@@ -206,11 +212,11 @@
                                 <label for="inputJudul" class="col-sm-3 col-form-label text-md-right">Link Publikasi</label>
                                 <div class="col-sm-7">
                                 <input type="text" 
+                                       v-model="thesis.publication_link"
                                        class="form-control" 
                                        id="publication_link"
-                                       v-model="thesis.publication_link"
                                        name="publication_link"
-                                       v-validation="'required'"
+                                       v-validate="'required'"
                                        :class="{ 'is-invalid': submitted && errors.has('publication_link') }">
                                 <div  v-if="submitted && errors.has('publication_link')" class="invalid-feedback">{{ errors.first('publication_link') }}</div>
                                 </div>
@@ -239,15 +245,16 @@
                                 <input type="file" @change="handleFilePPT">
                                 </div>
                                 </div>
+
                                 <div class="form-group row">
                                 <label class="col-sm-3"></label>
                                 <div class = "col-sm-1" >
                                 <base-button type = "danger" @click.prevent="prev()">Kembali </base-button>
                                 </div>
                                 <div class = "col-sm-7 pl-5" >
-                                
-                                <base-button type = "success" @click="updateTopic()" v-bind:disabled="invalid">Tambah</base-button>                                </div>
+                                <base-button type = "success" @click="updateTopic" v-bind:disabled="invalid">Tambah</base-button>                                </div>
                                 </div>
+
                             </form>
                             </validation-observer>
                             </div>
@@ -270,6 +277,7 @@ import LecturerDataService from "../../services/LecturerDataService";
 import CompanyDataService from "../../services/CompanyDataService";
 import TopicDataService from "../../services/TopicDataService";
 import StudentDataService from "../../services/StudentDataService";
+import UserDataService from "../../services/UserDataService";
 import { required } from "vuelidate/lib/validators";
 import axios from 'axios';
 import Vue from 'vue'
@@ -282,8 +290,19 @@ export default {
 components: {flatPicker},
     data() {
       return {
+        submitted: false,
         step:1,
         student:'',
+        company: {
+          id: null,
+          name:'',
+          business:'',
+          address:'',
+          website:'',
+          email:'',
+          pic_name:'',
+          pic_number:'',
+      },
         students:{
           student_list:'',
           student_id:'',
@@ -326,16 +345,16 @@ components: {flatPicker},
         end_date: ''
       },
       thesis:{
-
       },
-      submitted: false,
       }
     },
     validations: {
     form: {
       tittle: { required },
-      publication_link: { required }
-    } },
+      publication_link: { required },
+      phone: { required }
+    }
+    },
       computed: {
         isLoggedIn() {
                 return this.$store.getters.isLoggedIn
@@ -432,16 +451,15 @@ components: {flatPicker},
                     Authorization: `Bearer ${token}`
                 } 
         })
-        this.submitted = true;
+        .catch(e => {
+          console.log(e);
+        });
+            this.submitted = true;
             this.$validator.validate().then(valid => {
                 if (valid) {
                     this.$router.push('/internships')
                 }
             })
-        .catch(e => {
-          console.log(e);
-        });
-        
   },
     handleFileProposal(event){
       this.handleFile.proposal = event.target.files[0];
@@ -478,7 +496,12 @@ components: {flatPicker},
       this.step--;
     },
     next() {
-      this.step++;
+      this.submitted = true;
+      this.$validator.validate().then(valid => {
+        if (valid) {
+            this.step++;
+        }
+    })
     },
     submit() {
       alert('Submit to blah and show blah and etc.');      
