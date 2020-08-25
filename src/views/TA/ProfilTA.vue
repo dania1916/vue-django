@@ -15,20 +15,21 @@
                                 <div class="form-group row">
                                 <label for="name" class="col-sm-3 col-form-label text-md-right">Nama</label>
                                 <div class="col-sm-7">
-                                <input  type="text" 
-                                        class="form-control" 
-                                        id="name" 
-                                        v-model="student.first_name" 
-                                        disabled>
+                                <v-select v-model="students.student_name"
+                                  @input="selectIdStudent($event)"
+                                  :options="students.student_list"
+                                  label="first_name">
+                                </v-select>
                                 </div>
                                 </div>
+
                                 <div class="form-group row">
                                 <label for="nim" class="col-sm-3 col-form-label text-md-right">NIM</label>
                                 <div class="col-sm-7">
                                 <input  type="num" 
                                         class="form-control" 
                                         id="nim" 
-                                        v-model="student.profile.nim" 
+                                        v-model="students.student_nim" 
                                         disabled>
                                 </div>
                                 </div>
@@ -210,6 +211,8 @@ import ThesisDataService from "../../services/ThesisDataService"
 import LecturerDataService from "../../services/LecturerDataService";
 import CompanyDataService from "../../services/CompanyDataService";
 import TopicDataService from "../../services/TopicDataService";
+import UserDataService from "../../services/UserDataService";
+
 import axios from 'axios';
 
 import Vue from 'vue'
@@ -224,7 +227,12 @@ export default {
   data() {
     return {
       step:1,
-      student:'',
+      students:{
+        student_list:'',
+        student_id:'',
+        student_name:'',
+        student_nim:''
+      },
       companies:{
         company_list:'',
         company_id:'',
@@ -309,6 +317,16 @@ export default {
           console.log(e);
         });
     },
+  retrieveStudent() {
+      UserDataService.getAll()
+        .then(response => {
+          this.students.student_list= response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
     prev() {
       this.step--;
     },
@@ -367,12 +385,17 @@ export default {
     },
     selectIdTopic(e) {
       this.topics.topic_id = e.id
+    },
+    selectIdStudent(e) {
+      this.students.student_id = e.id
+      this.students.student_nim = e.profile.nim
     }
   },
   mounted() {
     this.retrieveLecturer();
     this.retrieveCompany();
     this.retrieveTopics();
+    this.retrieveStudent();
   }
 };
 </script>

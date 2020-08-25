@@ -51,12 +51,12 @@
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.proposal}}</span>
+                <span class="name mb-0 text-sm"><b-button pill variant="default" size="sm" :href="row.proposal">Download</b-button></span>
               </div>
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.report}}</span>
+                <span class="name mb-0 text-sm"><b-button pill variant="default" size="sm" :href="row.report">Download</b-button></span>
               </div>
           </th>
           <th scope="row">
