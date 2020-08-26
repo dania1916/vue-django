@@ -25,7 +25,7 @@ class ThesisDataService {
     }
 
     findByTitle(title) {
-        return http.get(`/thesis?title=${title}`,{ headers: { Authorization: 'Bearer ' + token } });
+        return http.get(`/thesis?thesis_title=${title}`,{ headers: { Authorization: 'Bearer ' + token } });
     }
 }
 export default new ThesisDataService();

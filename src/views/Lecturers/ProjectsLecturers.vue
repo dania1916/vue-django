@@ -14,6 +14,9 @@
                             class="text-black"
                             alternative=""
                             addon-right-icon="fas fa-search"
+                            v-model="title_search"
+                            @change="searchTitle"
+                            @click="searchTitle"
                             >
         </base-input>
         </div>
@@ -91,7 +94,8 @@ import LecturerDataService from "../../services/LecturerDataService";
       },
         tableData: 
         [{
-          }]
+          }],
+          title_search:''
       }
     },
     methods: {
@@ -120,6 +124,16 @@ import LecturerDataService from "../../services/LecturerDataService";
         .then(response => {
           console.log(response.data);
           this.$router.push({ name: "Dosen" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+      searchTitle() {
+      LecturerDataService.findByTitle(this.title_search)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
         })
         .catch(e => {
           console.log(e);

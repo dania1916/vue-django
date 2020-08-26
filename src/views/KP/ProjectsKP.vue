@@ -14,6 +14,9 @@
                             class="text-black"
                             alternative=""
                             addon-right-icon="fas fa-search"
+                            v-model="title_search"
+                            @change="searchTitle"
+                            @click="searchTitle"
                             >
         </base-input>
         </div>
@@ -95,12 +98,23 @@ import InternshipDataService from "../../services/InternshipDataService"
       },
         tableData: 
         [{
-          }]
+          }],
+        title_search:''
       }
     },
     methods: {
     retrieveTopics() {
       InternshipDataService.getAll()
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    searchTitle() {
+      InternshipDataService.findByTitle(this.title_search)
         .then(response => {
           this.tableData = response.data;
           console.log(response.data);

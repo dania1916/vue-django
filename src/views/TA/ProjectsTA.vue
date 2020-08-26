@@ -14,6 +14,9 @@
                             class="text-black"
                             alternative=""
                             addon-right-icon="fas fa-search"
+                            v-model="title_search"
+                            @change="searchTitle"
+                            @click="searchTitle"
                             >
         </base-input>
         </div>
@@ -95,9 +98,8 @@ import axios from 'axios'
         pagination: {
         default: 1
       },
-        tableData: 
-        [{
-          }]
+        tableData: [{}],
+        title_search:''
       }
     },
 
@@ -134,7 +136,17 @@ import axios from 'axios'
    
                      fileLink.click();
                 });
-          }
+          },
+      searchTitle() {
+      ThesisDataService.findByTitle(this.title_search)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
   },
     mounted() {
     this.retrieveCompany();

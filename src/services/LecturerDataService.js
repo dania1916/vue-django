@@ -29,7 +29,7 @@ class LecturerDataService {
   }
 
   findByTitle(title) {
-    return http.get(`/lecturers?title=${title}`,{ headers:{Authorization: 'Bearer ' + token }});
+    return http.get(`/lecturers?name=${title}`,{ headers:{Authorization: 'Bearer ' + token }});
   }
 }
 

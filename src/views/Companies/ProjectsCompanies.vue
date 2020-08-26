@@ -14,6 +14,9 @@
                             class="text-black"
                             alternative=""
                             addon-right-icon="fas fa-search"
+                            v-model="title_search"
+                            @change="searchTitle"
+                            @click="searchTitle"
                             >
         </base-input>
         </div>
@@ -90,7 +93,8 @@ import CompanyDataService from "../../services/CompanyDataService";
       },
         tableData: 
         [{
-          }]
+          }],
+          title_search:''
       }
     },
     methods: {
@@ -104,6 +108,16 @@ import CompanyDataService from "../../services/CompanyDataService";
           console.log(e);
         });
     },
+    searchTitle() {
+      CompanyDataService.findByTitle(this.title_search)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
   },
     mounted() {
     this.retrieveCompany();

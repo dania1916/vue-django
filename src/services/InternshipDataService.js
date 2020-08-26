@@ -27,6 +27,7 @@ class InternshipDataService {
 
     findByTitle(title) {
         return http.get(`/internships?title=${title}`,{ headers: { Authorization: 'Bearer ' + token } });
+
     }
 }
 export default new InternshipDataService();

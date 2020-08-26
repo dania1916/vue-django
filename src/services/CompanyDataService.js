@@ -27,7 +27,7 @@ class CompanyDataService {
     }
 
     findByTitle(title) {
-        return http.get(`/companies?title=${title}`);
+        return http.get(`/companies?name=${title}`,{ headers: { Authorization: 'Bearer ' + token } });
     }
 }
 

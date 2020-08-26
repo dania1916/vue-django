@@ -26,7 +26,7 @@ class TopicDataService {
     }
 
     findByTitle(title) {
-        return http.get(`/topics?title=${title}`,{ headers: { Authorization: 'Bearer ' + token } });
+        return http.get(`/topics?name=${title}`,{ headers: { Authorization: 'Bearer ' + token } });
     }
 }
 export default new TopicDataService();

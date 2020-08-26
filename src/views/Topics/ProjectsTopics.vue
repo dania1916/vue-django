@@ -14,8 +14,16 @@
                             class="text-black"
                             alternative=""
                             addon-right-icon="fas fa-search"
+                            v-model="title_search"
+                            @change="searchTitle"
+                            @click="searchTitle"
                             >
         </base-input>
+        <!-- <button class="btn btn-outline-secondary" type="button"
+            @click="searchTitle"
+          >
+            Search
+          </button> -->
         </div>
       </div>
     </div>
@@ -79,7 +87,8 @@ import TopicDataService from "../../services/TopicDataService";
       },
         tableData: 
         [{
-          }]
+          }],
+          title_search:""
       }
     },
     methods: {
@@ -98,6 +107,16 @@ import TopicDataService from "../../services/TopicDataService";
         .then(response => {
           console.log(response.data);
           this.$router.push({ name: "topics" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    searchTitle() {
+      TopicDataService.findByTitle(this.title_search)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
         })
         .catch(e => {
           console.log(e);

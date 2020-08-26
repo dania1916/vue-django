@@ -26,7 +26,7 @@ class UserDataService {
     }
 
     findByTitle(title) {
-        return http.get(`/users?title=${title}`,{ headers: { Authorization: 'Bearer ' + token } });
+        return http.get(`/users?first_name=${title}`,{ headers: { Authorization: 'Bearer ' + token } });
     }
 }
 export default new UserDataService();

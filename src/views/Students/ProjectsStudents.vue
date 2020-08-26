@@ -14,6 +14,9 @@
                             class="text-black"
                             alternative=""
                             addon-right-icon="fas fa-search"
+                            v-model="title_search"
+                            @change="searchTitle"
+                            @click="searchTitle"
                             >
         </base-input>
         </div>
@@ -83,7 +86,8 @@ import UserDataService from "../../services/UserDataService";
       },
         tableData: 
         [{
-          }]
+          }],
+          title_search:''
       }
     },
     methods: {
@@ -97,6 +101,16 @@ import UserDataService from "../../services/UserDataService";
           console.log(e);
         });
     },
+      searchTitle() {
+      UserDataService.findByTitle(this.title_search)
+        .then(response => {
+          this.tableData = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
   },
     mounted() {
     this.retrieveStudents();
