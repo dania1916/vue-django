@@ -1,7 +1,7 @@
 <template>
     <div>
         <base-header class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-                     style="min-height: 600px; background-image: url(img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+                     style="min-height: 600px; background-image: url(img/theme/profile-cover.png); background-size: cover; background-position: center top;">
             <!-- Mask -->
             <span class="mask bg-gradient-success opacity-8"></span>
             <!-- Header container -->
@@ -21,14 +21,11 @@
         <div class="container-fluid mt--7">
             <div class="row">
                 <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-
                     <div class="card card-profile shadow">
                         <div class="row justify-content-center">
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
-                                    <a href="#">
-                                        <img src="img/theme/team-4-800x800.jpg" class="rounded-circle">
-                                    </a>
+                                    <img src="img/theme/team-4-800x800.jpg" class="rounded-circle">
                                 </div>
                             </div>
                         </div>

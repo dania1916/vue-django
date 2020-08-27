@@ -256,6 +256,12 @@ let router = new Router({
                     name: 'register',
                     component: () =>
                         import ('./views/Register.vue')
+                },
+                {
+                    path: '/reset',
+                    name: 'reset',
+                    component: () =>
+                        import ('./views/Forgotpass.vue')
                 }
             ]
         },
@@ -267,11 +273,10 @@ router.beforeEach((to, from, next) => {
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('token');
     if (authRequired && !loggedIn) {
-      return next('/login');
+        return next('/login');
     }
-  
+
     next();
 })
 
 export default router
-

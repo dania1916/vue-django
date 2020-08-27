@@ -3,8 +3,14 @@
             <div class="col-lg-5 col-md-7">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-header bg-transparent pb-5">
-                        <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-                        <div class="btn-wrapper text-center">
+                        <div class=" text-center mt-2 mb-3"><medium>Sign in with credentials</medium></div>
+                        <div class="row justify-content-center">
+                          <div class="avatar">
+                            <i class="ni ni-key-25 text-white"></i>
+                        <!-- <img src="img/theme/team-4-800x800.jpg" class="rounded-circle"> -->
+                          </div>
+                        </div>
+                        <!-- <div class="btn-wrapper text-center">
                             <a href="#" class="btn btn-neutral btn-icon">
                                 <span class="btn-inner--icon"><img src="img/icons/common/github.svg"></span>
                                 <span class="btn-inner--text">Github</span>
@@ -13,43 +19,9 @@
                                 <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
                                 <span class="btn-inner--text">Google</span>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
-                        <div class="text-center text-muted mb-4">
-                            <small>Or sign in with credentials</small>
-                        </div>
-    <!-- <form @submit.prevent="login">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          v-model.trim="$v.username.$model"
-          name="username"
-          class="form-control"
-          :class="{ 'is-invalid': submitted && $v.username.$error }"
-        >
-        <div v-if="submitted && !$v.username.required" class="invalid-feedback">Username is required</div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          v-model.trim="$v.password.$model"
-          name="password"
-          class="form-control"
-          :class="{ 'is-invalid': submitted && $v.password.$error }"
-        >
-        <div v-if="submitted && !$v.password.required" class="invalid-feedback">Password is required</div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" @click="login"  :disabled="loading">
-          <span class="spinner-border spinner-border-sm" v-show="loading"></span>
-          <span>Login</span>
-        </button>
-      </div>
-      <div v-if="error" class="alert alert-danger">{{ error }}</div>
-    </form> -->
                         <form role="form">
                             <base-input class="input-group-alternative mb-3"
                                         placeholder="Email"
@@ -65,7 +37,7 @@
                             </base-input>
 
                             <base-checkbox class="custom-control-alternative">
-                                <span class="text-muted">Remember me</span>
+                                <span>Remember me</span>
                             </base-checkbox>
                             <div class="text-center">
                                 <base-button type="primary" @click="login" class="my-4">Sign In</base-button>
@@ -75,7 +47,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-6">
-                        <a href="#" class="text-light"><small>Forgot password?</small></a>
+                        <router-link to="/reset" class="text-light"><small>Forgot password?</small></router-link>
                     </div>
                     <div class="col-6 text-right">
                         <router-link to="/register" class="text-light"><small>Create new account</small></router-link>

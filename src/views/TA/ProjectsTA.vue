@@ -77,6 +77,9 @@
           </th>
         </template>
       </base-table>
+       <div class="card-footer py-4 d-flex justify-content-end">
+            <base-pagination v-model="currentPage" :total="50"></base-pagination>
+        </div>
     </div>
   </div>
 </template>
