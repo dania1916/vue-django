@@ -6,7 +6,6 @@ import Vue from 'vue'
 
 
 
-
 Vue.use(Router)
 
 
@@ -73,6 +72,30 @@ let router = new Router({
                     name: 'Edit Mahasiswa',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Students/EditStudents.vue')
+                },
+                {
+                    path: '/user',
+                    name: 'User',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/User/ProjectsUser.vue')
+                },
+                {
+                    path: '/user/add',
+                    name: 'Tambah User',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/User/FormUser.vue')
+                },
+                {
+                    path: '/user/:id/edit',
+                    name: 'Edit User',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/User/EditUser.vue')
+                },
+                {
+                    path: '/user/:id/detail',
+                    name: 'Edit User',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/User/DetailUser.vue')
                 },
                 {
                     path: '/internship/user',
