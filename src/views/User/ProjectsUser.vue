@@ -60,7 +60,7 @@
           </th>
           <th class="media-body text-md-center">
             <div class="media-body">
-            <b-button pill variant="success" @click="splitUserId()" size="sm" :href="'/students/' + row.url.split('/').slice(-2)[0]">Detail</b-button>
+            <b-button pill variant="success" @click="splitUserId()" size="sm" :href="'/user/' + row.url.split('/').slice(-2)[0]">Detail</b-button>
             </div>
           </th>
         </template>
@@ -113,7 +113,6 @@ import UserDataService from "../../services/UserDataService";
     },
     splitUserId(){
       this.tableData.id_user = this.tableData.url
-      // this.id_user = id_user.split("/");
     }
   },
   computed:{

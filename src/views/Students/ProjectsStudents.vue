@@ -60,7 +60,7 @@
           </th>
           <th class="media-body text-md-center">
             <div class="media-body">
-            <b-button pill variant="success" @click="splitUserId()" size="sm" :href="'/students/' + row.url.split('/').slice(-2)[0]">Detail</b-button>
+            <b-button pill variant="success" size="sm" :href="'/students/' + row.id">Detail</b-button>
             </div>
           </th>
         </template>
@@ -69,7 +69,7 @@
   </div>
 </template>
 <script>
-import UserDataService from "../../services/UserDataService";
+import StudentDataService from "../../services/StudentDataService";
 
   export default {
     name: 'projects-table',
@@ -92,7 +92,7 @@ import UserDataService from "../../services/UserDataService";
     },
     methods: {
     retrieveStudents() {
-      UserDataService.getAll()
+      StudentDataService.getAll()
         .then(response => {
           this.tableData = response.data;
           console.log(response.data);
@@ -102,7 +102,7 @@ import UserDataService from "../../services/UserDataService";
         });
     },
       searchTitle() {
-      UserDataService.findByTitle(this.title_search)
+      StudentDataService.findByTitle(this.title_search)
         .then(response => {
           this.tableData = response.data;
           console.log(response.data);

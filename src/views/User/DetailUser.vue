@@ -19,8 +19,8 @@
                                     <h3 class="mb-0">Detail Mahasiswa</h3>
                                 </div>
                                 <div class="col text-right">
-                                <b-button pill variant="primary" size="md" :href="'/students/'+tableData.id+'/edit'">Edit</b-button>
-                                <b-button pill variant="danger" size="md"  :href="'/students/'" @click="deleteStudent">Delete</b-button>
+                                <b-button pill variant="primary" size="md" :href="'/user/'+tableData.url.split('/').slice(-2)[0]+'/edit'">Edit</b-button>
+                                <b-button pill variant="danger" size="md"  :href="'/user/'" @click="deleteStudent">Delete</b-button>
                                 </div>
                             </div>
                         </div>
@@ -196,7 +196,7 @@ import StudentDataService from "../../services/UserDataService";
         });
     },
      deleteStudent() {
-      StudentDataService.delete(this.tableData.id)
+      StudentDataService.delete(this.tableData.url.split('/').slice(-2)[0])
         .then(response => {
         console.log(response.data);
         this.$router.push({ name: "Mahasiswa" });
@@ -204,6 +204,9 @@ import StudentDataService from "../../services/UserDataService";
         .catch(e => {
           console.log(e);
         });
+    },
+    splitUserId(){
+      this.tableData.id_user = this.tableData.url
     }
     },
     mounted() {

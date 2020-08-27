@@ -77,7 +77,7 @@ let router = new Router({
                     path: '/user',
                     name: 'User',
                     component: () =>
-                        import ( /* webpackChunkName: "demo" */ './views/User/ProjectsUser.vue')
+                        import ( /* webpackChunkName: "demo" */ './views/User.vue')
                 },
                 {
                     path: '/user/add',
@@ -92,7 +92,7 @@ let router = new Router({
                         import ( /* webpackChunkName: "demo" */ './views/User/EditUser.vue')
                 },
                 {
-                    path: '/user/:id/detail',
+                    path: '/user/:id',
                     name: 'Edit User',
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/User/DetailUser.vue')
