@@ -60,7 +60,7 @@
           </th>
           <th class="media-body text-md-center">
             <div class="media-body">
-            <b-button pill variant="success" size="sm" :href="'/students/' + row.id">Detail</b-button>
+            <b-button pill variant="success" @click="splitUserId()" size="sm" :href="'/students/' + row.url.split('/').slice(-2)[0]">Detail</b-button>
             </div>
           </th>
         </template>
@@ -85,9 +85,9 @@ import UserDataService from "../../services/UserDataService";
         default: 1
       },
         tableData: 
-        [{
+        [{          id_user:''
           }],
-          title_search:''
+          title_search:'',
       }
     },
     methods: {
@@ -110,6 +110,19 @@ import UserDataService from "../../services/UserDataService";
         .catch(e => {
           console.log(e);
         });
+    },
+    splitUserId(){
+      this.tableData.id_user = this.tableData.url
+      // this.id_user = id_user.split("/");
+    }
+  },
+  computed:{
+    splitedList(){
+        let newArr = [...this.tableData]
+      newArr.map(el => {
+        return el.url = el.url.split('+')
+      })
+      return newArr
     }
   },
     mounted() {
