@@ -5,7 +5,7 @@
                   containerClasses="px-4 container"
                   expand>
             <router-link slot="brand" class="navbar-brand" to="/">
-                <img src="img/brand/white.png"/>
+                <img src="img/brand/white.png" >
             </router-link>
 
             <template v-slot="{closeMenu}">
@@ -52,7 +52,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-5 col-md-6">
                             <h1 class="text-white">SISTEM INFORMASI</h1>
-                            <p class="text-lead text-white">Sistem Informasi Kerja Praktik dan Magang Mahasiswa</p>
+                            <p class="text-lead text-white">Sistem Informasi Kerja Praktik dan Tugas Akhir Mahasiswa</p>
                             <p class="text-lead text-light">
                                 <a class="text-white" href="https://tedi.sv.ugm.ac.id">Departemen Teknologi dan Informatika </a>
                             </p>
@@ -81,7 +81,7 @@
                 <div class="row align-items-center justify-content-xl-between">
                     <div class="col-xl-6">
                         <div class="copyright text-center text-xl-left text-muted">
-                            &copy; {{year}} <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
+                            &copy; {{year}} <a href="https://tri.sv.ugm.ac.id" class="font-weight-bold ml-1"
                                                target="_blank">Creative Tim</a>
                         </div>
                     </div>

@@ -349,7 +349,12 @@ export default {
       this.step--;
     },
     next() {
-      this.step++;
+      this.submitted = true;
+      this.$validator.validate().then(valid => {
+        if (valid) {
+            this.step++;
+        }
+    })
     },
     updateTopic() {
       const pk = localStorage.getItem('pk')
