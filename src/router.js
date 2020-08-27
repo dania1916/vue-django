@@ -239,6 +239,12 @@ let router = new Router({
                     component: () =>
                         import ( /* webpackChunkName: "demo" */ './views/Topics/EditTopics.vue')
                 },
+                {
+                    path: '/user/:id/changepass',
+                    name: 'Password',
+                    component: () =>
+                        import ( /* webpackChunkName: "demo" */ './views/Changepass.vue')
+                }
             ]
         },
         {

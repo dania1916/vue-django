@@ -201,7 +201,7 @@
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <base-input alternative=""
-                                                        label="Kota"
+                                                        label="Kota / Kabupaten"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.profile.city"

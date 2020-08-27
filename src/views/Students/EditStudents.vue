@@ -33,6 +33,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.first_name"
+                                                        disabled
                                                         />
                                         </div>
                                         <div class="col-lg-6">
@@ -41,6 +42,7 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.nim"
+                                                        disabled
                                                         />
                                         </div>
                                     </div>
@@ -203,7 +205,7 @@
 </template>
 
 <script>
-import StudentDataService from "../../services/StudentDataService";
+import StudentDataService from "../../services/UserDataService";
 import { required, email } from "vuelidate/lib/validators";
   export default {
     name: 'user-profile',

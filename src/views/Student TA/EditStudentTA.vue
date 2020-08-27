@@ -188,7 +188,7 @@
                                 </router-link>
                                 </div>
                                 <div class = "col-sm-7 pl-5" >
-                                <router-link :to="{name: 'KP Mahasiswa'}">
+                                <router-link :to="{name: 'TA Mahasiswa'}">
                                 <base-button type = "success" @click="updateThesis()">Simpan</base-button>   
                                 </router-link>                             
                                 </div>

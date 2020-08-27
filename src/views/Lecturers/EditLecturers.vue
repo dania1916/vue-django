@@ -22,6 +22,7 @@
                         </div>
                         <!-- Member -->
                         <template>
+                          <validation-observer>
                             <form @submit.prevent>
                                 <h6 class="heading-small text-muted mb-4"></h6>
                                 <div class="pl-lg-4">
@@ -31,8 +32,13 @@
                                                         label="Nama Lengkap"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.name" 
+                                                        v-model="tableData.name"
+                                                        v-validate="'required'" 
+                                                        name="name"
+                                                        id="name"
+                                                        :class="{ 'is-invalid': submitted && errors.has('name') }" 
                                             />
+                                            <div  v-if="submitted && errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</div>
                                         </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
@@ -71,12 +77,13 @@
                             </router-link>
                             </div>
                             <div class = "pl-3" >
-                            <router-link :to="{name: 'Dosen'}">
+                            <!-- <router-link :to="{name: 'Dosen'}"> -->
                             <base-button type = "success" @click="updateLecturer">Update</base-button>
-                            </router-link>
+                            <!-- </router-link> -->
                             </div> 
                             </div>
                             </form>
+                            </validation-observer>
                         </template>
                     </card>
                 </div>
@@ -87,6 +94,7 @@
 
 <script>
 import LecturerDataService from "../../services/LecturerDataService";
+import { required } from "vuelidate/lib/validators";
 
   export default {
     name: 'user-profile',
@@ -103,9 +111,15 @@ import LecturerDataService from "../../services/LecturerDataService";
       },
         tableData: 
         [{
-          }]
-      }
+          }],
+        submitted: false
+      };
     },
+    validations: {
+    form: {
+      name: { required }
+    }
+  },
     methods: {
       getLecturer(id) {
       LecturerDataService.get(id)
@@ -126,6 +140,12 @@ import LecturerDataService from "../../services/LecturerDataService";
         .catch(e => {
           console.log(e);
         });
+        this.submitted = true;
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    this.$router.push('/lecturers')
+                }
+            });
     },
 
 },

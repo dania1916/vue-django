@@ -52,9 +52,9 @@
                             </router-link>
                             </div>
                             <div class = "pl-3" >
-                            
-                            <base-button type = "success" @click="updateTopic" v-bind:disabled="invalid">Update</base-button>
-                            
+                            <router-link :to="{name: 'Bidang'}">
+                            <base-button type = "success" v-bind:disabled="invalid">Update</base-button>
+                            </router-link>
                             </div> 
                             </div>
                             </form>

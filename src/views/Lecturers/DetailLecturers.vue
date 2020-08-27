@@ -18,6 +18,10 @@
                                 <div class="col-8">
                                     <h3 class="mb-0">Detail Dosen</h3>
                                 </div>
+                                <div class="col text-right">
+                                    <b-button pill variant="primary" size="md" :href="'/lecturers/'+tableData.id+'/edit'">Edit</b-button>
+                                    <b-button pill variant="danger" size="md" :href="'/lecturers/'" @click="deleteLecturer">Delete</b-button>
+                                </div>
                             </div>
                         </div>
                         <!-- Member -->
@@ -113,6 +117,16 @@ import LecturerDataService from "../../services/LecturerDataService";
           console.log(e);
         });
   },
+  deleteLecturer() {
+      LecturerDataService.delete(this.tableData.id)
+        .then(response => {
+        console.log(response.data);
+        this.$router.push({ name: "Dosen" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
     },
     mounted() {
     this.getLecturer(this.$route.params.id);

@@ -59,18 +59,11 @@
                 <span class="name mb-0 text-sm">{{row.nip}}</span>
               </div>
           </th>
-          <td class="text-center">
-            <base-dropdown class="dropdown" position="right">
-              <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v"></i>
-              </a>
-                <a class="dropdown-item" :href="'/lecturers/' + row.id"> Detail</a>
-                <a class="dropdown-item" :href="'/lecturers/' + row.id + '/edit'">Edit</a>
-                <a class="dropdown-item" :href="'/lecturers/' + row.id + '/delete'">Delete</a>
-                <a class="dropdown-item" :href="'/lecturers/'" @click="deleteLecturer(row.id)">Delete 2</a>
-
-            </base-dropdown>
-          </td>
+          <th class="media-body text-md-center">
+            <div class="media-body">
+            <b-button pill variant="success" size="sm" :href="'/lecturers/' + row.id">Detail</b-button>
+            </div>
+          </th>
         </template>
       </base-table>
     </div>

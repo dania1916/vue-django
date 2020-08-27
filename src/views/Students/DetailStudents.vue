@@ -154,7 +154,7 @@
 </template>
 
 <script>
-import StudentDataService from "../../services/StudentDataService";
+import StudentDataService from "../../services/UserDataService";
 
   export default {
     name: 'user-profile',
