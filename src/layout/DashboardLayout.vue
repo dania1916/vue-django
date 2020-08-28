@@ -16,7 +16,7 @@
 
         
         <sidebar-item :link="{name: 'User Profile', icon: 'ni ni-circle-08 text-blue', path: '/profile'}"/>
-        <sidebar-item :link="{name: 'User', icon: 'ni ni-single-02 text-yellow', path: '/user'}"/>
+        <sidebar-item :link="{name: 'User', icon: 'ni ni-single-02 text-grey', path: '/user'}"/>
         <sidebar-item :link="{name: 'Mahasiswa', icon: 'ni ni-single-02 text-yellow', path: '/students'}"/>
         <sidebar-item :link="{name: 'Dosen', icon: 'ni ni-single-02 text-orange', path: '/lecturers'}"/>
         <sidebar-item :link="{name: 'Aktivitas Kerja Praktik', icon: 'ni ni-briefcase-24 text-blue', path: '/internship/user'}"/>

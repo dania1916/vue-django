@@ -239,7 +239,7 @@
 </template>
 <script>
 
-
+import UserDataService from "../services/UserDataService";
 import axios from 'axios'
 
 export default {
@@ -264,14 +264,15 @@ export default {
     },
     methods:{
         fetchUser(){
-            const token = localStorage.getItem('token')
+            // const token = localStorage.getItem('token')
             const pk = localStorage.getItem('pk')
-            axios.get('http://localhost:8000/api/users/'+pk,
-            {
-                headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-            }).then(response =>{
+            UserDataService.get(pk)
+            // axios.get('http://localhost:8000/api/users/'+pk,
+            // {
+            //     headers: {
+            //                 Authorization: `Bearer ${token}`
+            //             }
+            .then(response =>{
                 this.tableData = response.data
             })
         },

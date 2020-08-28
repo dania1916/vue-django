@@ -203,7 +203,7 @@
                                                         label="Nama Depan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.thesis_title"
+                                                        v-model="tableData.name.first_name"
                                                         disabled
                                             />
                                         </div>

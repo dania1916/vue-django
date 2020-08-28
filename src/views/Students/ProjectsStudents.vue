@@ -40,7 +40,7 @@
         <template slot-scope="{row}">
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.url}}</span>
+                <span class="name mb-0 text-sm">{{row.id}}</span>
               </div>
           </th>
           <th scope="row">
@@ -85,8 +85,7 @@ import StudentDataService from "../../services/StudentDataService";
         default: 1
       },
         tableData: 
-        [{          id_user:''
-          }],
+        [{ id_user:'' }],
           title_search:'',
       }
     },
