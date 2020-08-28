@@ -33,10 +33,6 @@
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>
                         </router-link>
-                        <router-link to='/user/' class="dropdown-item">
-                            <i class="ni ni-key-25"></i>
-                            <span>Change Password</span>
-                        </router-link>
                         <div class="dropdown-divider"></div>
                         <router-link to="/login" class="dropdown-item">
                             <i class="ni ni-user-run"></i>

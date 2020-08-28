@@ -63,6 +63,9 @@
                                 <div class="col-8">
                                     <h3 class="mb-0">Informasi Akun</h3>
                                 </div>
+                                <div class="col text-right">
+                                    <b-button pill variant="primary" size="md" :href="'/user/' + tableData.url.split('/').slice(-2)[0] + '/changepass'">Ubah Password</b-button>
+                                </div>
                             </div>
                         </div>
                         <template>
