@@ -27,7 +27,7 @@
                         <template>
                             <form @submit.prevent>
                                 <h6 class="heading-small text-muted mb-4">Anggota</h6>
-                                <div class="pl-lg-4">
+                                <div v-if="tableData.member != null" class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <base-input alternative=""
@@ -57,7 +57,7 @@
                                             />
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div  class="row">
                                         <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="Nama Depan"
@@ -82,6 +82,37 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.member.nim"
+                                                        disabled
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-else class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Nama Depan"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.name.first_name"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Nama Belakang"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.name.last_name"
+                                                        disabled
+                                            />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="NIM"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.name.profile.nim"
                                                         disabled
                                             />
                                         </div>

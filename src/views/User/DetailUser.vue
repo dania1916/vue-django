@@ -44,7 +44,7 @@
                                                         label="NIM"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.nim"
+                                                        v-model="tableData.profile.nim"
                                                         disabled
                                             />
                                         </div>
@@ -55,7 +55,7 @@
                                                         label="No Telepon"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.number_phone"
+                                                        v-model="tableData.profile.number_phone"
                                                         disabled
                                             />
                                         </div>
@@ -77,7 +77,7 @@
                                                         label="Desa"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.village"
+                                                        v-model="tableData.profile.village"
                                                         disabled
                                             />
                                         </div>
@@ -86,7 +86,7 @@
                                                         label="RT"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.rt_village"
+                                                        v-model="tableData.profile.rt_village"
                                                         disabled
                                             />
                                         </div>
@@ -95,7 +95,7 @@
                                                         label="RW"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.rw_village"
+                                                        v-model="tableData.profile.rw_village"
                                                         disabled
                                             />
                                         </div>
@@ -104,7 +104,7 @@
                                                         label="Kecamatan"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.sub_district"
+                                                        v-model="tableData.profile.sub_district"
                                                         disabled
                                             />
                                         </div>
@@ -115,7 +115,7 @@
                                                         label="Kota / Kabupaten"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.city"
+                                                        v-model="tableData.profile.city"
                                                         disabled
                                             />
                                         </div>
@@ -124,7 +124,7 @@
                                                         label="Provinsi"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.province"
+                                                        v-model="tableData.profile.province"
                                                         disabled
                                             />
                                         </div>
@@ -133,7 +133,7 @@
                                                         label="Kode Pos"
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
-                                                        v-model="tableData.postal_code"
+                                                        v-model="tableData.profile.postal_code"
                                                         disabled
                                             />
                                         </div>

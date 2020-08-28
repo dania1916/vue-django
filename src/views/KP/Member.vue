@@ -310,7 +310,7 @@ components: {flatPicker},
         },
         members:{
          student_list:'',
-         student_id:1,
+         student_id:'',
          student_name:'',
          selected_name:'',
          selected_nim:'',
@@ -511,7 +511,7 @@ components: {flatPicker},
     this.retrieveStudent();
     this.retrieveCompany();
     this.retrieveTopics();
-    this.retrieveMembers();
+    this.retrieveMember();
   }
   };
 </script>

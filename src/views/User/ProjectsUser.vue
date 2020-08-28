@@ -30,7 +30,7 @@
                   tbody-classes="list"
                   :data="tableData" >
         <template slot="columns">
-          <th class='text-md-center'>NO</th>
+          <th class='text-md-center'>No</th>
           <th class='text-md-center'>NAMA</th>
           <th class="text-md-center">EMAIL</th>
           <th class='text-md-center'>NIM</th>
@@ -39,8 +39,8 @@
 
         <template slot-scope="{row}">
           <th scope="row">
-            <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.url}}</span>
+            <div class="media-body text-md">
+                <span class="name mb-0 text-sm">{{row.id}}</span>
               </div>
           </th>
           <th scope="row">
@@ -55,7 +55,7 @@
           </th>
           <th scope="row">
             <div class="media-body text-md-center">
-                <span class="name mb-0 text-sm">{{row.nim}}</span>
+                <span class="name mb-0 text-sm">{{row.email}}</span>
               </div>
           </th>
           <th class="media-body text-md-center">

@@ -33,7 +33,6 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.first_name"
-                                                        disabled
                                                         />
                                         </div>
                                         <div class="col-lg-6">
@@ -42,7 +41,6 @@
                                                         placeholder=""
                                                         input-classes="form-control-alternative"
                                                         v-model="tableData.nim"
-                                                        disabled
                                                         />
                                         </div>
                                     </div>
@@ -74,7 +72,6 @@
      
                                             />
                                             <div  v-if="submitted && errors.has('email')" class="invalid-feedback">{{ errors.first('email') }}</div>
-                                            
                                         </div>
                                     </div>
                                     <!-- Kontak -->
@@ -205,7 +202,7 @@
 </template>
 
 <script>
-import StudentDataService from "../../services/UserDataService";
+import StudentDataService from "../../services/StudentDataService";
 import { required, email } from "vuelidate/lib/validators";
   export default {
     name: 'user-profile',

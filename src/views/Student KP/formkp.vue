@@ -47,16 +47,16 @@
                                 <div class="col-sm-7">
                                  <b-form-radio v-model="internships.group" 
                                               name="some-radios" 
-                                              value="1"
+                                              value="0"
                                               >Sendiri :v 
                                 </b-form-radio>
                                 <b-form-radio v-model="internships.group" 
                                               name="some-radios" 
-                                              value="2">Berpasangan :)
+                                              value="1">Berpasangan :)
                                 </b-form-radio>                  
                                 </div>
                                 </div>
-                                <div v-if="internships.group == 2">
+                                <div v-if="internships.group == 1">
                                 <div class="form-group row" >
                                 <label class="col-sm-3"></label>
                                 <div  class = "col-sm-7" > 
@@ -284,7 +284,7 @@ components: {flatPicker},
         student:'',
         members:{
          student_list:'',
-         student_id:1,
+         student_id:'',
          student_name:'',
          selected_name:'',
          selected_nim:'',
