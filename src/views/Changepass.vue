@@ -33,7 +33,7 @@
                                                class="form-control" 
                                                v-validate="'required'" 
                                                id="password" 
-                                               v-model="tableData" 
+                                                
                                                name="password" 
                                                :class="{ 'is-invalid': submitted && errors.has('password') }">
                                                <div  v-if="submitted && errors.has('password')" class="invalid-feedback">{{ errors.first('password') }}</div>
@@ -46,7 +46,7 @@
                                                class="form-control" 
                                                v-validate="'required'" 
                                                id="new_password" 
-                                               v-model="tableData" 
+                                                
                                                name="new_password"
                                                :class="{ 'is-invalid': submitted && errors.has('new_password') }">
                                                <div  v-if="submitted && errors.has('new_password')" class="invalid-feedback">{{ errors.first('new_password') }}</div>
@@ -58,11 +58,11 @@
                                         <input type="text" 
                                                class="form-control" 
                                                v-validate="'required'" 
-                                               id="new_password" 
-                                               v-model="tableData" 
-                                               name="new_password" 
-                                               :class="{ 'is-invalid': submitted && errors.has('new_password') }">
-                                               <div  v-if="submitted && errors.has('new_password')" class="invalid-feedback">{{ errors.first('new_password') }}</div>
+                                               id="repeat_password" 
+                                               
+                                               name="repeat_password" 
+                                               :class="{ 'is-invalid': submitted && errors.has('repeat_password') }">
+                                               <div  v-if="submitted && errors.has('repeat_password')" class="invalid-feedback">{{ errors.first('repeat_password') }}</div>
                                         </div>
                                     </div> 
                                 </div>
@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required , sameAs } from "vuelidate/lib/validators";
 
 
 export default {
@@ -102,20 +102,18 @@ export default {
     },
     data() {
       return {
-        pagination: {
-        default: 1
-      },
-        tableData: 
-        [{
-          }],
-        submitted : false
+      password: '',
+      new_password: '',
+      submitted : false,
       }
     },
     validations: {
     form: {
-      password: { required },
-      new_password: { required }
+      new_password: { required },
     }
   },
+  repeat_password: {
+      sameAsPassword: sameAs('new_password')
+    }
 }
 </script>

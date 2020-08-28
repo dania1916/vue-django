@@ -27,7 +27,7 @@
                               <h6 class="heading-small text-muted mb-4">Profil</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="Nama Lengkap"
                                                         placeholder=""
@@ -35,7 +35,15 @@
                                                         v-model="tableData.first_name"
                                                         />
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
+                                            <base-input alternative=""
+                                                        label="Nama Belakang"
+                                                        placeholder=""
+                                                        input-classes="form-control-alternative"
+                                                        v-model="tableData.last_name"
+                                                        />
+                                        </div>
+                                        <div class="col-lg-4">
                                             <base-input alternative=""
                                                         label="NIM"
                                                         placeholder=""

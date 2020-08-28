@@ -48,7 +48,7 @@
                                     <div class="form-group row">
                                         <label for="email" class="col-sm-3 col-form-label text-md-right">Email</label>
                                         <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="email" v-model="student.email" name="email" placeholder="name@mail.ugm.ac.id"
+                                        <input type="email" class="form-control" id="email" v-model="student.email" name="email" placeholder="name@mail.ugm.ac.id"
                                          v-validate="'required'" :class="{ 'is-invalid' : submitted && errors.has('email') }">
                                         <div v-if="submitted && errors.has('email')" class="invalid-feedback">{{ errors.first('email') }}</div>
                                         </div>

@@ -164,11 +164,12 @@
                                 <label for="inputJudul" class="col-sm-3 col-form-label text-md-right">Link Publikasi</label>
                                 <div class="col-sm-7">
                                 <input type="text" 
-                                       class="form-control" 
+                                       class="form-control"
+                                       placeholder=""
                                        id="publication_link"
                                        v-model="thesis.publication_link"
                                        name="publication_link"
-                                       v-validate="'required'"
+                                       v-validate="{url: {require_protocol: true }}"
                                        :class="{ 'is-invalid': submitted && errors.has('publication_link') }">
                                 <div  v-if="submitted && errors.has('publication_link')" class="invalid-feedback">{{ errors.first('publication_link') }}</div>
                                 </div>
@@ -225,7 +226,7 @@ import LecturerDataService from "../../services/LecturerDataService";
 import CompanyDataService from "../../services/CompanyDataService";
 import TopicDataService from "../../services/TopicDataService";
 import UserDataService from "../../services/UserDataService";
-import { required } from "vuelidate/lib/validators";
+import { required , url } from "vuelidate/lib/validators";
 import axios from 'axios';
 
 import Vue from 'vue'
@@ -282,7 +283,7 @@ export default {
   validations: {
     form: {
       tittle: { required },
-      publication_link: { required },
+      publication_link: { required , url },
     }
     },
   computed: {
